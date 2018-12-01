@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>郝建勋的运维文档 :: 郝建勋的运维文档</title>
+    <title>saltstack安装 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543648958" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
-        
+        parent
         
         
         ">
@@ -158,7 +158,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
         saltstack安装
         <i class="fas fa-check read-icon"></i>
@@ -329,30 +329,135 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/saltstack%e5%ae%89%e8%a3%85.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > saltstack安装
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装">安装</a>
+<ul>
+<li><a href="#1-安装阿里镜像源">1.安装阿里镜像源</a></li>
+<li><a href="#2-配置中的域名修改">2.配置中的域名修改</a></li>
+<li><a href="#3-安装saltstack">3.安装saltstack</a>
+<ul>
+<li><a href="#3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</a></li>
+</ul></li>
+<li><a href="#4-启动">4.启动</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1>saltstack安装</h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+
+
+<h2 id="安装">安装</h2>
+
+<h3 id="1-安装阿里镜像源">1.安装阿里镜像源</h3>
+
+<pre><code>yum install -y https://mirrors.aliyun.com/saltstack/yum/redhat/salt-repo-latest-2.el7.noarch.rpm
+</code></pre>
+
+<h3 id="2-配置中的域名修改">2.配置中的域名修改</h3>
+
+<p>仍以 Centos 7 为例，初始化rpm包生成的配置文件为:</p>
+
+<pre><code>/etc/yum.repos.d/salt-latest.repo
+</code></pre>
+
+<p>文件中的访问地址需要替换成镜像站的路径，执行命令：</p>
+
+<pre><code>sudo sed -i &quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&quot; /etc/yum.repos.d/salt-latest.repo
+</code></pre>
+
+<h3 id="3-安装saltstack">3.安装saltstack</h3>
+
+<h4 id="3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</h4>
+
+<pre><code>yum install -y salt-master
+</code></pre>
+
+<pre><code>yum install -y salt-minion
+</code></pre>
+
+<h3 id="4-启动">4.启动</h3>
+
+<pre><code>systemctl start salt-master
+
+systemctl start salt-minion
+</code></pre>
+
+
+<footer class=" footline" >
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
-	
-  
+</footer>
+
+
         
         </div> 
         
@@ -384,8 +489,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -399,6 +502,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -416,6 +522,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -431,6 +538,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -519,8 +629,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" title="zabbix安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

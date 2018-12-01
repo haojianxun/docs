@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>郝建勋的运维文档 :: 郝建勋的运维文档</title>
+    <title>初始化简单配置saltstack :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543648958" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
-        
+        parent
         
         
         ">
@@ -215,7 +215,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/" title="初始化简单配置saltstack" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/" title="初始化简单配置saltstack" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/">
         初始化简单配置saltstack
         <i class="fas fa-check read-icon"></i>
@@ -329,30 +329,232 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/saltstack%e5%88%9d%e5%a7%8b%e9%85%8d%e7%bd%ae.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > 初始化简单配置saltstack
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#master的主要配置">MASTER的主要配置</a>
+<ul>
+<li><a href="#网络接口">网络接口</a></li>
+</ul></li>
+<li><a href="#minion的主要配置">MINION的主要配置</a>
+<ul>
+<li><a href="#master"><code>MASTER</code></a></li>
+</ul></li>
+<li><a href="#为salt开启防火墙配置">为SALT开启防火墙配置</a>
+<ul>
+<li><a href="#master端白名单">MASTER端白名单</a></li>
+<li><a href="#minion开启iptables规则">MINION开启iptables规则</a></li>
+</ul></li>
+<li><a href="#key管理">KEY管理</a></li>
+<li><a href="#测试是否成功">测试是否成功</a></li>
+<li><a href="#可能出现的报错">可能出现的报错</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1>初始化简单配置saltstack</h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+
+
+<h2 id="master的主要配置">MASTER的主要配置</h2>
+
+<h3 id="网络接口">网络接口</h3>
+
+<p>默认: <code>0.0.0.0</code> (所有的网络接口都可访问)</p>
+
+<p>绑定本地接口</p>
+
+<pre><code>interface: 192.168.200.132
+</code></pre>
+
+<h2 id="minion的主要配置">MINION的主要配置</h2>
+
+<h3 id="master"><code>MASTER</code></h3>
+
+<p>缺省:<code>salt</code></p>
+
+<p>主机名或者master的IPV4地址。</p>
+
+<p>缺省:<code>salt</code></p>
+
+<pre><code>master: 192.168.200.132    //这个master的地址填上salt-master的ip地址
+</code></pre>
+
+<hr />
+
+<h2 id="为salt开启防火墙配置">为SALT开启防火墙配置</h2>
+
+<p>在Salt minions端没有设置防火墙的必要。下面的配置只是涉及master。</p>
+
+<pre><code>firewall-cmd --permanent --zone=&lt;zone&gt; --add-port=4505-4506/tcp  
+
+
+//如果没有区域可以去掉--zone
+firewall-cmd --permanent  --add-port=4505-4506/tcp
+</code></pre>
+
+<h3 id="master端白名单">MASTER端白名单</h3>
+
+<pre><code># Allow Minions from these networks
+iptables -I INPUT -s 10.1.2.0/24 -p tcp -m multiport --dports 4505,4506 -j ACCEPT
+iptables -I INPUT -s 10.1.3.0/24 -p tcp -m multiport --dports 4505,4506 -j ACCEPT
+# Allow Salt to communicate with Master on the loopback interface
+iptables -A INPUT -i lo -p tcp -m multiport --dports 4505,4506 -j ACCEPT
+# Reject everything else
+iptables -A INPUT -p tcp -m multiport --dports 4505,4506 -j REJECT
+</code></pre>
+
+<h3 id="minion开启iptables规则">MINION开启iptables规则</h3>
+
+<pre><code>iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4505 -j ACCEPT
+iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4506 -j ACCEPT
+</code></pre>
+
+<hr />
+
+<h2 id="key管理">KEY管理</h2>
+
+<p>Salt在Master和Minion之间的通讯采用AES加密. 这就确保了发送给minions的命令不会被篡改， Master和Minion之间的通讯认证通过信任的已接受的key进行管理.</p>
+
+<p>在发送给Minion之前，需要确保minion的key已经被Master所接受. 运行 <a href="https://docs.saltstack.cn/ref/configuration/index.html#id1"><code>salt-key</code></a>命令将列出Salt Master已知的所有keys</p>
+
+<pre><code>[root@node01 salt]# salt-key -L
+Accepted Keys:
+node01
+Denied Keys:
+Unaccepted Keys:
+node02
+Rejected Keys:
+</code></pre>
+
+<p>使用<code>salt-key -A</code> 来接受key以使Mionions可以被Master管控</p>
+
+<pre><code>[root@node01 salt]# salt-key -A
+The following keys are going to be accepted:
+Unaccepted Keys:
+node02
+Proceed? [n/Y] 
+</code></pre>
+
+<p>输入<code>y</code> 接受</p>
+
+<pre><code>[root@node01 salt]# salt-key -A
+The following keys are going to be accepted:
+Unaccepted Keys:
+node02
+Proceed? [n/Y] y
+Key for minion node02 accepted.
+</code></pre>
+
+<p>当然可以使用<code>salt-key -a</code> 来使用通配符来选择接受 , 具体命令可以使用帮助查看<code>salt-key -h</code></p>
+
+<hr />
+
+<h2 id="测试是否成功">测试是否成功</h2>
+
+<pre><code>salt '*' test.ping  
+</code></pre>
+
+<p>如果成功则显示<code>true</code>   ,我在本机测试如下:</p>
+
+<pre><code>[root@node01 salt]# salt \* test.ping
+node01:
+    True
+node02:
+    True
+</code></pre>
+
+<h2 id="可能出现的报错">可能出现的报错</h2>
+
+<p>如果minion一直识别不了 , 表现为执行<code>salt-key -L</code>  ,命令输出中 <code>Unaccepted Keys</code> 的没有minion的, 可以去查看日志</p>
+
+<p>查看minion报错日志</p>
+
+<pre><code>tail /var/log/salt/minion
+</code></pre>
+
+<p>如果出现的报错是这样的</p>
+
+<pre><code>[ERROR   ][4076] Error while bringing up minion for multi-master
+</code></pre>
+
+<p>则就是防火墙和iptables没有搞好 , 可以去添加防火墙和iptables规则 , 在学习的过程中 , 如果嫌麻烦可以直接关掉防火墙</p>
+
+<pre><code>systemctl stop firewalld
+</code></pre>
+
+
+<footer class=" footline" >
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
-	
-  
+</footer>
+
+
         
         </div> 
         
@@ -384,8 +586,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -399,6 +599,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -464,6 +667,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -479,6 +683,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -519,8 +726,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/" title="使用kubeadm从0开始搭建kubernetes:v1.11.1"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/" title="安装zsh" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>郝建勋的运维文档</title>
-    <link>https://haojianxun.github.io/docs/</link>
-    <description>Recent content on 郝建勋的运维文档</description>
+    <title>安装配置 on 郝建勋的运维文档</title>
+    <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+    <description>Recent content in 安装配置 on 郝建勋的运维文档</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Fri, 30 Nov 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://haojianxun.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>docker安装</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/</guid>
       <description>下面是基于CentOS
 卸载旧版本 旧版本的 Docker 称为 docker 或者 docker-engine ，使用以下命令卸载旧版本：
 $ sudo yum remove docker \ docker-common \ docker-selinux \ docker-engine  使用 yum 源 安装 执行以下命令安装依赖包：
@@ -28,10 +28,10 @@ $ sudo yum-config-manager \ --add-repo \ https://mirrors.ustc.edu.cn/docker-ce/l
     
     <item>
       <title>saltstack安装</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/</guid>
       <description> 安装 1.安装阿里镜像源 yum install -y https://mirrors.aliyun.com/saltstack/yum/redhat/salt-repo-latest-2.el7.noarch.rpm  2.配置中的域名修改 仍以 Centos 7 为例，初始化rpm包生成的配置文件为:
 /etc/yum.repos.d/salt-latest.repo  文件中的访问地址需要替换成镜像站的路径，执行命令：
 sudo sed -i &amp;quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&amp;quot; /etc/yum.repos.d/salt-latest.repo  3.安装saltstack 3.1安装saltstack-master和minion yum install -y salt-master  yum install -y salt-minion  4.启动 systemctl start salt-master systemctl start salt-minion  </description>
@@ -39,10 +39,10 @@ sudo sed -i &amp;quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&amp;q
     
     <item>
       <title>zabbix安装</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/</guid>
       <description>使用阿里云镜像源 ###替换默认centos源为阿里云的源
 cd /etc/yum.repos.d/ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  使用阿里云的epel源 备份(如有配置其他epel源) mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo  使用阿里云的zabbix镜像源 cd /etc/yum.repos.d vim zabbix.repo [zabbix] baseurl=https://mirrors.aliyun.com/zabbix/zabbix/3.4/rhel/7/x86_64/ enabled=1 gpgcheck=0  最后执行
 yum makecache  安装zabbix yum install -y zabbix-release //安装源码库配置部署包 yum install -y zabbix-server-mysql zabbix-web-mysql 只安装Zabbix Agent的示例. yum install zabbix-agent  安装mysql数据库 yum install -y mysql-server mysql systemctl enable mysql systemctl start mysql  ##初始化mysql数据库</description>
@@ -50,10 +50,10 @@ yum makecache  安装zabbix yum install -y zabbix-release //安装源码库配�
     
     <item>
       <title>使用kubeadm从0开始搭建kubernetes:v1.11.1</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/</guid>
       <description>[TOC]
 准备阶段 前期准备 准备至少2台机器 (我的是CentOS7 )
    ip hostname role     192.168.200.139 master 主节点   192.168.200.140 node01 集群从节点    配置hosts文件
@@ -64,10 +64,10 @@ vim /etc/selinux/config SELINUX=disabled systemctl stop firewalld &amp;amp;&amp;
     
     <item>
       <title>初始化简单配置saltstack</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/</guid>
       <description>MASTER的主要配置 网络接口 默认: 0.0.0.0 (所有的网络接口都可访问)
 绑定本地接口
 interface: 192.168.200.132  MINION的主要配置 MASTER 缺省:salt
@@ -79,10 +79,10 @@ firewall-cmd --permanent --zone=&amp;lt;zone&amp;gt; --add-port=4505-4506/tcp //
     
     <item>
       <title>安装zsh</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/</guid>
       <description>1.查看当前系统有哪些shell
 cat /etc/shells 如果没有zsh就进行安装  2.安装zsh
 yum install -y zsh //CentOS系统 apt-get install -y zsh //ubuntu系统 #如果没有安装curl或者wget或者git 建议安装一下 yum install -y curl wget git 查看是否安装成功 zsh --version  方法1: 使用脚本安装 sh -c &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&amp;quot; 或者使用wget获取脚本 sh -c &amp;quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&amp;quot; 安装完成之后可以修改主题: 在家目录下 vi ~/.zshrc 修改ZSH_THEME=&amp;quot;agnoster&amp;quot; #主题预览地址:https://github.com/robbyrussell/oh-my-zsh/wiki/Themes 方法2: git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc chsh -s /bin/zsh vi .zshrc ZSH_THEME=&amp;quot;agnoster&amp;quot; # (this is one of the fancy ones) # see https://github.</description>
@@ -90,10 +90,10 @@ yum install -y zsh //CentOS系统 apt-get install -y zsh //ubuntu系统 #如果�
     
     <item>
       <title>通过onedrive搭建私人网盘</title>
-      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/</link>
+      <link>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/</link>
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/</guid>
+      <guid>https://haojianxun.github.io/docs/en/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/</guid>
       <description>具体项目地址: https://github.com/donwa/oneindex
 我们可以用docker来运行它
 docker run -d -p 8080:80 --name onedrive --restart=always yinaoxiong/oneindex  之后打开我们阿里云服务器的地址的8080端口就可以了(前提是把8080端口放开)
