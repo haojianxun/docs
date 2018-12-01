@@ -22,7 +22,7 @@
 $ sudo yum remove docker \ docker-common \ docker-selinux \ docker-engine  使用 yum 源 安装 执行以下命令安装依赖包：
 $ sudo yum install -y yum-utils \ device-mapper-persistent-data \ lvm2  鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
 国内源 执行下面的命令添加 yum 软件源：
-$ sudo yum-config-manager \ --add-repo \ https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo   以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
+$ sudo yum-config-manager \ --add-repo \ https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo  以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
  官方源 $ sudo yum-config-manager \ --add-repo \ https://download.</description>
     </item>
     
@@ -54,12 +54,11 @@ yum makecache  安装zabbix yum install -y zabbix-release //安装源码库配�
       <pubDate>Fri, 30 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/</guid>
-      <description>[TOC]
-准备阶段 前期准备 准备至少2台机器 (我的是CentOS7 )
+      <description>准备阶段 前期准备 准备至少2台机器 (我的是CentOS7 )
    ip hostname role     192.168.200.139 master 主节点   192.168.200.140 node01 集群从节点    配置hosts文件
 vim /etc/hosts 192.168.200.139 master 192.168.200.140 node01  设置2台机器的hostname
 hostnamectl set-hostname master //在master上设置 hostnamectl set-hostname node01 //在node01上设置  关闭防火墙(在master和node01上执行)
-vim /etc/selinux/config SELINUX=disabled systemctl stop firewalld &amp;amp;&amp;amp; systemctl disable firewalld setenforce 0 iptables -F vim /etc/fstab 注释掉swap那一行 swapoff -a 配置各节点系统内核参数使流过网桥的流量也进入iptables/netfilter框架中，在/etc/sysctl.conf中添加以下配置 net.bridge.bridge-nf-call-iptables = 1 net.</description>
+vim /etc/selinux/config SELINUX=disabled systemctl stop firewalld &amp;amp;&amp;amp; systemctl disable firewalld setenforce 0 iptables -F vim /etc/fstab 注释掉swap那一行 swapoff -a 配置各节点系统内核参数使流过网桥的流量也进入iptables/netfilter框架中，在/etc/sysctl.conf中添加以下配置 net.bridge.bridge-nf-call-iptables = 1 net.bridge.bridge-nf-call-ip6tables = 1 sysctl -p  设置yum源(在master和node01上都执行) #换成阿里云镜像源 mv /etc/yum.</description>
     </item>
     
     <item>

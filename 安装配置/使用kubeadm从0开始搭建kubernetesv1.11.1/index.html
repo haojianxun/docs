@@ -12,19 +12,19 @@
     <title>使用kubeadm从0开始搭建kubernetes:v1.11.1 :: 郝建勋的运维文档</title>
 
     
-    <link href="/docs/css/nucleus.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/fontawesome-all.min.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/hybrid.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/featherlight.min.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/perfect-scrollbar.min.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/auto-complete.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/theme.css?1543650814" rel="stylesheet">
-    <link href="/docs/css/hugo-theme.css?1543650814" rel="stylesheet">
+    <link href="/docs/css/nucleus.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/fontawesome-all.min.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/hybrid.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/featherlight.min.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/perfect-scrollbar.min.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/auto-complete.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/theme.css?1543652780" rel="stylesheet">
+    <link href="/docs/css/hugo-theme.css?1543652780" rel="stylesheet">
     
-      <link href="/docs/css/theme-green.css?1543650814" rel="stylesheet">
+      <link href="/docs/css/theme-green.css?1543652780" rel="stylesheet">
     
 
-    <script src="/docs/js/jquery-2.x.min.js?1543650814"></script>
+    <script src="/docs/js/jquery-2.x.min.js?1543652780"></script>
 
     <style type="text/css">
       :root #header + #content > #left > #rlblock_left{
@@ -89,14 +89,14 @@
     <span data-search-clear=""><i class="fas fa-close"></i></span>
 </div>
 
-<script type="text/javascript" src="/docs/js/lunr.min.js?1543650814"></script>
-<script type="text/javascript" src="/docs/js/auto-complete.js?1543650814"></script>
+<script type="text/javascript" src="/docs/js/lunr.min.js?1543652780"></script>
+<script type="text/javascript" src="/docs/js/auto-complete.js?1543652780"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/haojianxun.github.io\/docs\/";
     
 </script>
-<script type="text/javascript" src="/docs/js/search.js?1543650814"></script>
+<script type="text/javascript" src="/docs/js/search.js?1543652780"></script>
 
     
   </div>
@@ -466,8 +466,6 @@
 
 
 
-<p>[TOC]</p>
-
 <h2 id="准备阶段">准备阶段</h2>
 
 <h3 id="前期准备">前期准备</h3>
@@ -500,7 +498,7 @@
 
 <p>配置hosts文件</p>
 
-<pre><code>vim /etc/hosts
+<pre><code class="language-bash">vim /etc/hosts
 
 192.168.200.139 master
 192.168.200.140 node01
@@ -508,13 +506,13 @@
 
 <p>设置2台机器的hostname</p>
 
-<pre><code>hostnamectl set-hostname master   //在master上设置
+<pre><code class="language-bash">hostnamectl set-hostname master   //在master上设置
 hostnamectl set-hostname node01   //在node01上设置
 </code></pre>
 
 <p>关闭防火墙(在master和node01上执行)</p>
 
-<pre><code>vim /etc/selinux/config
+<pre><code class="language-shell">vim /etc/selinux/config
 SELINUX=disabled
 
 systemctl stop firewalld &amp;&amp; systemctl disable firewalld
@@ -538,7 +536,7 @@ sysctl -p
 
 <h3 id="设置yum源-在master和node01上都执行">设置yum源(在master和node01上都执行)</h3>
 
-<pre><code>#换成阿里云镜像源
+<pre><code class="language-shell">#换成阿里云镜像源
 
 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
@@ -564,16 +562,18 @@ EOF
 
 <p>安装docker和kubeadm</p>
 
-<pre><code>yum install -y docker-ce kubelet kubeadm
+<pre><code class="language-shell">yum install -y docker-ce kubelet kubeadm
 systemctl enable docker &amp;&amp; systemctl start docker
 systemctl enable kubelet &amp;&amp; systemctl start kubelet
 </code></pre>
 
-<p><em>注意一定要安装docker-ce 而且要定义好docker的repo源 , 如果只是简单的把CentOS的源替换成了阿里源  ,在执行<code>yum install -y docker</code>的时候 下载的docker不是我们要的 ,用命令查看<code>docker version</code>会发现docker的版本是1.13的  安装的时候要安装docker-ce <code>yum install -y docker-ce</code> 安装完成查看版本的话 显示的是&rdquo;18.06.0-ce&rdquo;</em></p>
+<div class="notices tip" ><p>注意一定要安装docker-ce 而且要定义好docker的repo源 , 如果只是简单的把CentOS的源替换成了阿里源  ,在执行<code>yum install -y docker</code>的时候 下载的docker不是我们要的 ,用命令查看<code>docker version</code>会发现docker的版本是1.13的  安装的时候要安装docker-ce <code>yum install -y docker-ce</code> 安装完成查看版本的话 显示的是&rdquo;18.06.0-ce&rdquo;</p>
+</div>
+
 
 <h3 id="设置docker加速器">设置docker加速器</h3>
 
-<pre><code>#方法1   清华大学的docker加速,感觉速度比阿里云的快
+<pre><code class="language-shell">#方法1   清华大学的docker加速,感觉速度比阿里云的快
 vim /etc/docker/daemon.json
 
 请在该配置文件中加入（没有该文件的话，请先建一个）：
@@ -603,14 +603,14 @@ systemctl restart docker
 
 <p>查看docker是否启动</p>
 
-<pre><code>systemctl status docker
+<pre><code class="language-shell">systemctl status docker
 </code></pre>
 
 <p>编辑kubelet文件</p>
 
 <p>在kubeadm初始化的时候可能会出现swap错误  v1.11.1其实已经不用再关swap了 以前的版本可能需要关闭 但是现在不需要了</p>
 
-<pre><code>vim /etc/sysconfig/kubelet
+<pre><code class="language-shell">vim /etc/sysconfig/kubelet
 
 KUBELET_EXTRA_ARGS=&quot;--fail-swap-on=false&quot;
 KUBE_PROXY_MODE=ipvs     //启用ipvs  这种service模式这个只有在v1.11.1才能 v1.11.1以下的都不支持
@@ -622,11 +622,11 @@ KUBE_PROXY_MODE=ipvs     //启用ipvs  这种service模式这个只有在v1.11.1
 
 <p>使用<code>kubeadm init</code>之后会出现以下情况:</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/30068876.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0yrk086j214z01tq2z.jpg" alt="" /></p>
 
 <p>或者是这样的</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/35457829.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0yrq8mlj20z90al3zl.jpg" alt="" /></p>
 
 <p>可以看到发现以下情况:</p>
 
@@ -656,7 +656,7 @@ failed to pull image [k8s.gcr.io/coredns:1.1.3]: exit status 1
 
 <p>下一步我们就要来获取这些镜像 在master上编写个脚本如下:</p>
 
-<pre><code>vim get-k8s-containers.sh   //编写脚本从dockerhub上获取这些镜像
+<pre><code class="language-shell">vim get-k8s-containers.sh   //编写脚本从dockerhub上获取这些镜像
 
 #!/bin/bash
 docker pull coredns/coredns:1.1.3
@@ -674,19 +674,19 @@ done
 
 <p>之后给脚本加权限</p>
 
-<pre><code>chmod +x get-k8s-containers.sh
+<pre><code class="language-shell">chmod +x get-k8s-containers.sh
 </code></pre>
 
 <p>之后运行脚本</p>
 
-<pre><code>./get-k8s-containers.sh
+<pre><code class="language-shell">./get-k8s-containers.sh
 </code></pre>
 
 <h4 id="在node01上提前下载好镜像">在node01上提前下载好镜像</h4>
 
 <p>,编写脚本如下:</p>
 
-<pre><code>vim get-k8s-node-images.sh
+<pre><code class="language-bash">vim get-k8s-node-images.sh
 
 #!/bin/bash
 docker pull haojianxun/flannel:v0.10.0-amd64
@@ -706,25 +706,25 @@ chmod +x get-k8s-node-images.sh    //脚本加上执行权限
 
 <h3 id="初始化kubeadm">初始化kubeadm</h3>
 
-<pre><code>kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16   //如果要使用flannel网络插件,可以在初始化的时候就指定flannel网络地址
+<pre><code class="language-shell">kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16   //如果要使用flannel网络插件,可以在初始化的时候就指定flannel网络地址
 
 kubeadm init --kubernetes-version=v1.11.1      //不指定其他网络插件具体地址 
 </code></pre>
 
 <p>稍等几分钟就可以看到</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/47931854.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0yyoun6j214m0hg0v1.jpg" alt="" /></p>
 
 <p>node01加入机器</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/35285354.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0z8ioqhj214q0gj40k.jpg" alt="" /></p>
 
 <p>列出集群状态</p>
 
 <pre><code>kubectl get nodes  //在主节点上查看
 </code></pre>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/60612948.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0z9bcldj214d02qmx3.jpg" alt="" /></p>
 
 <p>可以看到status是NotReady状态 原因是没有安装cni网络插件</p>
 
@@ -732,7 +732,7 @@ kubeadm init --kubernetes-version=v1.11.1      //不指定其他网络插件具�
 
 <p>方法1:安装flannel插件</p>
 
-<pre><code>flannel官方的github地址是:
+<pre><code class="language-shell">flannel官方的github地址是:
 https://github.com/coreos/flannel
 
 对于Kubernetes v1.7以上的版本 都可以直接运行如下命令:
@@ -791,7 +791,7 @@ https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flann
 
 <p>方法2:安装weave网络插件</p>
 
-<pre><code>我们 选择weave  当然在初始化的时候没有指定特殊网络才行
+<pre><code class="language-shell">我们 选择weave  当然在初始化的时候没有指定特殊网络才行
 
 kubectl apply -f https://git.io/weave-kube-1.6
 
@@ -800,7 +800,7 @@ kubectl apply -f https://git.io/weave-kube-1.6
 
 <p>稍等片刻 下载好之后  在master上执行如下命令, 可以查看是否集群已经起来了</p>
 
-<pre><code>kubectl get pod -n kube-system -o wide    //都是running就是正常的
+<pre><code class="language-shell">kubectl get pod -n kube-system -o wide    //都是running就是正常的
 kubelet get nodes  //可以看到master和node02都是ready状态
 </code></pre>
 
@@ -822,7 +822,7 @@ kubelet get nodes  //可以看到master和node02都是ready状态
 
 <p>我们可以这样来设置http代理</p>
 
-<pre><code>1. vim /usr/lib/systemd/system/docker.service
+<pre><code class="language-shell">1. vim /usr/lib/systemd/system/docker.service
 
 在[Service]中添加如下信息
 Environment=&quot;HTTP_PROXY=http:xxxxx:80&quot;
@@ -861,7 +861,7 @@ systemctl start docker
 
 <p>在执行<code>kubeadm init</code>的时候对于没有拉取下来的镜像,可以直接到<a href="https://console.cloud.google.com/gcr/images/google-containers/GLOBAL">k8s.gcr.io/google_containers</a> 下载</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/94357091.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0yquiyvj21tz0zu0y5.jpg" alt="" /></p>
 
 <ol>
 <li>启动控制台
@@ -869,23 +869,23 @@ systemctl start docker
 <br /></li>
 </ol>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/23538517.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0z94bspj21r50x0tbl.jpg" alt="" /></p>
 
 <ol>
 <li>以kube-apiserver-amd64为例子 ,搜索kube-apiserver-amd64</li>
 </ol>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/92677484.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0z9gos2j21bf0f2wfb.jpg" alt="" /></p>
 
 <p>点击kube-apiserver-amd64  我们安装v1.11.1的 点击标记为v1.11.1的镜像</p>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/52251691.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0yz5xnlj21u60lltdd.jpg" alt="" /></p>
 
 <ol>
 <li>运行拉取命令</li>
 </ol>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/99511944.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0z8s9tzj21sc0sogpt.jpg" alt="" /></p>
 
 <ol>
 <li>中转镜像 , 把镜像拉取出来传到dockerhub上自己的仓库  之后拉取push上的镜像
@@ -893,7 +893,7 @@ systemctl start docker
 <br /></li>
 </ol>
 
-<p><img src="http://pe9685fps.bkt.clouddn.com/18-9-2/57435961.jpg" alt="" /></p>
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxo0zae518j21hs0gsgo0.jpg" alt="" /></p>
 
 <ol>
 <li>docker获取刚刚上传的镜像并打上k8s.gcr.io/的前缀tag</li>
@@ -910,17 +910,17 @@ systemctl start docker
 
 <p>先去看kubeadm的帮助信息</p>
 
-<pre><code>kubeadm --help    //这样会列出许多帮助信息
+<pre><code class="language-shell">kubeadm --help    //这样会列出许多帮助信息
 </code></pre>
 
 <p>要想使用flannel网络,在初始化的时候就先指定网络</p>
 
-<pre><code>kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16
+<pre><code class="language-shell">kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16
 </code></pre>
 
 <p>如果出现[ERROR Swap]</p>
 
-<pre><code>vim /etc/sysconfig/kubelet
+<pre><code class="language-shell">vim /etc/sysconfig/kubelet
 
 KUBELET_EXTRA_ARGS=&quot;--fail-swap-on=false&quot;
 
@@ -1151,20 +1151,20 @@ kubeadm init --kubernetes-version=v1.11.1 --pod-network-cidr=10.244.0.0/16 --ign
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/docs/js/clipboard.min.js?1543650814"></script>
-    <script src="/docs/js/perfect-scrollbar.min.js?1543650814"></script>
-    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1543650814"></script>
-    <script src="/docs/js/jquery.sticky.js?1543650814"></script>
-    <script src="/docs/js/featherlight.min.js?1543650814"></script>
-    <script src="/docs/js/html5shiv-printshiv.min.js?1543650814"></script>
-    <script src="/docs/js/highlight.pack.js?1543650814"></script>
+    <script src="/docs/js/clipboard.min.js?1543652780"></script>
+    <script src="/docs/js/perfect-scrollbar.min.js?1543652780"></script>
+    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1543652780"></script>
+    <script src="/docs/js/jquery.sticky.js?1543652780"></script>
+    <script src="/docs/js/featherlight.min.js?1543652780"></script>
+    <script src="/docs/js/html5shiv-printshiv.min.js?1543652780"></script>
+    <script src="/docs/js/highlight.pack.js?1543652780"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/docs/js/modernizr.custom.71422.js?1543650814"></script>
-    <script src="/docs/js/learn.js?1543650814"></script>
-    <script src="/docs/js/hugo-learn.js?1543650814"></script>
+    <script src="/docs/js/modernizr.custom.71422.js?1543652780"></script>
+    <script src="/docs/js/learn.js?1543652780"></script>
+    <script src="/docs/js/hugo-learn.js?1543652780"></script>
 
-    <link href="/docs/mermaid/mermaid.css?1543650814" type="text/css" rel="stylesheet" />
-    <script src="/docs/mermaid/mermaid.js?1543650814"></script>
+    <link href="/docs/mermaid/mermaid.css?1543652780" type="text/css" rel="stylesheet" />
+    <script src="/docs/mermaid/mermaid.js?1543652780"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
