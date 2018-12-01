@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>郝建勋的运维文档 :: 郝建勋的运维文档</title>
+    <title>安装配置 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543646790" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -93,8 +93,8 @@
   
     
     <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
@@ -309,30 +309,311 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/_index.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > 安装配置
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li><a href="#安装配置">安装配置</a></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1>安装配置</h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
-           
+
+
+<h1 id="安装配置">安装配置</h1>
+
+
+
+
+
+
+
+
+<ul class="children children-li">
 	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 3 choices :
-		</p>
-		<ul>
-			<li><b>1. </b> Create an _index.md document in <b>content</b> folder and fill it with Markdown content</li>
-			<li><b>2. </b> Create an <b>index.html</b> file in the <b>static</b> folder and fill the file with HTML content</li>
-		  <li><b>3. </b> Configure your server to automatically redirect home page to one your documentation page</li>
-		</ul>
+    
+    
+
 	
+		
+	
+		
   
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" >docker安装</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>下面是基于CentOS
+卸载旧版本 旧版本的 Docker 称为 docker 或者 docker-engine ，使用以下命令卸载旧版本：
+$ sudo yum remove docker \ docker-common \ docker-selinux \ docker-engine  使用 yum 源 安装 执行以下命令安装依赖包：
+$ sudo yum install -y yum-utils \ device-mapper-persistent-data \ lvm2  鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。
+国内源 执行下面的命令添加 yum 软件源：
+$ sudo yum-config-manager \ --add-repo \ https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo   以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。
+ 官方源 $ sudo yum-config-manager \ --add-repo \ https://download.</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" >saltstack安装</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p> 安装 1.安装阿里镜像源 yum install -y https://mirrors.aliyun.com/saltstack/yum/redhat/salt-repo-latest-2.el7.noarch.rpm  2.配置中的域名修改 仍以 Centos 7 为例，初始化rpm包生成的配置文件为:
+/etc/yum.repos.d/salt-latest.repo  文件中的访问地址需要替换成镜像站的路径，执行命令：
+sudo sed -i &quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&quot; /etc/yum.repos.d/salt-latest.repo  3.安装saltstack 3.1安装saltstack-master和minion yum install -y salt-master  yum install -y salt-minion  4.启动 systemctl start salt-master systemctl start salt-minion  </p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" >zabbix安装</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>使用阿里云镜像源 ###替换默认centos源为阿里云的源
+cd /etc/yum.repos.d/ mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  使用阿里云的epel源 备份(如有配置其他epel源) mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo  使用阿里云的zabbix镜像源 cd /etc/yum.repos.d vim zabbix.repo [zabbix] baseurl=https://mirrors.aliyun.com/zabbix/zabbix/3.4/rhel/7/x86_64/ enabled=1 gpgcheck=0  最后执行
+yum makecache  安装zabbix yum install -y zabbix-release //安装源码库配置部署包 yum install -y zabbix-server-mysql zabbix-web-mysql 只安装Zabbix Agent的示例. yum install zabbix-agent  安装mysql数据库 yum install -y mysql-server mysql systemctl enable mysql systemctl start mysql  ##初始化mysql数据库</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/" >使用kubeadm从0开始搭建kubernetes:v1.11.1</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>[TOC]
+准备阶段 前期准备 准备至少2台机器 (我的是CentOS7 )
+   ip hostname role     192.168.200.139 master 主节点   192.168.200.140 node01 集群从节点    配置hosts文件
+vim /etc/hosts 192.168.200.139 master 192.168.200.140 node01  设置2台机器的hostname
+hostnamectl set-hostname master //在master上设置 hostnamectl set-hostname node01 //在node01上设置  关闭防火墙(在master和node01上执行)
+vim /etc/selinux/config SELINUX=disabled systemctl stop firewalld &amp;&amp; systemctl disable firewalld setenforce 0 iptables -F vim /etc/fstab 注释掉swap那一行 swapoff -a 配置各节点系统内核参数使流过网桥的流量也进入iptables/netfilter框架中，在/etc/sysctl.conf中添加以下配置 net.bridge.bridge-nf-call-iptables = 1 net.</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/" >初始化简单配置saltstack</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>MASTER的主要配置 网络接口 默认: 0.0.0.0 (所有的网络接口都可访问)
+绑定本地接口
+interface: 192.168.200.132  MINION的主要配置 MASTER 缺省:salt
+主机名或者master的IPV4地址。
+缺省:salt
+master: 192.168.200.132 //这个master的地址填上salt-master的ip地址  为SALT开启防火墙配置 在Salt minions端没有设置防火墙的必要。下面的配置只是涉及master。
+firewall-cmd --permanent --zone=&lt;zone&gt; --add-port=4505-4506/tcp //如果没有区域可以去掉--zone firewall-cmd --permanent --add-port=4505-4506/tcp  MASTER端白名单 # Allow Minions from these networks iptables -I INPUT -s 10.1.2.0/24 -p tcp -m multiport --dports 4505,4506 -j ACCEPT iptables -I INPUT -s 10.1.3.0/24 -p tcp -m multiport --dports 4505,4506 -j ACCEPT # Allow Salt to communicate with Master on the loopback interface iptables -A INPUT -i lo -p tcp -m multiport --dports 4505,4506 -j ACCEPT # Reject everything else iptables -A INPUT -p tcp -m multiport --dports 4505,4506 -j REJECT  MINION开启iptables规则 iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4505 -j ACCEPT iptables -A INPUT -m state --state new -m tcp -p tcp --dport 4506 -j ACCEPT  KEY管理 Salt在Master和Minion之间的通讯采用AES加密.</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/" >安装zsh</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>1.查看当前系统有哪些shell
+cat /etc/shells 如果没有zsh就进行安装  2.安装zsh
+yum install -y zsh //CentOS系统 apt-get install -y zsh //ubuntu系统 #如果没有安装curl或者wget或者git 建议安装一下 yum install -y curl wget git 查看是否安装成功 zsh --version  方法1: 使用脚本安装 sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot; 或者使用wget获取脚本 sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot; 安装完成之后可以修改主题: 在家目录下 vi ~/.zshrc 修改ZSH_THEME=&quot;agnoster&quot; #主题预览地址:https://github.com/robbyrussell/oh-my-zsh/wiki/Themes 方法2: git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc chsh -s /bin/zsh vi .zshrc ZSH_THEME=&quot;agnoster&quot; # (this is one of the fancy ones) # see https://github.</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+		
+  
+
+
+<li>
+<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/" >通过onedrive搭建私人网盘</a>
+</li>
+
+
+
+
+
+
+			
+				
+<p>具体项目地址: https://github.com/donwa/oneindex
+我们可以用docker来运行它
+docker run -d -p 8080:80 --name onedrive --restart=always yinaoxiong/oneindex  之后打开我们阿里云服务器的地址的8080端口就可以了(前提是把8080端口放开)
+之后进入安装页面
+其中
+获取程序的id和secret
+地址: https://apps.dev.microsoft.com/#/appList
+填入之后 就会跳转到登陆页面 , 登陆微软账号, 或者是office365账号(网上很多这种账号 里面onedrive空间是5T)
+绑定即可 之后就搭建完成</p>
+				
+			
+		
+
+		
+			
+
+		
+	
+
+	
+</ul>
+
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
         
         </div> 
         
@@ -364,8 +645,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -379,6 +658,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -499,8 +781,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/docs/" title="郝建勋的运维文档"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -531,4 +815,3 @@
 
   </body>
 </html>
-
