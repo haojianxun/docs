@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>saltstack安装 :: 郝建勋的运维文档</title>
+    <title>codis集群高可用搭建 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543650814" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -158,7 +158,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item active">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item ">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
         saltstack安装
         <i class="fas fa-check read-icon"></i>
@@ -272,7 +272,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="codis集群高可用搭建" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="codis集群高可用搭建" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
         codis集群高可用搭建
         <i class="fas fa-check read-icon"></i>
@@ -374,7 +374,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/saltstack%e5%ae%89%e8%a3%85.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/codis%e9%9b%86%e7%be%a4%e6%90%ad%e5%bb%ba.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -405,7 +405,7 @@
             
           
           
-            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > saltstack安装
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > codis集群高可用搭建
           
          
           
@@ -422,16 +422,34 @@
 <ul>
 <li>
 <ul>
-<li><a href="#安装">安装</a>
+<li><a href="#安装go">安装go</a></li>
+<li><a href="#安装zookeeper">安装zookeeper</a>
 <ul>
-<li><a href="#1-安装阿里镜像源">1.安装阿里镜像源</a></li>
-<li><a href="#2-配置中的域名修改">2.配置中的域名修改</a></li>
-<li><a href="#3-安装saltstack">3.安装saltstack</a>
+<li><a href="#配置zookeeper的环境变量">配置zookeeper的环境变量</a></li>
+<li><a href="#创建zookeeper数据目录">创建zookeeper数据目录</a></li>
+<li><a href="#启动">启动</a></li>
+</ul></li>
+<li><a href="#安装codis">安装codis</a>
 <ul>
-<li><a href="#3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</a></li>
+<li><a href="#配置环境-变量">配置环境 变量</a></li>
+<li><a href="#codis配置">codis配置</a>
+<ul>
+<li><a href="#配置codis-dashboard">配置codis-dashboard</a></li>
+<li><a href="#codis-proxy配置">codis proxy配置</a></li>
+<li><a href="#codis-server配置">codis server配置</a></li>
+<li><a href="#codis-fe配置启动">codis fe配置启动</a></li>
 </ul></li>
-<li><a href="#4-启动">4.启动</a></li>
 </ul></li>
+<li><a href="#redis-sentinel">Redis-sentinel</a></li>
+<li><a href="#启动-1">启动</a>
+<ul>
+<li><a href="#codis-server启动">codis-server启动</a></li>
+<li><a href="#codis-proxy启动">codis-proxy启动</a></li>
+<li><a href="#codis-dashboard启动">codis-dashboard启动</a></li>
+<li><a href="#codis-fe启动">codis-fe启动</a></li>
+<li><a href="#sentinel启动">sentinel启动</a></li>
+</ul></li>
+<li><a href="#codis配置-1">codis配置</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -446,7 +464,7 @@
         
         <div id="body-inner">
           
-            <h1>saltstack安装</h1>
+            <h1>codis集群高可用搭建</h1>
           
 
         
@@ -454,41 +472,192 @@
 
 
 
-<h2 id="安装">安装</h2>
+<h2 id="安装go">安装go</h2>
 
-<h3 id="1-安装阿里镜像源">1.安装阿里镜像源</h3>
-
-<pre><code>yum install -y https://mirrors.aliyun.com/saltstack/yum/redhat/salt-repo-latest-2.el7.noarch.rpm
+<pre><code>wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+at &lt;&lt; EOF  &gt;&gt;/etc/profile
+export PATH=$PATH:/usr/local/go/bin
+export GOROOT=/usr/local/go
+export GOPATH=/usr/local/go/work
+path=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin
+EOF
+source /etc/profile
 </code></pre>
 
-<h3 id="2-配置中的域名修改">2.配置中的域名修改</h3>
+<h2 id="安装zookeeper">安装zookeeper</h2>
 
-<p>仍以 Centos 7 为例，初始化rpm包生成的配置文件为:</p>
+<pre><code>wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
 
-<pre><code>/etc/yum.repos.d/salt-latest.repo
+tar -xvzf zookeeper-3.4.10.tar.gz
+
+mv zookeeper-3.4.10/ /usr/local/zookeeper
 </code></pre>
 
-<p>文件中的访问地址需要替换成镜像站的路径，执行命令：</p>
+<h3 id="配置zookeeper的环境变量">配置zookeeper的环境变量</h3>
 
-<pre><code>sudo sed -i &quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&quot; /etc/yum.repos.d/salt-latest.repo
+<pre><code>vim /etc/profile
+
+export PATH=/usr/local/zoo/bin:$PATH
+
+source /etc/profile
 </code></pre>
 
-<h3 id="3-安装saltstack">3.安装saltstack</h3>
+<h3 id="创建zookeeper数据目录">创建zookeeper数据目录</h3>
 
-<h4 id="3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</h4>
-
-<pre><code>yum install -y salt-master
+<pre><code>mkdir -p /data/zookeeper
 </code></pre>
 
-<pre><code>yum install -y salt-minion
+<p>修改zookeeper配置文件</p>
+
+<pre><code>cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg
+
+vim /usr/local/zookeeper/conf/zoo.cfg
+dataDir=/data/zookeeper
+server.1=192.168.200.148:2888:3888
+server.2=192.168.200.149:2888:3888
 </code></pre>
 
-<h3 id="4-启动">4.启动</h3>
+<p>在zookeeper1上执行</p>
 
-<pre><code>systemctl start salt-master
-
-systemctl start salt-minion
+<pre><code>echo 1 &gt; /data/zookeeper/myid
 </code></pre>
+
+<p>在zookeeper2执行</p>
+
+<pre><code>echo 2 &gt; /data/zookeeper/myid
+</code></pre>
+
+<h3 id="启动">启动</h3>
+
+<pre><code>cd /usr/local/zookeeper &amp;&amp; ./bin/zkServer.sh start
+</code></pre>
+
+<h2 id="安装codis">安装codis</h2>
+
+<pre><code>mkdir -p $GOPATH/src/github.com/CodisLabs
+cd $_ &amp;&amp; git clone https://github.com/CodisLabs/codis.git -b release3.2
+cd $GOPATH/src/github.com/CodisLabs/codis
+make
+</code></pre>
+
+<h3 id="配置环境-变量">配置环境 变量</h3>
+
+<pre><code># vim /etc/profile
+export PATH=$GOPATH/src/github.com/CodisLabs/codis/bin:$PATH
+
+# source /etc/profile
+</code></pre>
+
+<h3 id="codis配置">codis配置</h3>
+
+<p>进入codis目录</p>
+
+<pre><code>cd $GOPATH/src/github.com/CodisLabs/codis
+</code></pre>
+
+<h4 id="配置codis-dashboard">配置codis-dashboard</h4>
+
+<pre><code># vim config/dashboard.toml
+coordinator_name = &quot;zookeeper&quot;
+coordinator_addr = &quot;10.10.10.21:2181,10.10.10.22:2181,10.10.10.23:2181&quot;
+product_name = &quot;codis-demo&quot;
+product_auth = &quot;123456&quot;
+</code></pre>
+
+<h4 id="codis-proxy配置">codis proxy配置</h4>
+
+<pre><code># vim config/proxy.toml
+product_name = &quot;codis-demo&quot;
+product_auth = &quot;123456&quot;
+jodis_name = &quot;zookeeper&quot;
+jodis_addr = &quot;192.168.200.148:2181,192.168.200.149:2181,192.168.200.150&quot;
+</code></pre>
+
+<h4 id="codis-server配置">codis server配置</h4>
+
+<pre><code>#修改主配置
+cp config/redis.conf config/redis-6379.conf
+vim config/redis-6379.conf
+bind IPADDR
+dir /data/redis-data/redis-6379
+....(包括一些密码相关的安全)
+
+
+#修改从配置
+cp redis-6379.conf redis-6380.conf
+sed -i &quot;s/6379/6380/g&quot; redis-6380.conf
+vim redis-6380.conf
+....
+slaveof &lt;MASTERIP&gt; &lt;MASTERPORT&gt;
+...
+</code></pre>
+
+<pre><code>mkdir -pv /data/redis-data/redis-{6379,6380}
+</code></pre>
+
+<h4 id="codis-fe配置启动">codis fe配置启动</h4>
+
+<pre><code># vim config/codis.json
+[
+    {
+        &quot;name&quot;: &quot;codis-demo&quot;,
+        &quot;dashboard&quot;: &quot;127.0.0.1:18080&quot;
+    }
+]
+</code></pre>
+
+<h2 id="redis-sentinel">Redis-sentinel</h2>
+
+<pre><code>cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/src/redis-sentinel /usr/local/codis/bin/
+
+cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/sentinel.conf /usr/local/codis/conf/
+
+cd /usr/local/codis/ 
+vim ./conf/sentinel.conf
+
+bind 0.0.0.0 
+protected-mode no 
+port 26379 
+dir “/usr/local/codis/data/
+</code></pre>
+
+<h2 id="启动-1">启动</h2>
+
+<p>codis集群中: 1个zookeeper（或1个zookeeper集群） + 1个codis dashboard + n个codis proxy + n个codis server + 1个Codis FE（可选） , 启动时候根据情况来启动 , dashboard启动的时候就启动一个就可以了</p>
+
+<h3 id="codis-server启动">codis-server启动</h3>
+
+<pre><code>./bin/codis-server ./config/redis-6379.conf
+./bin/codis-server ./config/redis-6380.conf
+</code></pre>
+
+<h3 id="codis-proxy启动">codis-proxy启动</h3>
+
+<pre><code>nohup ./bin/codis-proxy --ncpu=4 --config=config/proxy.toml --log=logs/proxy.log --log-level=WARN &amp; 
+</code></pre>
+
+<p>其中cpu的最大值依据自己电脑来</p>
+
+<h3 id="codis-dashboard启动">codis-dashboard启动</h3>
+
+<pre><code>nohup ./bin/codis-dashboard --ncpu=4 --config=config/dashboard.toml --log=logs/dashboard.log --log-level=WARN &amp;
+</code></pre>
+
+<h3 id="codis-fe启动">codis-fe启动</h3>
+
+<pre><code>nohup ./bin/codis-fe --ncpu=4 --log=logs/fe.log --log-level=WARN --dashboard-list=config/codis.json --listen=0.0.0.0:8080 &amp;
+</code></pre>
+
+<h3 id="sentinel启动">sentinel启动</h3>
+
+<pre><code>cd /usr/local/codis/bin/ 
+nohup ./redis-sentinel ../conf/sentinel.conf &amp;
+</code></pre>
+
+<h2 id="codis配置-1">codis配置</h2>
+
+<p>登陆codis fe，<a href="http://192.168.200.148:8080">http://192.168.200.148:8080</a></p>
 
 
 <footer class=" footline" >
@@ -560,26 +729,6 @@ systemctl start salt-minion
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -675,6 +824,26 @@ systemctl start salt-minion
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -699,10 +868,10 @@ systemctl start salt-minion
 	 
 	 
 		
-			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/" title="通过onedrive搭建私人网盘"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" title="zabbix安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

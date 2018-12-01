@@ -105,5 +105,29 @@ docker run -d -p 8080:80 --name onedrive --restart=always yinaoxiong/oneindex  �
 绑定即可 之后就搭建完成</description>
     </item>
     
+    <item>
+      <title>codis集群高可用搭建</title>
+      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</guid>
+      <description>安装go wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz at &amp;lt;&amp;lt; EOF &amp;gt;&amp;gt;/etc/profile export PATH=$PATH:/usr/local/go/bin export GOROOT=/usr/local/go export GOPATH=/usr/local/go/work path=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin EOF source /etc/profile  安装zookeeper wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置zookeeper的环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建zookeeper数据目录 mkdir -p /data/zookeeper  修改zookeeper配置文件
+cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行
+echo 1 &amp;gt; /data/zookeeper/myid  在zookeeper2执行
+echo 2 &amp;gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper &amp;amp;&amp;amp; .</description>
+    </item>
+    
+    <item>
+      <title>zookeeper安装</title>
+      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/</guid>
+      <description>zookeeper官方地址: http://www.apache.org/dyn/closer.cgi/zookeeper/
+主机准备    ip name     192.168.200.148 zookeeper1   192.168.200.149 zookeeper2    安装 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建数据目录 mkdir -p /data/zookeeper  修改配置文件 cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行
+echo 1 &amp;gt; /data/zookeeper/myid  在zookeeper2执行
+echo 2 &amp;gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper &amp;amp;&amp;amp; .</description>
+    </item>
+    
   </channel>
 </rss>

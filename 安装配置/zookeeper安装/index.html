@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>saltstack安装 :: 郝建勋的运维文档</title>
+    <title>zookeeper安装 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543650814" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -158,7 +158,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item active">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item ">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
         saltstack安装
         <i class="fas fa-check read-icon"></i>
@@ -291,7 +291,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/">
         zookeeper安装
         <i class="fas fa-check read-icon"></i>
@@ -374,7 +374,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/saltstack%e5%ae%89%e8%a3%85.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/zookeeper%e5%ae%89%e8%a3%85.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -405,7 +405,7 @@
             
           
           
-            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > saltstack安装
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > zookeeper安装
           
          
           
@@ -422,16 +422,12 @@
 <ul>
 <li>
 <ul>
-<li><a href="#安装">安装</a>
-<ul>
-<li><a href="#1-安装阿里镜像源">1.安装阿里镜像源</a></li>
-<li><a href="#2-配置中的域名修改">2.配置中的域名修改</a></li>
-<li><a href="#3-安装saltstack">3.安装saltstack</a>
-<ul>
-<li><a href="#3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</a></li>
-</ul></li>
-<li><a href="#4-启动">4.启动</a></li>
-</ul></li>
+<li><a href="#主机准备">主机准备</a></li>
+<li><a href="#安装">安装</a></li>
+<li><a href="#配置环境变量">配置环境变量</a></li>
+<li><a href="#创建数据目录">创建数据目录</a></li>
+<li><a href="#修改配置文件">修改配置文件</a></li>
+<li><a href="#启动">启动</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -446,7 +442,7 @@
         
         <div id="body-inner">
           
-            <h1>saltstack安装</h1>
+            <h1>zookeeper安装</h1>
           
 
         
@@ -454,40 +450,77 @@
 
 
 
+<p>zookeeper官方地址: <a href="http://www.apache.org/dyn/closer.cgi/zookeeper/">http://www.apache.org/dyn/closer.cgi/zookeeper/</a></p>
+
+<h2 id="主机准备">主机准备</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">ip</th>
+<th align="center">name</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">192.168.200.148</td>
+<td align="center">zookeeper1</td>
+</tr>
+
+<tr>
+<td align="center">192.168.200.149</td>
+<td align="center">zookeeper2</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="安装">安装</h2>
 
-<h3 id="1-安装阿里镜像源">1.安装阿里镜像源</h3>
+<pre><code>wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
 
-<pre><code>yum install -y https://mirrors.aliyun.com/saltstack/yum/redhat/salt-repo-latest-2.el7.noarch.rpm
+tar -xvzf zookeeper-3.4.10.tar.gz
+
+mv zookeeper-3.4.10/ /usr/local/zookeeper
 </code></pre>
 
-<h3 id="2-配置中的域名修改">2.配置中的域名修改</h3>
+<h2 id="配置环境变量">配置环境变量</h2>
 
-<p>仍以 Centos 7 为例，初始化rpm包生成的配置文件为:</p>
+<pre><code>vim /etc/profile
 
-<pre><code>/etc/yum.repos.d/salt-latest.repo
+export PATH=/usr/local/zoo/bin:$PATH
+
+source /etc/profile
 </code></pre>
 
-<p>文件中的访问地址需要替换成镜像站的路径，执行命令：</p>
+<h2 id="创建数据目录">创建数据目录</h2>
 
-<pre><code>sudo sed -i &quot;s/repo.saltstack.com/mirrors.aliyun.com\/saltstack/g&quot; /etc/yum.repos.d/salt-latest.repo
+<pre><code>mkdir -p /data/zookeeper
 </code></pre>
 
-<h3 id="3-安装saltstack">3.安装saltstack</h3>
+<h2 id="修改配置文件">修改配置文件</h2>
 
-<h4 id="3-1安装saltstack-master和minion">3.1安装saltstack-master和minion</h4>
+<pre><code>cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg
 
-<pre><code>yum install -y salt-master
+vim /usr/local/zookeeper/conf/zoo.cfg
+dataDir=/data/zookeeper
+server.1=192.168.200.148:2888:3888
+server.2=192.168.200.149:2888:3888
 </code></pre>
 
-<pre><code>yum install -y salt-minion
+<p>在zookeeper1上执行</p>
+
+<pre><code>echo 1 &gt; /data/zookeeper/myid
 </code></pre>
 
-<h3 id="4-启动">4.启动</h3>
+<p>在zookeeper2执行</p>
 
-<pre><code>systemctl start salt-master
+<pre><code>echo 2 &gt; /data/zookeeper/myid
+</code></pre>
 
-systemctl start salt-minion
+<h2 id="启动">启动</h2>
+
+<pre><code>cd /usr/local/zookeeper &amp;&amp; ./bin/zkServer.sh start
 </code></pre>
 
 
@@ -560,26 +593,6 @@ systemctl start salt-minion
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -675,6 +688,23 @@ systemctl start salt-minion
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -699,10 +729,10 @@ systemctl start salt-minion
 	 
 	 
 		
-			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="codis集群高可用搭建"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" title="zabbix安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

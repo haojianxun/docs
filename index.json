@@ -4,7 +4,7 @@
 	"title": "安装配置",
 	"tags": [],
 	"description": "",
-	"content": " 安装配置 目录列表  docker安装   saltstack安装   zabbix安装   使用kubeadm从0开始搭建kubernetes:v1.11.1   初始化简单配置saltstack   安装zsh   通过onedrive搭建私人网盘     其他补充说明   文档略简洁 , 具体可以去我博客去看\n  "
+	"content": " 安装配置 本节目录  docker安装     saltstack安装     zabbix安装     使用kubeadm从0开始搭建kubernetes:v1.11.1     初始化简单配置saltstack     安装zsh     通过onedrive搭建私人网盘     codis集群高可用搭建     zookeeper安装       其他补充说明   文档略简洁 , 具体可以去我博客去看   "
 },
 {
 	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/",
@@ -70,9 +70,23 @@
 	"content": ""
 },
 {
+	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/",
+	"title": "codis集群高可用搭建",
+	"tags": [],
+	"description": "",
+	"content": " 安装go wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz at \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt;/etc/profile export PATH=$PATH:/usr/local/go/bin export GOROOT=/usr/local/go export GOPATH=/usr/local/go/work path=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin EOF source /etc/profile  安装zookeeper wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置zookeeper的环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建zookeeper数据目录 mkdir -p /data/zookeeper  修改zookeeper配置文件\ncp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行\necho 1 \u0026gt; /data/zookeeper/myid  在zookeeper2执行\necho 2 \u0026gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper \u0026amp;\u0026amp; ./bin/zkServer.sh start  安装codis mkdir -p $GOPATH/src/github.com/CodisLabs cd $_ \u0026amp;\u0026amp; git clone https://github.com/CodisLabs/codis.git -b release3.2 cd $GOPATH/src/github.com/CodisLabs/codis make  配置环境 变量 # vim /etc/profile export PATH=$GOPATH/src/github.com/CodisLabs/codis/bin:$PATH # source /etc/profile  codis配置 进入codis目录\ncd $GOPATH/src/github.com/CodisLabs/codis  配置codis-dashboard # vim config/dashboard.toml coordinator_name = \u0026quot;zookeeper\u0026quot; coordinator_addr = \u0026quot;10.10.10.21:2181,10.10.10.22:2181,10.10.10.23:2181\u0026quot; product_name = \u0026quot;codis-demo\u0026quot; product_auth = \u0026quot;123456\u0026quot;  codis proxy配置 # vim config/proxy.toml product_name = \u0026quot;codis-demo\u0026quot; product_auth = \u0026quot;123456\u0026quot; jodis_name = \u0026quot;zookeeper\u0026quot; jodis_addr = \u0026quot;192.168.200.148:2181,192.168.200.149:2181,192.168.200.150\u0026quot;  codis server配置 #修改主配置 cp config/redis.conf config/redis-6379.conf vim config/redis-6379.conf bind IPADDR dir /data/redis-data/redis-6379 ....(包括一些密码相关的安全) #修改从配置 cp redis-6379.conf redis-6380.conf sed -i \u0026quot;s/6379/6380/g\u0026quot; redis-6380.conf vim redis-6380.conf .... slaveof \u0026lt;MASTERIP\u0026gt; \u0026lt;MASTERPORT\u0026gt; ...  mkdir -pv /data/redis-data/redis-{6379,6380}  codis fe配置启动 # vim config/codis.json [ { \u0026quot;name\u0026quot;: \u0026quot;codis-demo\u0026quot;, \u0026quot;dashboard\u0026quot;: \u0026quot;127.0.0.1:18080\u0026quot; } ]  Redis-sentinel cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/src/redis-sentinel /usr/local/codis/bin/ cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/sentinel.conf /usr/local/codis/conf/ cd /usr/local/codis/ vim ./conf/sentinel.conf bind 0.0.0.0 protected-mode no port 26379 dir “/usr/local/codis/data/  启动 codis集群中: 1个zookeeper（或1个zookeeper集群） + 1个codis dashboard + n个codis proxy + n个codis server + 1个Codis FE（可选） , 启动时候根据情况来启动 , dashboard启动的时候就启动一个就可以了\ncodis-server启动 ./bin/codis-server ./config/redis-6379.conf ./bin/codis-server ./config/redis-6380.conf  codis-proxy启动 nohup ./bin/codis-proxy --ncpu=4 --config=config/proxy.toml --log=logs/proxy.log --log-level=WARN \u0026amp;  其中cpu的最大值依据自己电脑来\ncodis-dashboard启动 nohup ./bin/codis-dashboard --ncpu=4 --config=config/dashboard.toml --log=logs/dashboard.log --log-level=WARN \u0026amp;  codis-fe启动 nohup ./bin/codis-fe --ncpu=4 --log=logs/fe.log --log-level=WARN --dashboard-list=config/codis.json --listen=0.0.0.0:8080 \u0026amp;  sentinel启动 cd /usr/local/codis/bin/ nohup ./redis-sentinel ../conf/sentinel.conf \u0026amp;  codis配置 登陆codis fe，http://192.168.200.148:8080\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/",
+	"title": "zookeeper安装",
+	"tags": [],
+	"description": "",
+	"content": " zookeeper官方地址: http://www.apache.org/dyn/closer.cgi/zookeeper/\n主机准备    ip name     192.168.200.148 zookeeper1   192.168.200.149 zookeeper2    安装 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建数据目录 mkdir -p /data/zookeeper  修改配置文件 cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行\necho 1 \u0026gt; /data/zookeeper/myid  在zookeeper2执行\necho 2 \u0026gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper \u0026amp;\u0026amp; ./bin/zkServer.sh start  "
+},
+{
 	"uri": "https://haojianxun.github.io/docs/",
 	"title": "郝建勋的运维文档",
 	"tags": [],
 	"description": "",
-	"content": "这些都是一些简单的文档, 用来记录学习的情况 , 同时也分享出来让更多的人看到 , 如果大家有什么想补充的 , 可以 fork我的仓库 , 进行提交 , 大家一起来完善 谢谢!!\n"
+	"content": " 项目描述 这些都是一些简单的文档, 用来记录学习的情况 , 同时也分享出来让更多的人看到 , 如果大家有什么想补充的 , 可以 fork我的仓库 , 进行提交 , 大家一起来完善 谢谢!!\n"
 }]
