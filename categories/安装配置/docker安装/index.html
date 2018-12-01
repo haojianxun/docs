@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>郝建勋的运维文档 :: 郝建勋的运维文档</title>
+    <title>docker安装 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543649737" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -113,7 +113,7 @@
   
     
     <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
-        
+        parent
         
         
         ">
@@ -139,7 +139,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/">
         docker安装
         <i class="fas fa-check read-icon"></i>
@@ -329,21 +329,221 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/docker%e5%ae%89%e8%a3%85.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > docker安装
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#卸载旧版本">卸载旧版本</a></li>
+<li><a href="#使用-yum-源-安装">使用 yum 源 安装</a>
+<ul>
+<li><a href="#国内源">国内源</a></li>
+<li><a href="#官方源">官方源</a></li>
+<li><a href="#安装-docker-ce">安装 Docker CE</a>
+<ul>
+<li><a href="#使用脚本自动安装">使用脚本自动安装</a></li>
+<li><a href="#启动-docker-ce">启动 Docker CE</a></li>
+</ul></li>
+<li><a href="#建立-docker-用户组">建立 docker 用户组</a></li>
+<li><a href="#镜像加速">镜像加速</a></li>
+<li><a href="#添加内核参数">添加内核参数</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
 
         
         <div id="body-inner">
           
+            <h1>docker安装</h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<p>这些都是一些简单的文档, 用来记录学习的情况 , 同时也分享出来让更多的人看到 , 如果大家有什么想补充的 , 可以 fork我的仓库 , 进行提交 , 大家一起来完善 谢谢!!</p>
+
+
+<p>下面是基于CentOS</p>
+
+<h2 id="卸载旧版本">卸载旧版本</h2>
+
+<p>旧版本的 Docker 称为  docker  或者  docker-engine  ，使用以下命令卸载旧版本：</p>
+
+<pre><code class="language-shell">$ sudo yum remove docker \
+           docker-common \
+           docker-selinux \
+           docker-engine
+</code></pre>
+
+<h2 id="使用-yum-源-安装">使用 yum 源 安装</h2>
+
+<p>执行以下命令安装依赖包：</p>
+
+<pre><code>$ sudo yum install -y yum-utils \
+          device-mapper-persistent-data \
+          lvm2
+</code></pre>
+
+<p>鉴于国内网络问题，强烈建议使用国内源，下面先介绍国内源的使用。</p>
+
+<h3 id="国内源">国内源</h3>
+
+<p>执行下面的命令添加  yum  软件源：</p>
+
+<pre><code>$ sudo yum-config-manager \
+     --add-repo \
+     https://mirrors.ustc.edu.cn/docker-ce/linux/centos/docker-ce.repo
+</code></pre>
+
+<blockquote>
+<p>以上命令会添加稳定版本的 Docker CE yum 源。从 Docker 17.06 开始，edge test 版本的 yum 源也会包含稳定版本的 Docker CE。</p>
+</blockquote>
+
+<h3 id="官方源">官方源</h3>
+
+<pre><code>$ sudo yum-config-manager \
+      --add-repo \
+      https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre>
+
+<p>如果需要最新版本的 Docker CE 请使用以下命令：</p>
+
+<pre><code>$ sudo yum-config-manager --enable docker-ce-edge
+$ sudo yum-config-manager --enable docker-ce-test
+</code></pre>
+
+<h3 id="安装-docker-ce">安装 Docker CE</h3>
+
+<p>更新  yum  软件源缓存，并安装  docker-ce  。</p>
+
+<pre><code>$ sudo yum makecache fast
+$ sudo yum install docker-ce
+</code></pre>
+
+<h4 id="使用脚本自动安装">使用脚本自动安装</h4>
+
+<p>在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，CentOS
+系统上可以使用这套脚本安装：</p>
+
+<pre><code>$ curl -fsSL get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh --mirror Aliyun
+</code></pre>
+
+<p>执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的 edge 版本安
+装在系统中。</p>
+
+<h4 id="启动-docker-ce">启动 Docker CE</h4>
+
+<pre><code>$ sudo systemctl enable docker
+$ sudo systemctl start docker
+</code></pre>
+
+<h3 id="建立-docker-用户组">建立 docker 用户组</h3>
+
+<p>默认情况下， docker  命令会使用 Unix socket 与 Docker 引擎通讯。而只有  root  用户和
+docker  组的用户才可以访问 Docker 引擎的 Unix socket。出于安全考虑，一般 Linux 系统
+上不会直接使用  root  用户。因此，更好地做法是将需要使用  docker  的用户加入  docker
+用户组。</p>
+
+<p>建立  <code>docker</code>   组：</p>
+
+<pre><code class="language-shell">$ sudo groupadd docker
+</code></pre>
+
+<p>将当前用户加入  <code>docker</code>   组：</p>
+
+<pre><code class="language-shell">$ sudo usermod -aG docker $USER
+</code></pre>
+
+<h3 id="镜像加速">镜像加速</h3>
+
+<p>鉴于国内网络问题，后续拉取 Docker 镜像十分缓慢，强烈建议安装 Docker 之后配置 国内镜
+像加速。</p>
+
+<h3 id="添加内核参数">添加内核参数</h3>
+
+<p>默认配置下，如果在 CentOS 使用 Docker CE 看到下面的这些警告信息：</p>
+
+<pre><code>WARNING: bridge-nf-call-iptables is disabled
+WARNING: bridge-nf-call-ip6tables is disabled
+</code></pre>
+
+<p>请添加内核配置参数以启用这些功能。</p>
+
+<pre><code class="language-shell">sudo tee -a /etc/sysctl.conf &lt;&lt;-EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+</code></pre>
+
+<p>然后重新加载  <code>sysctl.conf</code>  即可</p>
+
+<pre><code class="language-shell">$ sudo sysctl -p
+</code></pre>
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
+
         
         </div> 
         
@@ -375,8 +575,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -390,6 +588,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -406,6 +605,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -510,8 +712,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
