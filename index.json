@@ -7,6 +7,27 @@
 	"content": " 安装配置 本节目录  docker安装     saltstack安装     zabbix安装     使用kubeadm从0开始搭建kubernetes:v1.11.1     初始化简单配置saltstack     安装zsh     通过onedrive搭建私人网盘     codis集群高可用搭建     zookeeper安装       其他补充说明   文档略简洁 , 具体可以去我博客去看   "
 },
 {
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/",
+	"title": "工具与效率",
+	"tags": [],
+	"description": "",
+	"content": " 工具和效率  监控工具集合     持续部署工具CI/CD集合     "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/",
+	"title": "监控工具集合",
+	"tags": [],
+	"description": "",
+	"content": "  Prometheus  一个开源的服务监控系统和时间序列数据库， 提供监控数据存储，展示，告警等功能\n ncdu  强大的磁盘使用统计工具\n rtop  无代理,基于ssh,类似其他 *top 命令简介\n satellite  用于监测kubernetes健康状态的一个工具／库。 其特点是：轻量级定期测试， 高可用性和弹性网络分区， 无单点故障， 以时间序列的格式存储监控数据。\n "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/",
+	"title": "知识碎片",
+	"tags": [],
+	"description": "",
+	"content": " 知识碎片记录 记录一些运维的碎片化知识 , 包涵小技巧 , 各种命令用法等等!\n ansible为什么执行命令的时候, 在其他主机为什么也能执行     docker主机名     docker的dns解析     k8s高可用集群搭建     kubernetes中Master简单高可用思路     kubernetes中apiserver的地址指定问题     kubernetes中dns service ip 问题     kubernetes中service的规则是由谁实现的     kubernetes使用自定义证书     tldr---查看命令帮助的另一神器     zabbix数据库拆分迁移     zabbix的web展示页面中不支持中文而出现乱码怎么办     zabbix监控JMX的时候 key无法取到值问题     使用kubeadm拉取镜像     复制. 开头的文件     如何curl网页的时候输出更加美观规范     如何切换主组     如何创建用户的时候让其加入其它附加组     如何创建系统用户     如何删除文件空白行     如何在zabbix触发器名称的里加上当前trigger的最新值(或自定义变量)     如何在一个文件中给每一行后追加一个空行     如何快速给某个用户授权sudo     如何快速获取主机ip (3)     如何批量改用户密码账号     如何把一台主机上用户信息批量移到另一台主机上     如何显示文件偶数行     如何显示空白行     如何查看ansible命令执行的详细过程     如何查看kubeadm默认的启动参数和配置     如何查看和修改创建用户的默认配置信息     如何查看某个终端运行的进程     如何添加用户信息     如何生成指定范围的随机数     如何生成随机字符     如何生成随机密码     如何给一个正在运行的k8s集群里的master组件动态添加一个命令行参数     如何获取kubeadm初始化需要哪些镜像     如何让ansible忽略错误命令继续执行     如何让vim打开文件的时候有颜色     如何让某个用户密码立即过期     如何调整dns和hosts文件的优先级     如果切换tty     定时任务和周期任务     查看服务是否开机启动     用cmd查看windows连接过的wifi密码     用户属性修改     网卡命名规则在哪里规定     网络总开关在哪     脚本安装k8s     进入单用户模式     "
+},
+{
 	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/",
 	"title": "docker安装",
 	"tags": [],
@@ -63,11 +84,25 @@
 	"content": ""
 },
 {
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/",
+	"title": "Prometheus",
+	"tags": [],
+	"description": "一个开源的服务监控系统和时间序列数据库， 提供监控数据存储，展示，告警等功能",
+	"content": " prometheus项目地址: https://github.com/prometheus/prometheus\n 随着容器技术的迅速发展，Kubernetes 已然成为大家追捧的容器集群管理系统。Prometheus 作为生态圈 Cloud Native Computing Foundation（简称：CNCF）中的重要一员,其活跃度仅次于 Kubernetes, 现已广泛用于 Kubernetes 集群的监控系统中。本文将简要介绍 Prometheus 的组成和相关概念，并实例演示 Prometheus 的安装，配置及使用，以便开发人员和云平台运维人员可以快速的掌握 Prometheus。\nPrometheus 简介 Prometheus 是一套开源的系统监控报警框架。它启发于 Google 的 borgmon 监控系统，由工作在 SoundCloud 的 google 前员工在 2012 年创建，作为社区开源项目进行开发，并于 2015 年正式发布。2016 年，Prometheus 正式加入 Cloud Native Computing Foundation，成为受欢迎度仅次于 Kubernetes 的项目。\n作为新一代的监控框架，Prometheus 具有以下特点：\n 强大的多维度数据模型：\n 时间序列数据通过 metric 名和键值对来区分。 所有的 metrics 都可以设置任意的多维标签。 数据模型更随意，不需要刻意设置为以点分隔的字符串。 可以对数据模型进行聚合，切割和切片操作。 支持双精度浮点类型，标签可以设为全 unicode。  灵活而强大的查询语句（PromQL）：在同一个查询语句，可以对多个 metrics 进行乘法、加法、连接、取分数位等操作。\n 易于管理： Prometheus server 是一个单独的二进制文件，可直接在本地工作，不依赖于分布式存储。\n 高效：平均每个采样点仅占 3.5 bytes，且一个 Prometheus server 可以处理数百万的 metrics。\n 使用 pull 模式采集时间序列数据，这样不仅有利于本机测试而且可以避免有问题的服务器推送坏的 metrics。\n 可以采用 push gateway 的方式把时间序列数据推送至 Prometheus server 端。\n 可以通过服务发现或者静态配置去获取监控的 targets。\n 有多种可视化图形界面。\n 易于伸缩。\n  需要指出的是，由于数据采集可能会有丢失，所以 Prometheus 不适用对采集数据要 100% 准确的情形。但如果用于记录时间序列数据，Prometheus 具有很大的查询优势，此外，Prometheus 适用于微服务的体系架构。\nPrometheus 组成及架构 Prometheus 生态圈中包含了多个组件，其中许多组件是可选的：\n Prometheus Server: 用于收集和存储时间序列数据。 Client Library: 客户端库，为需要监控的服务生成相应的 metrics 并暴露给 Prometheus server。当 Prometheus server 来 pull 时，直接返回实时状态的 metrics。 Push Gateway: 主要用于短期的 jobs。由于这类 jobs 存在时间较短，可能在 Prometheus 来 pull 之前就消失了。为此，这次 jobs 可以直接向 Prometheus server 端推送它们的 metrics。这种方式主要用于服务层面的 metrics，对于机器层面的 metrices，需要使用 node exporter。 Exporters: 用于暴露已有的第三方服务的 metrics 给 Prometheus。 Alertmanager: 从 Prometheus server 端接收到 alerts 后，会进行去除重复数据，分组，并路由到对收的接受方式，发出报警。常见的接收方式有：电子邮件，pagerduty，OpsGenie, webhook 等。 一些其他的工具。  图 1 为 Prometheus 官方文档中的架构图：\n图 1. Prometheus 架构图 从上图可以看出，Prometheus 的主要模块包括：Prometheus server, exporters, Pushgateway, PromQL, Alertmanager 以及图形界面。\n其大概的工作流程是：\n Prometheus server 定期从配置好的 jobs 或者 exporters 中拉 metrics，或者接收来自 Pushgateway 发过来的 metrics，或者从其他的 Prometheus server 中拉 metrics。 Prometheus server 在本地存储收集到的 metrics，并运行已定义好的 alert.rules，记录新的时间序列或者向 Alertmanager 推送警报。 Alertmanager 根据配置文件，对接收到的警报进行处理，发出告警。 在图形界面中，可视化采集数据。  "
+},
+{
 	"uri": "https://haojianxun.github.io/docs/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/",
+	"title": "ansible为什么执行命令的时候, 在其他主机为什么也能执行",
+	"tags": [],
+	"description": "",
+	"content": "在配置文件/etc/ansible/ansible.cfg的[default]字段下有解释\nansible在执行命令的时候 , 会把用户执行的命令转换成python脚本放在~/.ansible/tmp下 , 在其他远程主机上也是放在同样的目录下 , 并且加执行权限 , 在远程目录下运行完 , 并把执行结果返回来 , 之后这个文件就会被删\n"
 },
 {
 	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/",
@@ -77,11 +112,389 @@
 	"content": " 安装go wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz at \u0026lt;\u0026lt; EOF \u0026gt;\u0026gt;/etc/profile export PATH=$PATH:/usr/local/go/bin export GOROOT=/usr/local/go export GOPATH=/usr/local/go/work path=$PATH:$HOME/bin:$GOROOT/bin:$GOPATH/bin EOF source /etc/profile  安装zookeeper wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置zookeeper的环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建zookeeper数据目录 mkdir -p /data/zookeeper  修改zookeeper配置文件\ncp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行\necho 1 \u0026gt; /data/zookeeper/myid  在zookeeper2执行\necho 2 \u0026gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper \u0026amp;\u0026amp; ./bin/zkServer.sh start  安装codis mkdir -p $GOPATH/src/github.com/CodisLabs cd $_ \u0026amp;\u0026amp; git clone https://github.com/CodisLabs/codis.git -b release3.2 cd $GOPATH/src/github.com/CodisLabs/codis make  配置环境 变量 # vim /etc/profile export PATH=$GOPATH/src/github.com/CodisLabs/codis/bin:$PATH # source /etc/profile  codis配置 进入codis目录\ncd $GOPATH/src/github.com/CodisLabs/codis  配置codis-dashboard # vim config/dashboard.toml coordinator_name = \u0026quot;zookeeper\u0026quot; coordinator_addr = \u0026quot;10.10.10.21:2181,10.10.10.22:2181,10.10.10.23:2181\u0026quot; product_name = \u0026quot;codis-demo\u0026quot; product_auth = \u0026quot;123456\u0026quot;  codis proxy配置 # vim config/proxy.toml product_name = \u0026quot;codis-demo\u0026quot; product_auth = \u0026quot;123456\u0026quot; jodis_name = \u0026quot;zookeeper\u0026quot; jodis_addr = \u0026quot;192.168.200.148:2181,192.168.200.149:2181,192.168.200.150\u0026quot;  codis server配置 #修改主配置 cp config/redis.conf config/redis-6379.conf vim config/redis-6379.conf bind IPADDR dir /data/redis-data/redis-6379 ....(包括一些密码相关的安全) #修改从配置 cp redis-6379.conf redis-6380.conf sed -i \u0026quot;s/6379/6380/g\u0026quot; redis-6380.conf vim redis-6380.conf .... slaveof \u0026lt;MASTERIP\u0026gt; \u0026lt;MASTERPORT\u0026gt; ...  mkdir -pv /data/redis-data/redis-{6379,6380}  codis fe配置启动 # vim config/codis.json [ { \u0026quot;name\u0026quot;: \u0026quot;codis-demo\u0026quot;, \u0026quot;dashboard\u0026quot;: \u0026quot;127.0.0.1:18080\u0026quot; } ]  Redis-sentinel cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/src/redis-sentinel /usr/local/codis/bin/ cp -fr $GOPATH/github.com/CodisLabs/codis/extern/redis-3.2.8/sentinel.conf /usr/local/codis/conf/ cd /usr/local/codis/ vim ./conf/sentinel.conf bind 0.0.0.0 protected-mode no port 26379 dir “/usr/local/codis/data/  启动 codis集群中: 1个zookeeper（或1个zookeeper集群） + 1个codis dashboard + n个codis proxy + n个codis server + 1个Codis FE（可选） , 启动时候根据情况来启动 , dashboard启动的时候就启动一个就可以了\ncodis-server启动 ./bin/codis-server ./config/redis-6379.conf ./bin/codis-server ./config/redis-6380.conf  codis-proxy启动 nohup ./bin/codis-proxy --ncpu=4 --config=config/proxy.toml --log=logs/proxy.log --log-level=WARN \u0026amp;  其中cpu的最大值依据自己电脑来\ncodis-dashboard启动 nohup ./bin/codis-dashboard --ncpu=4 --config=config/dashboard.toml --log=logs/dashboard.log --log-level=WARN \u0026amp;  codis-fe启动 nohup ./bin/codis-fe --ncpu=4 --log=logs/fe.log --log-level=WARN --dashboard-list=config/codis.json --listen=0.0.0.0:8080 \u0026amp;  sentinel启动 cd /usr/local/codis/bin/ nohup ./redis-sentinel ../conf/sentinel.conf \u0026amp;  codis配置 登陆codis fe，http://192.168.200.148:8080\n"
 },
 {
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/",
+	"title": "docker主机名",
+	"tags": [],
+	"description": "",
+	"content": "docker的主机名默认是docker id 是随机生成的\n要想自己指定 可以在使用docker 命令的时候加个短选项 -h 即可 后面跟上主机名\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E7%9A%84dns%E8%A7%A3%E6%9E%90/",
+	"title": "docker的dns解析",
+	"tags": [],
+	"description": "",
+	"content": "docker的dns解析一般默认是docker0网桥的地址 这样做的目的是方便在同一主机内的各个容器互相通信 当然也可以自己指定dns地址 在启动docker的时候使用短选项--dns 即可指定 进入容器内部cat /etc/resolv.conf查看的时候 就会发现默认的已经改变\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/",
+	"title": "k8s高可用集群搭建",
+	"tags": [],
+	"description": "",
+	"content": "好的参考文章\nhttps://github.com/cookeem/kubeadm-ha\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADmaster%E7%AE%80%E5%8D%95%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%9D%E8%B7%AF/",
+	"title": "kubernetes中Master简单高可用思路",
+	"tags": [],
+	"description": "",
+	"content": "把APIServer这种组件通过DaemonSet的方式来进行管理，启动3个APIServer。这3个APIServer都能同时对外提供服务，另外两个Master组件Controller-Manager，Scheduler是通过Deployment来启动的，也是启动了3个。而ETCD也是通过集群的方式来保证可用性的。通过这些操作就可以保证Master挂掉一个，还有另外两个提供服务\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADapiserver%E7%9A%84%E5%9C%B0%E5%9D%80%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/",
+	"title": "kubernetes中apiserver的地址指定问题",
+	"tags": [],
+	"description": "",
+	"content": "APIServer参数 \u0026ndash;advertise-address判定的问题，这个参数是用来指定APIServer 和其他组件之间通讯的地址或者它的监听地址。它默认的判定方法会选取机器默认的网卡ip地址，这 一点有时并不合适，因为我们在自己使用过程中会有这样的场景，我们有些机器可能默认网卡是 公网网卡，我们希望集群内部组件相互通讯的东西走内网流量，所以这个时候，我们还是采用这种默认的判定方法，就会让APIServer 绑定公网网卡。如果你的环境是这样的配置，建议你用这样的方式绑定到内网网卡。Kubelet也有这样的参数，叫做\u0026ndash;node-ip ，在这样的场景下也会默认绑定在公网网卡上，如果你的环境也是这样子的，建议你用命令行的方式把内网地址 配置进去。这个问题的发现源于我们自己的使用实际场景，我们想通过虚拟机管理 软件Vagrant来部署集群的时候会出现一些问题，因为它为每个虚拟机创造一个nat网卡作为默认网卡，它的ip地址固定，如果创建两个虚拟机，这两个虚拟机默认网卡都是一个地址 。如果这个时候还是采用这种方式来指定，采用默认策略就会导致所有pod地址都是那个nat 网卡地址。K8S官方也给出一个方案，如果大家用这个部署集群的需求，要注意这个问题\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADdns-service-ip-%E9%97%AE%E9%A2%98/",
+	"title": "kubernetes中dns service ip 问题",
+	"tags": [],
+	"description": "",
+	"content": "DNS Service IP和Kubelet \u0026ndash;cluster-dns参数不匹配的问题。Kubeadm默认创建两个service，一个service是用来暴露 APIServer服务的，另外一个service是用来暴露Kube DNS的服务的，这两个服务地址不是随机生成的，是有一定规则的。Kubeadm 首先会指定一个service ip的范围，默认值是10.96 .0.0/16，根据这个范围就可以按照一定的规则生成两个地址。APIServer 服务的地址会取这个网段的第一个地址，也就是10.96.0.1，Kube dns更加死板，会把最后0前面加一个1，就作为service ip， 即10.96.0.10，而且不能修改配置方式。所以这是一个默认的规则。Kubelet还有一个参数叫\u0026ndash; cluster-dns，每当Kubelet启动一个pod的时候，利用这个参数昨 为这个容器的nameserver。也就是说这个容器如果它想要解析域名 的时候，它的DNS服务的nameserver是 什么。如果你想采用集群里面DNS服务，必须指定为Kube DNS 的 server ip，默认的情况，它配置的就是10.96.0.10，如果采用默认配置不会发现任何问题，集群工作好好的。但是一旦在生产环境中，比如你的环境，需要更换service ip 的范围，它会新生成新的Kube- DNS的ip，如果不及时同步，会导致你启动的pod无法使用这个DNS 的服务。这是我们当时遇到的问题，希望大家之后避免\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADservice%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E7%94%B1%E8%B0%81%E5%AE%9E%E7%8E%B0%E7%9A%84/",
+	"title": "kubernetes中service的规则是由谁实现的",
+	"tags": [],
+	"description": "",
+	"content": "是由kube-proxy实现的 , kube-proxy和api-server通信 , 发现pod或者service有改变就\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%81%E4%B9%A6/",
+	"title": "kubernetes使用自定义证书",
+	"tags": [],
+	"description": "",
+	"content": "默认情况下，kubeadm 将生成集群运行所需的所有证书。您可以通过提供自己的证书来覆盖此行为。\n为此，您必须将它们放置在 --cert-dir 参数或 CertificatesDir 配置文件密钥所指定的目录中。默认目录为 /etc/kubernetes/pki。\n如果给定的证书和私钥对都存在，kubeadm 会跳过生成步骤，这些文件将被验证并用于规定的用例。\n这意味着你可以用一个现有的 CA 预填充 /etc/kubernetes/pki/ca.crt 和 /etc/kubernetes/pki/ca.key，然后用它来签署其余的证书。\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/",
+	"title": "ncdu",
+	"tags": [],
+	"description": "强大的磁盘使用统计工具",
+	"content": " 简介 不需要像du那样输入大量的命令，就可以计算文件及目录大小并可以按照大小或文件名进行排序。它是基于ncurses库开发的，因此还支持很多丰富的交互式命令\n官网地址: https://dev.yorhel.nl/ncdu\n 安装 yum install -y ncdu  用法 使用数字键1、2、3进行切换，1为快捷键，2为显示格式说明，3为ncdu版权信息。 常用快捷键 n ：按文件名进行排序 s ：按文件大小进行排序 r ：重新统计当前文件夹大小 g ：用#或百分比显示各文件/目录的大小所占的百分比 i ：显示当前文件/目录信息  Scanning\u0026hellip;\nDone scanning\nDirectory information\nDelete confirmation\nHelp screen\nAbout screen\n其他相似命令 gt5 - Quite similar to ncdu, but a different approach.\ntdu - Another small ncurses-based disk usage visualization utility.\nTreeSize - GTK, using a treeview.\nBaobab - GTK, using pie-charts, a treeview and a treemap. Comes with GNOME.\nGdMap - GTK, with a treemap display.\nFilelight - KDE, using pie-charts.\nKDirStat - KDE, with a treemap display.\nQDiskUsage - Qt, using pie-charts.\nxdiskusage - FLTK, with a treemap display.\nfsv - 3D visualization.\nPhilesight - Web-based clone of Filelight\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/rop/",
+	"title": "rtop",
+	"tags": [],
+	"description": "无代理,基于ssh,类似其他 *top 命令简介",
+	"content": " 简介 rtop 是一个简单的无代理的远程服务器监控工具，基于 SSH 连接进行工作。无需在被监控的服务器上安装任何软件。rtop 直接通过 SSH 连接到待监控服务器，然后执行命令来收集监控数据。rtop 每几秒钟就自动更新监控数据，类似其他 *top 命令\nrtop项目地址: https://github.com/rapidloop/rtop\n 安装 go get github.com/rapidloop/rtop  用法 Usage: rtop [-i private-key-file] [user@]host[:port] [interval] -i private-key-file PEM-encoded private key file to use (default: ~/.ssh/id_rsa if present) [user@]host[:port] the SSH server to connect to, with optional username and port interval refresh interval in seconds (default: 5)  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/satellite/",
+	"title": "satellite",
+	"tags": [],
+	"description": "用于监测kubernetes健康状态的一个工具／库。 其特点是：轻量级定期测试， 高可用性和弹性网络分区， 无单点故障， 以时间序列的格式存储监控数据。",
+	"content": " 简介 Satellite是一个用Go编写的代理，用于收集kubernetes集群中的健康信息。它既是一个库，也是一个应用程序\n作为库，它可以用作自定义监视解决方案的基础。健康状态信息以时间序列的形式收集并持久保存到sqlite后端。通过接口支持其他后端\n项目地址: https://github.com/gravitational/satellite\n "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/tldr-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A5%9E%E5%99%A8/",
+	"title": "tldr---查看命令帮助的另一神器",
+	"tags": [],
+	"description": "",
+	"content": " 地址:https://github.com/tldr-pages/tldr\n在bash中安装 Installation mkdir -p ~/bin curl -o ~/bin/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr chmod +x ~/bin/tldr  Then try using the command! If you get an error such as -bash: tldr: command not found, you may need to add ~/bin to your $PATH. On OSX edit ~/.bash_profile (~/.bashrc on Linux), and add the following line to the bottom of the file:\nexport PATH=~/bin:$PATH  If you\u0026rsquo;d like to enable shell completion (eg. tldr w\u0026lt;tab\u0026gt;\u0026lt;tab\u0026gt; to get a list of all commands which start with w) then add the following to the same startup script:\ncomplete -W \u0026quot;$(tldr 2\u0026gt;/dev/null --list)\u0026quot; tldr  使用docker来安装 Docker images:\n tldr-docker- Run the tldr command via a docker container: alias tldr='docker run --rm -it -v ~/.tldr/:/root/.tldr/ nutellinoit/tldr'  其余更多的方式请查看github项目\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8B%86%E5%88%86%E8%BF%81%E7%A7%BB/",
+	"title": "zabbix数据库拆分迁移",
+	"tags": [],
+	"description": "",
+	"content": "需要修改/etc/zabbix/web/zabbix.conf.php 里面的配置\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9A%84web%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E8%80%8C%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/",
+	"title": "zabbix的web展示页面中不支持中文而出现乱码怎么办",
+	"tags": [],
+	"description": "",
+	"content": "在/etc/httpd/conf.d/zabbix.conf 中 可以看到在/usr/share/zabbix/conf 文件夹中 进入这个文件夹 再找到fonts 文件夹 , 会发现有tty类型的字体文件 , 之后我们可以把我们的字体直接扔在这个fonts 目录下 , 之后再重命名为之前默认的文件名称即可\nmv myfont.tty graphfont.tty //将我们仍进来的myfont.tty文件修改为原来默认的graphfont.tty文件名  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9B%91%E6%8E%A7jmx%E7%9A%84%E6%97%B6%E5%80%99-key%E6%97%A0%E6%B3%95%E5%8F%96%E5%88%B0%E5%80%BC%E9%97%AE%E9%A2%98/",
+	"title": "zabbix监控JMX的时候 key无法取到值问题",
+	"tags": [],
+	"description": "",
+	"content": "在填key的时候 明明的复制下来的 , 然而会提示未注册 , 这个时候可能是引号问题 , 需要转义 , 比如\njmx[\u0026quot;Catalina.type=GlobalRequestProcessor.name=\\\u0026quot;http-nio-8080\\\u0026quot;\u0026quot;,errorCount]  "
+},
+{
 	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/",
 	"title": "zookeeper安装",
 	"tags": [],
 	"description": "",
 	"content": " zookeeper官方地址: http://www.apache.org/dyn/closer.cgi/zookeeper/\n主机准备    ip name     192.168.200.148 zookeeper1   192.168.200.149 zookeeper2    安装 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz tar -xvzf zookeeper-3.4.10.tar.gz mv zookeeper-3.4.10/ /usr/local/zookeeper  配置环境变量 vim /etc/profile export PATH=/usr/local/zoo/bin:$PATH source /etc/profile  创建数据目录 mkdir -p /data/zookeeper  修改配置文件 cp /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg vim /usr/local/zookeeper/conf/zoo.cfg dataDir=/data/zookeeper server.1=192.168.200.148:2888:3888 server.2=192.168.200.149:2888:3888  在zookeeper1上执行\necho 1 \u0026gt; /data/zookeeper/myid  在zookeeper2执行\necho 2 \u0026gt; /data/zookeeper/myid  启动 cd /usr/local/zookeeper \u0026amp;\u0026amp; ./bin/zkServer.sh start  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E4%BD%BF%E7%94%A8kubeadm%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F/",
+	"title": "使用kubeadm拉取镜像",
+	"tags": [],
+	"description": "",
+	"content": "kubeadm config images pull  选项\nFlags: --config string Path to kubeadm config file. --cri-socket-path string Path to the CRI socket. (default \u0026quot;/var/run/dockershim.sock\u0026quot;) --feature-gates string A set of key=value pairs that describe feature gates for various features. Options are: Auditing=true|false (ALPHA - default=false) CoreDNS=true|false (default=true) DynamicKubeletConfig=true|false (ALPHA - default=false) SelfHosting=true|false (ALPHA - default=false) StoreCertsInSecrets=true|false (ALPHA - default=false) -h, --help help for pull --kubernetes-version string Choose a specific Kubernetes version for the control plane. (default \u0026quot;stable-1.11\u0026quot;) Global Flags: --kubeconfig string The KubeConfig file to use when talking to the cluster. (default \u0026quot;/etc/kubernetes/admin.conf\u0026quot;) -v, --v Level log level for V logs  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A4%8D%E5%88%B6-.-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6/",
+	"title": "复制. 开头的文件",
+	"tags": [],
+	"description": "",
+	"content": "比如\ncp -r /etc/skel/.[^.]* /home/test  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95curl%E7%BD%91%E9%A1%B5%E7%9A%84%E6%97%B6%E5%80%99%E8%BE%93%E5%87%BA%E6%9B%B4%E5%8A%A0%E7%BE%8E%E8%A7%82%E8%A7%84%E8%8C%83/",
+	"title": "如何curl网页的时候输出更加美观规范",
+	"tags": [],
+	"description": "",
+	"content": "curl命令之后加上管道 |python -m json.tool  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E4%B8%BB%E7%BB%84/",
+	"title": "如何切换主组",
+	"tags": [],
+	"description": "",
+	"content": "newgrp test //将用户的主组切换为test  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%A9%E5%85%B6%E5%8A%A0%E5%85%A5%E5%85%B6%E5%AE%83%E9%99%84%E5%8A%A0%E7%BB%84/",
+	"title": "如何创建用户的时候让其加入其它附加组",
+	"tags": [],
+	"description": "",
+	"content": "useradd -G test2,test3 wang //让wang用户拥有test2,test3 2个附加组  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7/",
+	"title": "如何创建系统用户",
+	"tags": [],
+	"description": "",
+	"content": "useradd -s /sbin/nologin -r nginx //-r表示不创建加目录,表示创建的是系统用户  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%A9%BA%E7%99%BD%E8%A1%8C/",
+	"title": "如何删除文件空白行",
+	"tags": [],
+	"description": "",
+	"content": "sed '/^$/d' f1 //删除f1中的空白行  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8zabbix%E8%A7%A6%E5%8F%91%E5%99%A8%E5%90%8D%E7%A7%B0%E7%9A%84%E9%87%8C%E5%8A%A0%E4%B8%8A%E5%BD%93%E5%89%8Dtrigger%E7%9A%84%E6%9C%80%E6%96%B0%E5%80%BC%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/",
+	"title": "如何在zabbix触发器名称的里加上当前trigger的最新值(或自定义变量)",
+	"tags": [],
+	"description": "",
+	"content": "    参数 描述     Name 触发器名称 名称可以包含支持宏变量: {HOST.HOST}, {HOST.NAME}, {HOST.CONN}, {HOST.DNS}, {HOST.IP}, {ITEM.VALUE}, {ITEM.LASTVALUE} and {$MACRO}. 1,2…9 宏可以被关联表达式 实例: 名字 Processor load above 1 on {HOST.NAME} 表达式: {New host:system.cpu.load[percpu,avg1].last()}\u0026gt;5 会显示为 Processor load above 5 on New host   Expression 逻辑表达式用于计算触发器状态   Multiple PROBLEM events generation 可以通过这个参数,在触发器产生Problem时触发一个事件   Description 描述更多信息关于触发器的作用,包含修复problem说明等细节.   URL 在Monitoring → Triggers中，可以看到URL并且可以点击，一般情况下他需要配合触发器ID来使用，在url中包含触发器ID（宏变量 {TRIGGER.ID}），这样可以直接点击到具体触发器中。   Severity 设置严重级别.   Enabled 设置是否启用trigger    官方文档如下:\n 1 配置一个触发器 概述 配置一个触发器，请执行以下操作：\n 点击Zabbix上方菜单栏的Configuration → Hosts 在Host那一行点击Triggers 在右上角点击*Create Trigger*（或者在触发器名称上编辑一个现有的触发器） 在打开的页面输入触发器的参数  配置 Trigger标签页包含了所有必需的触发器属性。\n\n   参数 描述     Name 触发器名称。 这个名称可能包含支持的macros:{HOST.HOST}, {HOST.NAME}, {HOST.CONN}, {HOST.DNS}, {HOST.IP}, {ITEM.VALUE},{ITEM.LASTVALUE} 和 {$MACRO}。 $1, $2…$9宏可以用来指代第一、第二至第九个表达式的常量。 *备注*：$1-$9如果引用了相对简单的常量或易懂的表达式，宏将会正确解析。例如，如果表达式为{New host:system.cpu.load[percpu,avg1].last()}\u0026gt;5，则名为“Processor load above $1 on {HOST.NAME}“的触发器名称将自动更改为”Processor load above 5 on New host”   Severity 通过点击对应的按钮来设置所需的触发器severity   Problem expression 用于定义问题条件的逻辑expression。   OK event generation OK event generation选项：\\Expression - OK events are generated based on the same expression as problem events; Recovery expression - OK events are generated if the recovery expression evaluates to TRUE and the problem expression evaluates to FALSE; None - in this case the trigger will never return to an OK state on its own. Supported since Zabbix 3.2.0.   Recovery expression Logical expression used to define the conditions when the problem is resolved. This field is optional and only available if \u0026lsquo;Recovery expression\u0026rsquo; is selected for OK event generation. Supported since Zabbix 3.2.0.   Tag for matching Enter event tag name to use for event correlation. This field is displayed if \u0026lsquo;All problems if tag values match\u0026rsquo; is selected for the OK event closes property and is mandatory in this case. Supported since Zabbix 3.2.0.   Tags Set custom tags to mark trigger events. Event tags can be used for event correlation, in action conditions and will also be seen in Monitoring → Problems. Tags are a pair of tag name and value. You can use only the name or pair it with a value. User macros, user macro context, low-level discovery macros and macro functions: {{ITEM.VALUE}.regsub(pattern, output)}, {{ITEM.VALUE}.iregsub(pattern, output)} are supported in event tags. Low-level discovery macros can be used inside macro context. If the total length of expanded value exceeds 255, it will be cut to 255 characters. Supported since Zabbix 3.2.0.   Allow manual close Check to allow manual closing of problem events generated by this trigger. Manual closing is possible when acknowledging problem events. This field is available if event acknowledgement is activated in Administration → General. Supported since Zabbix 3.2.0.   URL 如果此处不为空，则在此处输入的URL可在点击*Monitoring → Triggers的trigger name的时候链接于此。 可以在触发器URL字段 - {TRIGGER.ID}, 多个[{HOST.}](https://www.zabbix.com/documentation/3.4/manual/appendix/macros/supported_by_location)宏（Zabbix3.0.0以后的版本）和用户宏（Zabbix3.0.0以后的版本）中使用宏。   Description 文本字段用来提供更多关于触发器的信息。可能包含修复特定问题的说明、相关负责人的联系方式等。 *从Zabbix2.2开始*，描述可能包含与触发器名称相同的一组宏。   Enabled 如果需要，取消选中此框将禁用触发器。    Dependencies标签页包含触发器的所有dependencies。\n点击*Add*来添加一个新的依赖关系。\n 例子 这是之后的触发的效果\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E7%BB%99%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%90%8E%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%A9%BA%E8%A1%8C/",
+	"title": "如何在一个文件中给每一行后追加一个空行",
+	"tags": [],
+	"description": "",
+	"content": "用命令:\nsed 'G' FILE //给文件中的每一行下面加个空行  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%BB%99%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83sudo/",
+	"title": "如何快速给某个用户授权sudo",
+	"tags": [],
+	"description": "",
+	"content": "sudo授权的命令是visudo 里面有各种授权组 其中有一行\n%wheel ALL=(ALL) ALL  所以想让某个用户快速获得sudo授权 , 就可以让他加入这个组\nusermod -aG wheel wang  如果用户sudo的时候不想让他输入root密码 怎么办\n在visudo 的时候 看到的配置文件中有一行\n%wheel ALL=(ALL) NOPASSWD: ALL  这行默认是注释掉的 , 我们可以启用 , 这样就不用担心sudo的时候输入root密码了\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BAip-3/",
+	"title": "如何快速获取主机ip (3)",
+	"tags": [],
+	"description": "",
+	"content": "hostname -I  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%B4%A6%E5%8F%B7/",
+	"title": "如何批量改用户密码账号",
+	"tags": [],
+	"description": "",
+	"content": "cat test1 | chpasswd  其中test1的文件格式为\ntest1:12345 //冒号前面为用户名 , 后面为密码  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%B9%E9%87%8F%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%A4%A9%E4%B8%BB%E6%9C%BA%E4%B8%8A/",
+	"title": "如何把一台主机上用户信息批量移到另一台主机上",
+	"tags": [],
+	"description": "",
+	"content": "先把/etc/passwd里的内容复制一份 之后再传给另一个主机 之后在批量创建 , 下面为演示\nsed -n '/^haha/,/^test1/ w /root/ssaa' /etc/passwd //把passwd里面从haha开始的行到test1开始的行另存为到/root/ssaa文件  scp ssaa 192.168.200.134:/tmp //输入yes和另一台root的口令  cd /tmp newusers ssaa //即把ssaa里面的用户信息批量创建了  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%81%B6%E6%95%B0%E8%A1%8C/",
+	"title": "如何显示文件偶数行",
+	"tags": [],
+	"description": "",
+	"content": "sed -n 'n;p' FILENAME //显示FILENAME文件中的偶数行  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD%E8%A1%8C/",
+	"title": "如何显示空白行",
+	"tags": [],
+	"description": "",
+	"content": "cat -n f1 //显示行号,包括空白行 nl f1 //显示行号,但是有空白的行的话就不显示行号 cat -b f1 //作用和nl f1是一样的  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bansible%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/",
+	"title": "如何查看ansible命令执行的详细过程",
+	"tags": [],
+	"description": "",
+	"content": "比如执行的ping命令\nansible all -m ping -vvv | grep chmod //查看有修改权限的操作 ansible all -m ping -vvv|grep rm //查看有删除的操作  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bkubeadm%E9%BB%98%E8%AE%A4%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E5%92%8C%E9%85%8D%E7%BD%AE/",
+	"title": "如何查看kubeadm默认的启动参数和配置",
+	"tags": [],
+	"description": "",
+	"content": "kubeadm config view //查看kubadm的配置  kubeadm config print-default //打印出kubeadm默认的配置  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/",
+	"title": "如何查看和修改创建用户的默认配置信息",
+	"tags": [],
+	"description": "",
+	"content": "useradd -D //查看创建用户的默认配置文件 也可以用命令 cat /etc/default/useradd  useradd -D -s /bin/zsh //将默认的配置文件的shell类型修改成为zsh useradd -D -b BASE_DIR useradd -D -g GROUP  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%BB%88%E7%AB%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B/",
+	"title": "如何查看某个终端运行的进程",
+	"tags": [],
+	"description": "",
+	"content": "pgrep -t pts/0 -l //查看pts/0上运行的进程  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/",
+	"title": "如何添加用户信息",
+	"tags": [],
+	"description": "",
+	"content": "chfn wang //添加wang用户的信息  查看用户信息\nfinger wang //查看wang用户的信息  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/",
+	"title": "如何生成指定范围的随机数",
+	"tags": [],
+	"description": "",
+	"content": "首先有个随机数 之后对其取余处理 比如要生成0-100的随机数 就取余%100+1 取余100 除的数字就是0-99之间 之后再加1即可  echo $[RANDOM%100+1] //在0-100之间取随机数  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6/",
+	"title": "如何生成随机字符",
+	"tags": [],
+	"description": "",
+	"content": "openssl rand -base64 12 //随机生成12位字符  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81/",
+	"title": "如何生成随机密码",
+	"tags": [],
+	"description": "",
+	"content": "tr -dc A-Za-z0-9_ \u0026lt; /dev/urandom |head -c 30 | xargs  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E9%87%8C%E7%9A%84master%E7%BB%84%E4%BB%B6%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/",
+	"title": "如何给一个正在运行的k8s集群里的master组件动态添加一个命令行参数",
+	"tags": [],
+	"description": "",
+	"content": "下面我们再考虑一个常见的需求，刚才我们说的Master组件是通过static pod形式来创建的，如果现在一个集群正在运行中，我不能重新部署集群。还希望给Master组件，比如APIServer添加一个命令行参数，怎么办？只能对它进行动态更新。我们尝试了很多种方式，发现只有这样一种流程才能成功更新：首先先把APIServer的yaml文件从/etc/kubernetes/manifests目录下移出去，然后改好再移回来，才能实现更新。我们调研了K8S官方的说法，这是由于Kubelet的代码逻辑导致的，但是K8S官方认为static pod并不是会长期存在的形式，以后会越来越少用这种特性，所以也不会针对这种问题修改代码。如果大家还使用static pod的方式管理你的容器，就只能使用这种方案，没有办法解决\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E9%95%9C%E5%83%8F/",
+	"title": "如何获取kubeadm初始化需要哪些镜像",
+	"tags": [],
+	"description": "",
+	"content": "kubeadm config images list //获取kubeadm初始化需要的镜像  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9ansible%E5%BF%BD%E7%95%A5%E9%94%99%E8%AF%AF%E5%91%BD%E4%BB%A4%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/",
+	"title": "如何让ansible忽略错误命令继续执行",
+	"tags": [],
+	"description": "",
+	"content": "有2个种方法:\n ``` tasks:\n name: run this command and ignore the result shell:/usr/bin/command ||/bin/true ```  使用ignore_errors来忽略错误信息\n   tasks: - name: run this command and ignore the result shell: /usr/bin/command ignore_errors: True  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E9%A2%9C%E8%89%B2/",
+	"title": "如何让vim打开文件的时候有颜色",
+	"tags": [],
+	"description": "",
+	"content": "输入以下命令即可\necho export EDITOR=vim \u0026gt;\u0026gt; /etc/profile.d/env.sh . /etc/profile.d/env.sh  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%AB%8B%E5%8D%B3%E8%BF%87%E6%9C%9F/",
+	"title": "如何让某个用户密码立即过期",
+	"tags": [],
+	"description": "",
+	"content": "passwd -e wang //让wang用户的密码立即过期  chage -d 0 wang //让wang用户密码立即过期  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4dns%E5%92%8Chosts%E6%96%87%E4%BB%B6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/",
+	"title": "如何调整dns和hosts文件的优先级",
+	"tags": [],
+	"description": "",
+	"content": "修改文件 /etc/nsswitch.conf文件 里面的 hosts: files dns //file指的就是/etc/hosts文件  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E6%9E%9C%E5%88%87%E6%8D%A2tty/",
+	"title": "如果切换tty",
+	"tags": [],
+	"description": "",
+	"content": "chvt # //即可切换到第#个虚拟终端tty上  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%91%A8%E6%9C%9F%E4%BB%BB%E5%8A%A1/",
+	"title": "定时任务和周期任务",
+	"tags": [],
+	"description": "",
+	"content": " at at 10:30 echo 哈哈 \u0026gt; /root/f1 写完按ctrl+d结束 这样就能定点执行任务了 at 12:00 -f /root/test.sh //执行指定脚本 计划任务就不要写到标志输出了 , 写了不会显示 他放到邮件里了  at -l //列出定时任务  写好的文件在/var/spool/at文件夹内 用rpm -ql atd 可以看到atd的包有这个路径的\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7cicd%E9%9B%86%E5%90%88/",
+	"title": "持续部署工具CI/CD集合",
+	"tags": [],
+	"description": "目前流行的CI/CD工具集合介绍",
+	"content": "现在市面上有很多流行的CI/CD工具和DevOps工具有很多，这些工具提高了软件开发的效率，增加了开发人员的幸福感。比较流行的工具有：\n Travis CI Circle CI Jenkins AppVeyor CodeShip Drone Semaphore CI Buildkite Wercker TeamCity Fabric8 Spinnaker JFrog  未完待续 , 将持续更新\u0026hellip;\u0026hellip;\u0026hellip;\n"
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/",
+	"title": "查看服务是否开机启动",
+	"tags": [],
+	"description": "",
+	"content": "systemctl is-enbaled atd //查看atd是否开机启动  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8cmd%E6%9F%A5%E7%9C%8Bwindows%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84wifi%E5%AF%86%E7%A0%81/",
+	"title": "用cmd查看windows连接过的wifi密码",
+	"tags": [],
+	"description": "",
+	"content": "运行cmd , 输入以下代码\nfor /f \u0026quot;skip=9 tokens=1,2 delims=:\u0026quot; %i in ('netsh wlan show profiles') do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9/",
+	"title": "用户属性修改",
+	"tags": [],
+	"description": "",
+	"content": "usermod -aG wang li //将li用户增加一个附加组wang  userdel -r wang //删除wang用户 并且也把家目录删了 -r 删除家目录  gpasswd -a wang g1 //将wang用户添加到g1  gpasswd -d wang g1 //将wang用户从g1组删除  groupmems -l -g g1 //列出g1组的用户  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%9C%A8%E5%93%AA%E9%87%8C%E8%A7%84%E5%AE%9A/",
+	"title": "网卡命名规则在哪里规定",
+	"tags": [],
+	"description": "",
+	"content": "用命令查看\ncat /etc/udev/rules.d/70-presistent-net.rules  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E7%BB%9C%E6%80%BB%E5%BC%80%E5%85%B3%E5%9C%A8%E5%93%AA/",
+	"title": "网络总开关在哪",
+	"tags": [],
+	"description": "",
+	"content": "在/etc/sysconfig/network中 NETWORKING=yes HOSTNAME=localhost  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85k8s/",
+	"title": "脚本安装k8s",
+	"tags": [],
+	"description": "",
+	"content": "#!/usr/bin/env bash #set -x #如果任何语句的执行结果不是true则应该退出,set -o errexit和set -e作用相同 set -e #id -u显示用户ID,root用户的ID为0 root=$(id -u) #脚本需要使用root用户执行 if [ \u0026quot;$root\u0026quot; -ne 0 ] ;then echo \u0026quot;must run as root\u0026quot; exit 1 fi # #系统判定 # linux_os() { cnt=$(cat /etc/centos-release|grep \u0026quot;CentOS\u0026quot;|grep \u0026quot;release 7\u0026quot;|wc -l) if [ \u0026quot;$cnt\u0026quot; != \u0026quot;1\u0026quot; ];then echo \u0026quot;Only support CentOS 7... exit\u0026quot; exit 1 fi } # #关闭selinux # selinux_disable() { # 关闭selinux if [ $(getenforce) = \u0026quot;Enabled\u0026quot; ]; then setenforce 0 fi # selinux设置为disabled sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config echo \u0026quot;Selinux disabled success!\u0026quot; } # #关闭防火墙 # firewalld_stop() { # 关闭防火墙 systemctl disable firewalld systemctl stop firewalld echo \u0026quot;Firewall disabled success!\u0026quot; } # #安装docker # docker_install() { # dockerproject docker源 cat \u0026gt; /etc/yum.repos.d/docker.repo \u0026lt;\u0026lt;EOF [docker-repo] name=Docker Repository baseurl=https://yum.dockerproject.org/repo/main/centos/7 enabled=1 gpgcheck=0 EOF #查看docker版本 #yum list docker-engine showduplicates #安装docker yum install -y docker-engine-1.12.6-1.el7.centos.x86_64 echo \u0026quot;Docker installed successfully!\u0026quot; #docker存储目录 if [ ! -n \u0026quot;$DOCKER_GRAPH\u0026quot; ]; then export DOCKER_GRAPH=\u0026quot;/mnt/docker\u0026quot; fi #docker加速器 if [ ! -n \u0026quot;$DOCKER_MIRRORS\u0026quot; ]; then export DOCKER_MIRRORS=\u0026quot;https://5md0553g.mirror.aliyuncs.com\u0026quot; fi # 如果/etc/docker目录不存在，就创建目录 if [ ! -d \u0026quot;/etc/docker\u0026quot; ]; then mkdir -p /etc/docker fi # 配置加速器 cat \u0026gt; /etc/docker/daemon.json \u0026lt;\u0026lt;EOF { \u0026quot;registry-mirrors\u0026quot;: [\u0026quot;${DOCKER_MIRRORS}\u0026quot;], \u0026quot;graph\u0026quot;:\u0026quot;${DOCKER_GRAPH}\u0026quot; } EOF echo \u0026quot;Config docker success!\u0026quot; systemctl daemon-reload systemctl enable docker systemctl start docker echo \u0026quot;Docker start successfully!\u0026quot; } # #kubelet kubeadm kubectl kubernetes-cni安装包 # kube_rpm() { if [ ! -n \u0026quot;$KUBE_VERSION\u0026quot; ]; then export KUBE_VERSION=\u0026quot;1.9.1\u0026quot; fi if [ ! -n \u0026quot;$KUBE_CNI_VERSION\u0026quot; ]; then export KUBE_CNI_VERSION=\u0026quot;0.6.0\u0026quot; fi if [ ! -n \u0026quot;$SOCAT_VERSION\u0026quot; ]; then export SOCAT_VERSION=\u0026quot;1.7.3.2\u0026quot; fi export OSS_URL=\u0026quot;http://centos-k8s.oss-cn-hangzhou.aliyuncs.com/rpm/\u0026quot;${KUBE_VERSION}\u0026quot;/\u0026quot; export RPM_KUBEADM=\u0026quot;kubeadm-\u0026quot;${KUBE_VERSION}\u0026quot;-0.x86_64.rpm\u0026quot; export RPM_KUBECTL=\u0026quot;kubectl-\u0026quot;${KUBE_VERSION}\u0026quot;-0.x86_64.rpm\u0026quot; export RPM_KUBELET=\u0026quot;kubelet-\u0026quot;${KUBE_VERSION}\u0026quot;-0.x86_64.rpm\u0026quot; export RPM_KUBECNI=\u0026quot;kubernetes-cni-\u0026quot;${KUBE_CNI_VERSION}\u0026quot;-0.x86_64.rpm\u0026quot; export RPM_SOCAT=\u0026quot;socat-\u0026quot;${SOCAT_VERSION}\u0026quot;-2.el7.x86_64.rpm\u0026quot; export RPM_KUBEADM_URL=${OSS_URL}${RPM_KUBEADM} export RPM_KUBECTL_URL=${OSS_URL}${RPM_KUBECTL} export RPM_KUBELET_URL=${OSS_URL}${RPM_KUBELET} export RPM_KUBECNI_URL=${OSS_URL}${RPM_KUBECNI} export RPM_SOCAT_URL=${OSS_URL}${RPM_SOCAT} } # #配置docker镜像 # kube_repository() { if [ ! -n \u0026quot;$ETCD_VERSION\u0026quot; ]; then export ETCD_VERSION=\u0026quot;3.1.10\u0026quot; fi if [ ! -n \u0026quot;$PAUSE_VERSION\u0026quot; ]; then export PAUSE_VERSION=\u0026quot;3.0\u0026quot; fi if [ ! -n \u0026quot;$FLANNEL_VERSION\u0026quot; ]; then export FLANNEL_VERSION=\u0026quot;v0.9.1\u0026quot; fi #KUBE_REPO_PREFIX环境变量已经失效，需要通过MasterConfiguration对象进行设置 export KUBE_REPO_PREFIX=registry.cn-hangzhou.aliyuncs.com/szss_k8s } # #安装kubernetes的rpm包 # kube_install() { # Kubernetes 1.8开始要求关闭系统的Swap，如果不关闭，默认配置下kubelet将无法启动。可以通过kubelet的启动参数–fail-swap-on=false更改这个限制。 # 修改 /etc/fstab 文件，注释掉 SWAP 的自动挂载，使用free -m确认swap已经关闭。 swapoff -a echo \u0026quot;Swap off success!\u0026quot; # IPv4 iptables 链设置 CNI插件需要 # net.bridge.bridge-nf-call-ip6tables = 1 # net.bridge.bridge-nf-call-iptables = 1 # 设置swappiness参数为0，linux swap空间为0 cat \u0026gt;\u0026gt; /etc/sysctl.d/k8s.conf \u0026lt;\u0026lt;EOF net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 vm.swappiness=0 EOF modprobe br_netfilter # 生效配置 sysctl -p /etc/sysctl.d/k8s.conf echo \u0026quot;Network configuration success!\u0026quot; #kubelet kubeadm kubectl kubernetes-cni安装包 kube_rpm kube_repository #下载安装包 if [ ! -f $PWD\u0026quot;/\u0026quot;$RPM_KUBEADM ]; then wget $RPM_KUBEADM_URL fi if [ ! -f $PWD\u0026quot;/\u0026quot;$RPM_KUBECTL ]; then wget $RPM_KUBECTL_URL fi if [ ! -f $PWD\u0026quot;/\u0026quot;$RPM_KUBELET ]; then wget $RPM_KUBELET_URL fi if [ ! -f $PWD\u0026quot;/\u0026quot;$RPM_KUBECNI ]; then wget $RPM_KUBECNI_URL fi if [ ! -f $PWD\u0026quot;/\u0026quot;$RPM_SOCAT ]; then wget $RPM_SOCAT_URL fi rpm -ivh $PWD\u0026quot;/\u0026quot;$RPM_KUBECNI $PWD\u0026quot;/\u0026quot;$RPM_SOCAT $PWD\u0026quot;/\u0026quot;$RPM_KUBEADM $PWD\u0026quot;/\u0026quot;$RPM_KUBECTL $PWD\u0026quot;/\u0026quot;$RPM_KUBELET echo \u0026quot;kubelet kubeadm kubectl kubernetes-cni installed successfully!\u0026quot; sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf echo \u0026quot;config cgroup-driver=cgroupfs success!\u0026quot; export KUBE_PAUSE_IMAGE=${KUBE_REPO_PREFIX}\u0026quot;/pause-amd64:${PAUSE_VERSION}\u0026quot; cat \u0026gt; /etc/systemd/system/kubelet.service.d/20-pod-infra-image.conf \u0026lt;\u0026lt;EOF [Service] Environment=\u0026quot;KUBELET_EXTRA_ARGS=--pod-infra-container-image=${KUBE_PAUSE_IMAGE}\u0026quot; EOF echo \u0026quot;config --pod-infra-container-image=${KUBE_PAUSE_IMAGE} success!\u0026quot; systemctl daemon-reload systemctl enable kubelet systemctl start kubelet echo \u0026quot;Kubelet installed successfully!\u0026quot; } # #启动主节点 # kube_master_up(){ #关闭selinux selinux_disable #关闭防火墙 firewalld_stop #安装docker docker_install #安装RPM包 kube_install if [ ! -n \u0026quot;$KUBE_TOKEN\u0026quot; ]; then export KUBE_TOKEN=\u0026quot;863f67.19babbff7bfe8543\u0026quot; fi # 其他更多参数请通过kubeadm init --help查看 # 参考：https://kubernetes.io/docs/reference/generated/kubeadm/ export KUBE_ETCD_IMAGE=${KUBE_REPO_PREFIX}\u0026quot;/etcd-amd64:${ETCD_VERSION}\u0026quot; # 如果使用etcd集群，请使用etcd.endpoints配置 cat \u0026gt; /etc/kubernetes/kubeadm.conf \u0026lt;\u0026lt;EOF apiVersion: kubeadm.k8s.io/v1alpha1 kind: MasterConfiguration kubernetesVersion: v${KUBE_VERSION} api: advertiseAddress: ${MASTER_ADDRESS} etcd: image: ${KUBE_ETCD_IMAGE} networking: serviceSubnet: 10.96.0.0/12 podSubnet: 10.244.0.0/16 imageRepository: ${KUBE_REPO_PREFIX} tokenTTL: 0s token: ${KUBE_TOKEN} EOF kubeadm init --config /etc/kubernetes/kubeadm.conf --skip-preflight-checks # $HOME/.kube目录不存在就创建 if [ ! -d \u0026quot;$HOME/.kube\u0026quot; ]; then mkdir -p $HOME/.kube fi # $HOME/.kube/config文件存在就删除 if [ -f \u0026quot;$HOME/.kube/config\u0026quot; ]; then rm -rf $HOME/.kube/config fi cp -i /etc/kubernetes/admin.conf $HOME/.kube/config chown $(id -u):$(id -g) $HOME/.kube/config echo \u0026quot;Config admin success!\u0026quot; if [ -f \u0026quot;$HOME/kube-flannel.yml\u0026quot; ]; then rm -rf $HOME/kube-flannel.yml fi wget -P $HOME/ https://raw.githubusercontent.com/coreos/flannel/${FLANNEL_VERSION}/Documentation/kube-flannel.yml sed -i 's/quay.io\\/coreos\\/flannel/registry.cn-hangzhou.aliyuncs.com\\/szss_k8s\\/flannel/g' $HOME/kube-flannel.yml kubectl --namespace kube-system apply -f $HOME/kube-flannel.yml echo \u0026quot;Flannel installed successfully!\u0026quot; } # #启动子节点 # kube_slave_up() { #关闭selinux selinux_disable #关闭防火墙 firewalld_stop #安装docker docker_install #安装RPM包 kube_install if [ ! -n \u0026quot;$KUBE_TOKEN\u0026quot; ]; then export KUBE_TOKEN=\u0026quot;863f67.19babbff7bfe8543\u0026quot; fi kubeadm join --token ${KUBE_TOKEN} \\ --discovery-token-unsafe-skip-ca-verification \\ --skip-preflight-checks \\ ${MASTER_ADDRESS}:6443 echo \u0026quot;Join kubernetes cluster success!\u0026quot; } # # 重置集群 # kube_reset() { kubeadm reset rm -rf /var/lib/cni /etc/cni/ /run/flannel/subnet.env /etc/kubernetes/kubeadm.conf # 删除rpm安装包 yum remove -y kubectl kubeadm kubelet kubernetes-cni socat #ifconfig cni0 down ip link delete cni0 #ifconfig flannel.1 down ip link delete flannel.1 } kube_help() { echo \u0026quot;usage: $0 --node-type master --master-address 127.0.0.1 --token xxxx\u0026quot; echo \u0026quot; $0 --node-type node --master-address 127.0.0.1 --token xxxx\u0026quot; echo \u0026quot; $0 reset reset the kubernetes cluster,include all data!\u0026quot; echo \u0026quot; unkown command $0 $@\u0026quot; } main() { #系统检测 linux_os #$# 查看这个程式的参数个数 while [[ $# -gt 0 ]] do #获取第一个参数 key=\u0026quot;$1\u0026quot; case $key in #主节点IP --master-address) export MASTER_ADDRESS=$2 #向左移动位置一个参数位置 shift ;; #获取docker存储路径 --docker-graph) export DOCKER_GRAPH=$2 #向左移动位置一个参数位置 shift ;; #获取docker加速器地址 --docker-mirrors) export DOCKER_MIRRORS=$2 #向左移动位置一个参数位置 shift ;; #获取节点类型 -n|--node-type) export NODE_TYPE=$2 #向左移动位置一个参数位置 shift ;; #获取kubeadm的token -t|--token) export KUBE_TOKEN=$2 #向左移动位置一个参数位置 shift ;; #重置集群 r|reset) kube_reset exit 1 ;; #获取kubeadm的token -h|--help) kube_help exit 1 ;; *) # unknown option echo \u0026quot;unkonw option [$key]\u0026quot; ;; esac shift done if [ \u0026quot;\u0026quot; == \u0026quot;$MASTER_ADDRESS\u0026quot; -o \u0026quot;\u0026quot; == \u0026quot;$NODE_TYPE\u0026quot; ];then if [ \u0026quot;$NODE_TYPE\u0026quot; != \u0026quot;down\u0026quot; ];then echo \u0026quot;--master-address and --node-type must be provided!\u0026quot; exit 1 fi fi case $NODE_TYPE in \u0026quot;m\u0026quot; | \u0026quot;master\u0026quot; ) kube_master_up ;; \u0026quot;n\u0026quot; | \u0026quot;node\u0026quot; ) kube_slave_up ;; *) kube_help ;; esac } main $@  "
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/",
+	"title": "进入单用户模式",
+	"tags": [],
+	"description": "",
+	"content": " 编辑grub菜单 (选择要编辑的title 而后使用e命令)\n 在选定的kernel后附加\n  1,s,S或者single都可以\n 在kernel所在行 键入b命令   第一阶段坏了\n可以使用grub-install \u0026ndash;root-directory=/ /dav/sda\n 内核组成部分\n kernel 通常在/boot 叫vmlinuz-VERSION-release kernel object 内核对象 一般放到/lib/modules/VERSION-release  lsmod 显示加载的模块\n显示的内核来源于/proc/modules\nmodinfo命令 显示linux 内核模块的相关信息\nmodinfo [-F field] [-k kernel] [modulename] [filename]\n-F field 显示指定字段的信息\n-n 显示文件路径\nmodprobe命令\nmodprobe [-r] module_name\n add and remove modules from Linux kernel\n  模块的动态装载modprobe module_name 动态卸载 modprobe -r module_name  depmod命令\n generate modules.dep and map files\n内核模块依赖关系文件的生成工具\n 模块装载和卸载的另一组命令\ninsmod命令\n insmod [filename] [module options]\nfilename 模块文件的文件路径\n rmmod命令\nrmmod [module_name]\nramdisk文件的管理\n mkinitrd命令\n为当前内核重新制作ramdisk文件\n  mkinitrd [option..][] \n比如:mkinitrd /boot/initramfs-`uname -r` .img `uanme -r `\n​\n内核信息输出的伪文件系统\n/proc 内核状态和统计信息的输出接口 同时还提供一个配置接口,/proc/sys;\n 参数:\n只读:信息输出 例如/proc/#/*\n可写:可接受用户指定一个新值来实现对内核某功能或特性的配置\n/proc/sys\nnet/ipv4/ip_forward 相当于 net.ipv4.ip_forward\n sysctl命令  sysctl - configure kernel parameters at runtime\n专用于查看或设定/proc/sys 目录下参数的值\n-w \u0026ndash;write\nuse this option when you want to change a sysctl setting\nsysctl [option] [variable=[value]]\n查看\n sysctl -a 显示所有 cat /proc/sys/PATH/TO/SOME_KERNEL  修改值\n sysctl -w variable=value   文件系统命令  查看\n cat /proc/sys/PATH/TO/SOME_KERNEL_FILE  设定\n echo \u0026quot;VALUE\u0026quot; \u0026gt; /proc/sys/PATH/TO/SOME_KERNEL_FILE   配置文件位置\netc/sysct.conf /etc/sysctl.d/*.conf\n 立即生效就可以让它重读 sysctl -p [/PATH/TO/CONFIG_FILE]\n 内核参数\n  net.ipv4.ip_forward 核心转发\nvm.drop_caches 清空buff和caches\nkernel.hostname 主机名\nproc.sys.net.ipv4.icmp_echo_ignore_all 这个参数改成1是可以禁用ping命令ping通的是的 忽略所有ping操作\n /sys目录\nsysfs:输出内核各硬件相关属性信息 内核硬件特性的可设置参数,修改参数,可以定制硬件特性 udev 读取/sys目录下的硬件设备信息按需为各硬件设备创建设备文件 udev是用户空间程序 专用工具devadmin hotpiug udev为设备创建设备文件时 会读取事先定义好的规则文件 一般在/etc/udev/rules.d目录 以及/user/lib/udev/rules.d目录下 比如修改网卡eth0和eth1的mac地址 就可以在/etc/udev/rules.d/70 ...(按tab键补出) 里面可以看到  "
 },
 {
 	"uri": "https://haojianxun.github.io/docs/",

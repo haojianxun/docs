@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>知识碎片 on 郝建勋的运维文档</title>
+    <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/</link>
+    <description>Recent content in 知识碎片 on 郝建勋的运维文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ansible为什么执行命令的时候, 在其他主机为什么也能执行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/</guid>
+      <description>在配置文件/etc/ansible/ansible.cfg的[default]字段下有解释
+ansible在执行命令的时候 , 会把用户执行的命令转换成python脚本放在~/.ansible/tmp下 , 在其他远程主机上也是放在同样的目录下 , 并且加执行权限 , 在远程目录下运行完 , 并把执行结果返回来 , 之后这个文件就会被删</description>
+    </item>
+    
+    <item>
+      <title>docker主机名</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/</guid>
+      <description>docker的主机名默认是docker id 是随机生成的
+要想自己指定 可以在使用docker 命令的时候加个短选项 -h 即可 后面跟上主机名</description>
+    </item>
+    
+    <item>
+      <title>docker的dns解析</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E7%9A%84dns%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E7%9A%84dns%E8%A7%A3%E6%9E%90/</guid>
+      <description>docker的dns解析一般默认是docker0网桥的地址 这样做的目的是方便在同一主机内的各个容器互相通信 当然也可以自己指定dns地址 在启动docker的时候使用短选项--dns 即可指定 进入容器内部cat /etc/resolv.conf查看的时候 就会发现默认的已经改变</description>
+    </item>
+    
+    <item>
+      <title>k8s高可用集群搭建</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</guid>
+      <description>好的参考文章
+https://github.com/cookeem/kubeadm-ha</description>
+    </item>
+    
+    <item>
+      <title>kubernetes中Master简单高可用思路</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADmaster%E7%AE%80%E5%8D%95%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%9D%E8%B7%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADmaster%E7%AE%80%E5%8D%95%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%9D%E8%B7%AF/</guid>
+      <description>把APIServer这种组件通过DaemonSet的方式来进行管理，启动3个APIServer。这3个APIServer都能同时对外提供服务，另外两个Master组件Controller-Manager，Scheduler是通过Deployment来启动的，也是启动了3个。而ETCD也是通过集群的方式来保证可用性的。通过这些操作就可以保证Master挂掉一个，还有另外两个提供服务</description>
+    </item>
+    
+    <item>
+      <title>kubernetes中apiserver的地址指定问题</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADapiserver%E7%9A%84%E5%9C%B0%E5%9D%80%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADapiserver%E7%9A%84%E5%9C%B0%E5%9D%80%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/</guid>
+      <description>APIServer参数 &amp;ndash;advertise-address判定的问题，这个参数是用来指定APIServer 和其他组件之间通讯的地址或者它的监听地址。它默认的判定方法会选取机器默认的网卡ip地址，这 一点有时并不合适，因为我们在自己使用过程中会有这样的场景，我们有些机器可能默认网卡是 公网网卡，我们希望集群内部组件相互通讯的东西走内网流量，所以这个时候，我们还是采用这种默认的判定方法，就会让APIServer 绑定公网网卡。如果你的环境是这样的配置，建议你用这样的方式绑定到内网网卡。Kubelet也有这样的参数，叫做&amp;ndash;node-ip ，在这样的场景下也会默认绑定在公网网卡上，如果你的环境也是这样子的，建议你用命令行的方式把内网地址 配置进去。这个问题的发现源于我们自己的使用实际场景，我们想通过虚拟机管理 软件Vagrant来部署集群的时候会出现一些问题，因为它为每个虚拟机创造一个nat网卡作为默认网卡，它的ip地址固定，如果创建两个虚拟机，这两个虚拟机默认网卡都是一个地址 。如果这个时候还是采用这种方式来指定，采用默认策略就会导致所有pod地址都是那个nat 网卡地址。K8S官方也给出一个方案，如果大家用这个部署集群的需求，要注意这个问题</description>
+    </item>
+    
+    <item>
+      <title>kubernetes中dns service ip 问题</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADdns-service-ip-%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADdns-service-ip-%E9%97%AE%E9%A2%98/</guid>
+      <description>DNS Service IP和Kubelet &amp;ndash;cluster-dns参数不匹配的问题。Kubeadm默认创建两个service，一个service是用来暴露 APIServer服务的，另外一个service是用来暴露Kube DNS的服务的，这两个服务地址不是随机生成的，是有一定规则的。Kubeadm 首先会指定一个service ip的范围，默认值是10.96 .0.0/16，根据这个范围就可以按照一定的规则生成两个地址。APIServer 服务的地址会取这个网段的第一个地址，也就是10.96.0.1，Kube dns更加死板，会把最后0前面加一个1，就作为service ip， 即10.96.0.10，而且不能修改配置方式。所以这是一个默认的规则。Kubelet还有一个参数叫&amp;ndash; cluster-dns，每当Kubelet启动一个pod的时候，利用这个参数昨 为这个容器的nameserver。也就是说这个容器如果它想要解析域名 的时候，它的DNS服务的nameserver是 什么。如果你想采用集群里面DNS服务，必须指定为Kube DNS 的 server ip，默认的情况，它配置的就是10.96.0.10，如果采用默认配置不会发现任何问题，集群工作好好的。但是一旦在生产环境中，比如你的环境，需要更换service ip 的范围，它会新生成新的Kube- DNS的ip，如果不及时同步，会导致你启动的pod无法使用这个DNS 的服务。这是我们当时遇到的问题，希望大家之后避免</description>
+    </item>
+    
+    <item>
+      <title>kubernetes中service的规则是由谁实现的</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADservice%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E7%94%B1%E8%B0%81%E5%AE%9E%E7%8E%B0%E7%9A%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADservice%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E7%94%B1%E8%B0%81%E5%AE%9E%E7%8E%B0%E7%9A%84/</guid>
+      <description>是由kube-proxy实现的 , kube-proxy和api-server通信 , 发现pod或者service有改变就</description>
+    </item>
+    
+    <item>
+      <title>kubernetes使用自定义证书</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%81%E4%B9%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%81%E4%B9%A6/</guid>
+      <description>默认情况下，kubeadm 将生成集群运行所需的所有证书。您可以通过提供自己的证书来覆盖此行为。
+为此，您必须将它们放置在 --cert-dir 参数或 CertificatesDir 配置文件密钥所指定的目录中。默认目录为 /etc/kubernetes/pki。
+如果给定的证书和私钥对都存在，kubeadm 会跳过生成步骤，这些文件将被验证并用于规定的用例。
+这意味着你可以用一个现有的 CA 预填充 /etc/kubernetes/pki/ca.crt 和 /etc/kubernetes/pki/ca.key，然后用它来签署其余的证书。</description>
+    </item>
+    
+    <item>
+      <title>tldr---查看命令帮助的另一神器</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/tldr-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A5%9E%E5%99%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/tldr-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A5%9E%E5%99%A8/</guid>
+      <description>地址:https://github.com/tldr-pages/tldr
+在bash中安装 Installation mkdir -p ~/bin curl -o ~/bin/tldr https://raw.githubusercontent.com/raylee/tldr/master/tldr chmod +x ~/bin/tldr  Then try using the command! If you get an error such as -bash: tldr: command not found, you may need to add ~/bin to your $PATH. On OSX edit ~/.bash_profile (~/.bashrc on Linux), and add the following line to the bottom of the file:
+export PATH=~/bin:$PATH  If you&amp;rsquo;d like to enable shell completion (eg. tldr w&amp;lt;tab&amp;gt;&amp;lt;tab&amp;gt; to get a list of all commands which start with w) then add the following to the same startup script:</description>
+    </item>
+    
+    <item>
+      <title>zabbix数据库拆分迁移</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8B%86%E5%88%86%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8B%86%E5%88%86%E8%BF%81%E7%A7%BB/</guid>
+      <description>需要修改/etc/zabbix/web/zabbix.conf.php 里面的配置</description>
+    </item>
+    
+    <item>
+      <title>zabbix的web展示页面中不支持中文而出现乱码怎么办</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9A%84web%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E8%80%8C%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9A%84web%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E8%80%8C%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/</guid>
+      <description>在/etc/httpd/conf.d/zabbix.conf 中 可以看到在/usr/share/zabbix/conf 文件夹中 进入这个文件夹 再找到fonts 文件夹 , 会发现有tty类型的字体文件 , 之后我们可以把我们的字体直接扔在这个fonts 目录下 , 之后再重命名为之前默认的文件名称即可
+mv myfont.tty graphfont.tty //将我们仍进来的myfont.tty文件修改为原来默认的graphfont.tty文件名  </description>
+    </item>
+    
+    <item>
+      <title>zabbix监控JMX的时候 key无法取到值问题</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9B%91%E6%8E%A7jmx%E7%9A%84%E6%97%B6%E5%80%99-key%E6%97%A0%E6%B3%95%E5%8F%96%E5%88%B0%E5%80%BC%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9B%91%E6%8E%A7jmx%E7%9A%84%E6%97%B6%E5%80%99-key%E6%97%A0%E6%B3%95%E5%8F%96%E5%88%B0%E5%80%BC%E9%97%AE%E9%A2%98/</guid>
+      <description>在填key的时候 明明的复制下来的 , 然而会提示未注册 , 这个时候可能是引号问题 , 需要转义 , 比如
+jmx[&amp;quot;Catalina.type=GlobalRequestProcessor.name=\&amp;quot;http-nio-8080\&amp;quot;&amp;quot;,errorCount]  </description>
+    </item>
+    
+    <item>
+      <title>使用kubeadm拉取镜像</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E4%BD%BF%E7%94%A8kubeadm%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E4%BD%BF%E7%94%A8kubeadm%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F/</guid>
+      <description>kubeadm config images pull  选项
+Flags: --config string Path to kubeadm config file. --cri-socket-path string Path to the CRI socket. (default &amp;quot;/var/run/dockershim.sock&amp;quot;) --feature-gates string A set of key=value pairs that describe feature gates for various features. Options are: Auditing=true|false (ALPHA - default=false) CoreDNS=true|false (default=true) DynamicKubeletConfig=true|false (ALPHA - default=false) SelfHosting=true|false (ALPHA - default=false) StoreCertsInSecrets=true|false (ALPHA - default=false) -h, --help help for pull --kubernetes-version string Choose a specific Kubernetes version for the control plane.</description>
+    </item>
+    
+    <item>
+      <title>复制. 开头的文件</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A4%8D%E5%88%B6-.-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A4%8D%E5%88%B6-.-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6/</guid>
+      <description>比如
+cp -r /etc/skel/.[^.]* /home/test  </description>
+    </item>
+    
+    <item>
+      <title>如何curl网页的时候输出更加美观规范</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95curl%E7%BD%91%E9%A1%B5%E7%9A%84%E6%97%B6%E5%80%99%E8%BE%93%E5%87%BA%E6%9B%B4%E5%8A%A0%E7%BE%8E%E8%A7%82%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95curl%E7%BD%91%E9%A1%B5%E7%9A%84%E6%97%B6%E5%80%99%E8%BE%93%E5%87%BA%E6%9B%B4%E5%8A%A0%E7%BE%8E%E8%A7%82%E8%A7%84%E8%8C%83/</guid>
+      <description>curl命令之后加上管道 |python -m json.tool  </description>
+    </item>
+    
+    <item>
+      <title>如何切换主组</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E4%B8%BB%E7%BB%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E4%B8%BB%E7%BB%84/</guid>
+      <description>newgrp test //将用户的主组切换为test  </description>
+    </item>
+    
+    <item>
+      <title>如何创建用户的时候让其加入其它附加组</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%A9%E5%85%B6%E5%8A%A0%E5%85%A5%E5%85%B6%E5%AE%83%E9%99%84%E5%8A%A0%E7%BB%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%A9%E5%85%B6%E5%8A%A0%E5%85%A5%E5%85%B6%E5%AE%83%E9%99%84%E5%8A%A0%E7%BB%84/</guid>
+      <description>useradd -G test2,test3 wang //让wang用户拥有test2,test3 2个附加组  </description>
+    </item>
+    
+    <item>
+      <title>如何创建系统用户</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7/</guid>
+      <description>useradd -s /sbin/nologin -r nginx //-r表示不创建加目录,表示创建的是系统用户  </description>
+    </item>
+    
+    <item>
+      <title>如何删除文件空白行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%A9%BA%E7%99%BD%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%A9%BA%E7%99%BD%E8%A1%8C/</guid>
+      <description>sed &#39;/^$/d&#39; f1 //删除f1中的空白行  </description>
+    </item>
+    
+    <item>
+      <title>如何在zabbix触发器名称的里加上当前trigger的最新值(或自定义变量)</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8zabbix%E8%A7%A6%E5%8F%91%E5%99%A8%E5%90%8D%E7%A7%B0%E7%9A%84%E9%87%8C%E5%8A%A0%E4%B8%8A%E5%BD%93%E5%89%8Dtrigger%E7%9A%84%E6%9C%80%E6%96%B0%E5%80%BC%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8zabbix%E8%A7%A6%E5%8F%91%E5%99%A8%E5%90%8D%E7%A7%B0%E7%9A%84%E9%87%8C%E5%8A%A0%E4%B8%8A%E5%BD%93%E5%89%8Dtrigger%E7%9A%84%E6%9C%80%E6%96%B0%E5%80%BC%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/</guid>
+      <description>参数 描述     Name 触发器名称 名称可以包含支持宏变量: {HOST.HOST}, {HOST.NAME}, {HOST.CONN}, {HOST.DNS}, {HOST.IP}, {ITEM.VALUE}, {ITEM.LASTVALUE} and {$MACRO}. 1,2…9 宏可以被关联表达式 实例: 名字 Processor load above 1 on {HOST.NAME} 表达式: {New host:system.cpu.load[percpu,avg1].last()}&amp;gt;5 会显示为 Processor load above 5 on New host   Expression 逻辑表达式用于计算触发器状态   Multiple PROBLEM events generation 可以通过这个参数,在触发器产生Problem时触发一个事件   Description 描述更多信息关于触发器的作用,包含修复problem说明等细节.   URL 在Monitoring → Triggers中，可以看到URL并且可以点击，一般情况下他需要配合触发器ID来使用，在url中包含触发器ID（宏变量 {TRIGGER.ID}），这样可以直接点击到具体触发器中。   Severity 设置严重级别.   Enabled 设置是否启用trigger    官方文档如下:</description>
+    </item>
+    
+    <item>
+      <title>如何在一个文件中给每一行后追加一个空行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E7%BB%99%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%90%8E%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%A9%BA%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E7%BB%99%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%90%8E%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%A9%BA%E8%A1%8C/</guid>
+      <description>用命令:
+sed &#39;G&#39; FILE //给文件中的每一行下面加个空行  </description>
+    </item>
+    
+    <item>
+      <title>如何快速给某个用户授权sudo</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%BB%99%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83sudo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%BB%99%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83sudo/</guid>
+      <description>sudo授权的命令是visudo 里面有各种授权组 其中有一行
+%wheel ALL=(ALL) ALL  所以想让某个用户快速获得sudo授权 , 就可以让他加入这个组
+usermod -aG wheel wang  如果用户sudo的时候不想让他输入root密码 怎么办
+在visudo 的时候 看到的配置文件中有一行
+%wheel ALL=(ALL) NOPASSWD: ALL  这行默认是注释掉的 , 我们可以启用 , 这样就不用担心sudo的时候输入root密码了</description>
+    </item>
+    
+    <item>
+      <title>如何快速获取主机ip (3)</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BAip-3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BAip-3/</guid>
+      <description>hostname -I  </description>
+    </item>
+    
+    <item>
+      <title>如何批量改用户密码账号</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%B4%A6%E5%8F%B7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%B4%A6%E5%8F%B7/</guid>
+      <description>cat test1 | chpasswd  其中test1的文件格式为
+test1:12345 //冒号前面为用户名 , 后面为密码  </description>
+    </item>
+    
+    <item>
+      <title>如何把一台主机上用户信息批量移到另一台主机上</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%B9%E9%87%8F%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%A4%A9%E4%B8%BB%E6%9C%BA%E4%B8%8A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%B9%E9%87%8F%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%A4%A9%E4%B8%BB%E6%9C%BA%E4%B8%8A/</guid>
+      <description>先把/etc/passwd里的内容复制一份 之后再传给另一个主机 之后在批量创建 , 下面为演示
+sed -n &#39;/^haha/,/^test1/ w /root/ssaa&#39; /etc/passwd //把passwd里面从haha开始的行到test1开始的行另存为到/root/ssaa文件  scp ssaa 192.168.200.134:/tmp //输入yes和另一台root的口令  cd /tmp newusers ssaa //即把ssaa里面的用户信息批量创建了  </description>
+    </item>
+    
+    <item>
+      <title>如何显示文件偶数行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%81%B6%E6%95%B0%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%81%B6%E6%95%B0%E8%A1%8C/</guid>
+      <description>sed -n &#39;n;p&#39; FILENAME //显示FILENAME文件中的偶数行  </description>
+    </item>
+    
+    <item>
+      <title>如何显示空白行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD%E8%A1%8C/</guid>
+      <description>cat -n f1 //显示行号,包括空白行 nl f1 //显示行号,但是有空白的行的话就不显示行号 cat -b f1 //作用和nl f1是一样的  </description>
+    </item>
+    
+    <item>
+      <title>如何查看ansible命令执行的详细过程</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bansible%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bansible%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/</guid>
+      <description>比如执行的ping命令
+ansible all -m ping -vvv | grep chmod //查看有修改权限的操作 ansible all -m ping -vvv|grep rm //查看有删除的操作  </description>
+    </item>
+    
+    <item>
+      <title>如何查看kubeadm默认的启动参数和配置</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bkubeadm%E9%BB%98%E8%AE%A4%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E5%92%8C%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bkubeadm%E9%BB%98%E8%AE%A4%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E5%92%8C%E9%85%8D%E7%BD%AE/</guid>
+      <description>kubeadm config view //查看kubadm的配置  kubeadm config print-default //打印出kubeadm默认的配置  </description>
+    </item>
+    
+    <item>
+      <title>如何查看和修改创建用户的默认配置信息</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/</guid>
+      <description>useradd -D //查看创建用户的默认配置文件 也可以用命令 cat /etc/default/useradd  useradd -D -s /bin/zsh //将默认的配置文件的shell类型修改成为zsh useradd -D -b BASE_DIR useradd -D -g GROUP  </description>
+    </item>
+    
+    <item>
+      <title>如何查看某个终端运行的进程</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%BB%88%E7%AB%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%BB%88%E7%AB%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B/</guid>
+      <description>pgrep -t pts/0 -l //查看pts/0上运行的进程  </description>
+    </item>
+    
+    <item>
+      <title>如何添加用户信息</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/</guid>
+      <description>chfn wang //添加wang用户的信息  查看用户信息
+finger wang //查看wang用户的信息  </description>
+    </item>
+    
+    <item>
+      <title>如何生成指定范围的随机数</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/</guid>
+      <description>首先有个随机数 之后对其取余处理 比如要生成0-100的随机数 就取余%100+1 取余100 除的数字就是0-99之间 之后再加1即可  echo $[RANDOM%100+1] //在0-100之间取随机数  </description>
+    </item>
+    
+    <item>
+      <title>如何生成随机字符</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6/</guid>
+      <description>openssl rand -base64 12 //随机生成12位字符  </description>
+    </item>
+    
+    <item>
+      <title>如何生成随机密码</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81/</guid>
+      <description>tr -dc A-Za-z0-9_ &amp;lt; /dev/urandom |head -c 30 | xargs  </description>
+    </item>
+    
+    <item>
+      <title>如何给一个正在运行的k8s集群里的master组件动态添加一个命令行参数</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E9%87%8C%E7%9A%84master%E7%BB%84%E4%BB%B6%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E9%87%8C%E7%9A%84master%E7%BB%84%E4%BB%B6%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/</guid>
+      <description>下面我们再考虑一个常见的需求，刚才我们说的Master组件是通过static pod形式来创建的，如果现在一个集群正在运行中，我不能重新部署集群。还希望给Master组件，比如APIServer添加一个命令行参数，怎么办？只能对它进行动态更新。我们尝试了很多种方式，发现只有这样一种流程才能成功更新：首先先把APIServer的yaml文件从/etc/kubernetes/manifests目录下移出去，然后改好再移回来，才能实现更新。我们调研了K8S官方的说法，这是由于Kubelet的代码逻辑导致的，但是K8S官方认为static pod并不是会长期存在的形式，以后会越来越少用这种特性，所以也不会针对这种问题修改代码。如果大家还使用static pod的方式管理你的容器，就只能使用这种方案，没有办法解决</description>
+    </item>
+    
+    <item>
+      <title>如何获取kubeadm初始化需要哪些镜像</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E9%95%9C%E5%83%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E9%95%9C%E5%83%8F/</guid>
+      <description>kubeadm config images list //获取kubeadm初始化需要的镜像  </description>
+    </item>
+    
+    <item>
+      <title>如何让ansible忽略错误命令继续执行</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9ansible%E5%BF%BD%E7%95%A5%E9%94%99%E8%AF%AF%E5%91%BD%E4%BB%A4%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9ansible%E5%BF%BD%E7%95%A5%E9%94%99%E8%AF%AF%E5%91%BD%E4%BB%A4%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/</guid>
+      <description>有2个种方法:
+ ``` tasks:
+ name: run this command and ignore the result shell:/usr/bin/command ||/bin/true ```  使用ignore_errors来忽略错误信息
+   tasks: - name: run this command and ignore the result shell: /usr/bin/command ignore_errors: True  </description>
+    </item>
+    
+    <item>
+      <title>如何让vim打开文件的时候有颜色</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E9%A2%9C%E8%89%B2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E9%A2%9C%E8%89%B2/</guid>
+      <description>输入以下命令即可
+echo export EDITOR=vim &amp;gt;&amp;gt; /etc/profile.d/env.sh . /etc/profile.d/env.sh  </description>
+    </item>
+    
+    <item>
+      <title>如何让某个用户密码立即过期</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%AB%8B%E5%8D%B3%E8%BF%87%E6%9C%9F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%AB%8B%E5%8D%B3%E8%BF%87%E6%9C%9F/</guid>
+      <description>passwd -e wang //让wang用户的密码立即过期  chage -d 0 wang //让wang用户密码立即过期  </description>
+    </item>
+    
+    <item>
+      <title>如何调整dns和hosts文件的优先级</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4dns%E5%92%8Chosts%E6%96%87%E4%BB%B6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4dns%E5%92%8Chosts%E6%96%87%E4%BB%B6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/</guid>
+      <description>修改文件 /etc/nsswitch.conf文件 里面的 hosts: files dns //file指的就是/etc/hosts文件  </description>
+    </item>
+    
+    <item>
+      <title>如果切换tty</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E6%9E%9C%E5%88%87%E6%8D%A2tty/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E6%9E%9C%E5%88%87%E6%8D%A2tty/</guid>
+      <description>chvt # //即可切换到第#个虚拟终端tty上  </description>
+    </item>
+    
+    <item>
+      <title>定时任务和周期任务</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%91%A8%E6%9C%9F%E4%BB%BB%E5%8A%A1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%91%A8%E6%9C%9F%E4%BB%BB%E5%8A%A1/</guid>
+      <description>at at 10:30 echo 哈哈 &amp;gt; /root/f1 写完按ctrl+d结束 这样就能定点执行任务了 at 12:00 -f /root/test.sh //执行指定脚本 计划任务就不要写到标志输出了 , 写了不会显示 他放到邮件里了  at -l //列出定时任务  写好的文件在/var/spool/at文件夹内 用rpm -ql atd 可以看到atd的包有这个路径的</description>
+    </item>
+    
+    <item>
+      <title>查看服务是否开机启动</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/</guid>
+      <description>systemctl is-enbaled atd //查看atd是否开机启动  </description>
+    </item>
+    
+    <item>
+      <title>用cmd查看windows连接过的wifi密码</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8cmd%E6%9F%A5%E7%9C%8Bwindows%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84wifi%E5%AF%86%E7%A0%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8cmd%E6%9F%A5%E7%9C%8Bwindows%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84wifi%E5%AF%86%E7%A0%81/</guid>
+      <description>运行cmd , 输入以下代码
+for /f &amp;quot;skip=9 tokens=1,2 delims=:&amp;quot; %i in (&#39;netsh wlan show profiles&#39;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear  </description>
+    </item>
+    
+    <item>
+      <title>用户属性修改</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9/</guid>
+      <description>usermod -aG wang li //将li用户增加一个附加组wang  userdel -r wang //删除wang用户 并且也把家目录删了 -r 删除家目录  gpasswd -a wang g1 //将wang用户添加到g1  gpasswd -d wang g1 //将wang用户从g1组删除  groupmems -l -g g1 //列出g1组的用户  </description>
+    </item>
+    
+    <item>
+      <title>网卡命名规则在哪里规定</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%9C%A8%E5%93%AA%E9%87%8C%E8%A7%84%E5%AE%9A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%9C%A8%E5%93%AA%E9%87%8C%E8%A7%84%E5%AE%9A/</guid>
+      <description>用命令查看
+cat /etc/udev/rules.d/70-presistent-net.rules  </description>
+    </item>
+    
+    <item>
+      <title>网络总开关在哪</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E7%BB%9C%E6%80%BB%E5%BC%80%E5%85%B3%E5%9C%A8%E5%93%AA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E7%BB%9C%E6%80%BB%E5%BC%80%E5%85%B3%E5%9C%A8%E5%93%AA/</guid>
+      <description>在/etc/sysconfig/network中 NETWORKING=yes HOSTNAME=localhost  </description>
+    </item>
+    
+    <item>
+      <title>脚本安装k8s</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85k8s/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85k8s/</guid>
+      <description>#!/usr/bin/env bash #set -x #如果任何语句的执行结果不是true则应该退出,set -o errexit和set -e作用相同 set -e #id -u显示用户ID,root用户的ID为0 root=$(id -u) #脚本需要使用root用户执行 if [ &amp;quot;$root&amp;quot; -ne 0 ] ;then echo &amp;quot;must run as root&amp;quot; exit 1 fi # #系统判定 # linux_os() { cnt=$(cat /etc/centos-release|grep &amp;quot;CentOS&amp;quot;|grep &amp;quot;release 7&amp;quot;|wc -l) if [ &amp;quot;$cnt&amp;quot; != &amp;quot;1&amp;quot; ];then echo &amp;quot;Only support CentOS 7... exit&amp;quot; exit 1 fi } # #关闭selinux # selinux_disable() { # 关闭selinux if [ $(getenforce) = &amp;quot;Enabled&amp;quot; ]; then setenforce 0 fi # selinux设置为disabled sed -i &#39;s/SELINUX=enforcing/SELINUX=disabled/g&#39; /etc/selinux/config echo &amp;quot;Selinux disabled success!</description>
+    </item>
+    
+    <item>
+      <title>进入单用户模式</title>
+      <link>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/</guid>
+      <description>编辑grub菜单 (选择要编辑的title 而后使用e命令)
+ 在选定的kernel后附加
+  1,s,S或者single都可以
+ 在kernel所在行 键入b命令   第一阶段坏了
+可以使用grub-install &amp;ndash;root-directory=/ /dav/sda
+ 内核组成部分
+ kernel 通常在/boot 叫vmlinuz-VERSION-release kernel object 内核对象 一般放到/lib/modules/VERSION-release  lsmod 显示加载的模块
+显示的内核来源于/proc/modules
+modinfo命令 显示linux 内核模块的相关信息
+modinfo [-F field] [-k kernel] [modulename] [filename]
+-F field 显示指定字段的信息
+-n 显示文件路径
+modprobe命令
+modprobe [-r] module_name
+ add and remove modules from Linux kernel
+  模块的动态装载modprobe module_name 动态卸载 modprobe -r module_name  depmod命令
+ generate modules.</description>
+    </item>
+    
+  </channel>
+</rss>

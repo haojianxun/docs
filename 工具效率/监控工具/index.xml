@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>监控工具集合 on 郝建勋的运维文档</title>
+    <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 监控工具集合 on 郝建勋的运维文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/</guid>
+      <description>prometheus项目地址: https://github.com/prometheus/prometheus
+ 随着容器技术的迅速发展，Kubernetes 已然成为大家追捧的容器集群管理系统。Prometheus 作为生态圈 Cloud Native Computing Foundation（简称：CNCF）中的重要一员,其活跃度仅次于 Kubernetes, 现已广泛用于 Kubernetes 集群的监控系统中。本文将简要介绍 Prometheus 的组成和相关概念，并实例演示 Prometheus 的安装，配置及使用，以便开发人员和云平台运维人员可以快速的掌握 Prometheus。
+Prometheus 简介 Prometheus 是一套开源的系统监控报警框架。它启发于 Google 的 borgmon 监控系统，由工作在 SoundCloud 的 google 前员工在 2012 年创建，作为社区开源项目进行开发，并于 2015 年正式发布。2016 年，Prometheus 正式加入 Cloud Native Computing Foundation，成为受欢迎度仅次于 Kubernetes 的项目。
+作为新一代的监控框架，Prometheus 具有以下特点：
+ 强大的多维度数据模型：
+ 时间序列数据通过 metric 名和键值对来区分。 所有的 metrics 都可以设置任意的多维标签。 数据模型更随意，不需要刻意设置为以点分隔的字符串。 可以对数据模型进行聚合，切割和切片操作。 支持双精度浮点类型，标签可以设为全 unicode。  灵活而强大的查询语句（PromQL）：在同一个查询语句，可以对多个 metrics 进行乘法、加法、连接、取分数位等操作。
+ 易于管理： Prometheus server 是一个单独的二进制文件，可直接在本地工作，不依赖于分布式存储。
+ 高效：平均每个采样点仅占 3.</description>
+    </item>
+    
+    <item>
+      <title>ncdu</title>
+      <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/</guid>
+      <description>简介 不需要像du那样输入大量的命令，就可以计算文件及目录大小并可以按照大小或文件名进行排序。它是基于ncurses库开发的，因此还支持很多丰富的交互式命令
+官网地址: https://dev.yorhel.nl/ncdu
+ 安装 yum install -y ncdu  用法 使用数字键1、2、3进行切换，1为快捷键，2为显示格式说明，3为ncdu版权信息。 常用快捷键 n ：按文件名进行排序 s ：按文件大小进行排序 r ：重新统计当前文件夹大小 g ：用#或百分比显示各文件/目录的大小所占的百分比 i ：显示当前文件/目录信息  Scanning&amp;hellip;
+Done scanning
+Directory information
+Delete confirmation
+Help screen
+About screen
+其他相似命令 gt5 - Quite similar to ncdu, but a different approach.
+tdu - Another small ncurses-based disk usage visualization utility.
+TreeSize - GTK, using a treeview.
+Baobab - GTK, using pie-charts, a treeview and a treemap.</description>
+    </item>
+    
+    <item>
+      <title>rtop</title>
+      <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/rop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/rop/</guid>
+      <description> 简介 rtop 是一个简单的无代理的远程服务器监控工具，基于 SSH 连接进行工作。无需在被监控的服务器上安装任何软件。rtop 直接通过 SSH 连接到待监控服务器，然后执行命令来收集监控数据。rtop 每几秒钟就自动更新监控数据，类似其他 *top 命令
+rtop项目地址: https://github.com/rapidloop/rtop
+ 安装 go get github.com/rapidloop/rtop  用法 Usage: rtop [-i private-key-file] [user@]host[:port] [interval] -i private-key-file PEM-encoded private key file to use (default: ~/.ssh/id_rsa if present) [user@]host[:port] the SSH server to connect to, with optional username and port interval refresh interval in seconds (default: 5)  </description>
+    </item>
+    
+    <item>
+      <title>satellite</title>
+      <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/satellite/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/satellite/</guid>
+      <description> 简介 Satellite是一个用Go编写的代理，用于收集kubernetes集群中的健康信息。它既是一个库，也是一个应用程序
+作为库，它可以用作自定义监视解决方案的基础。健康状态信息以时间序列的形式收集并持久保存到sqlite后端。通过接口支持其他后端
+项目地址: https://github.com/gravitational/satellite
+ </description>
+    </item>
+    
+  </channel>
+</rss>

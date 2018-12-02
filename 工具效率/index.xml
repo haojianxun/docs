@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具与效率 on 郝建勋的运维文档</title>
+    <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/</link>
+    <description>Recent content in 工具与效率 on 郝建勋的运维文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>持续部署工具CI/CD集合</title>
+      <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7cicd%E9%9B%86%E5%90%88/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7cicd%E9%9B%86%E5%90%88/</guid>
+      <description>现在市面上有很多流行的CI/CD工具和DevOps工具有很多，这些工具提高了软件开发的效率，增加了开发人员的幸福感。比较流行的工具有：
+ Travis CI Circle CI Jenkins AppVeyor CodeShip Drone Semaphore CI Buildkite Wercker TeamCity Fabric8 Spinnaker JFrog  未完待续 , 将持续更新&amp;hellip;&amp;hellip;&amp;hellip;</description>
+    </item>
+    
+  </channel>
+</rss>

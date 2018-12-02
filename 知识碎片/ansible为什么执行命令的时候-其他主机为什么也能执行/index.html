@@ -1,0 +1,2810 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.52" />
+    <meta name="description" content="文档">
+<meta name="author" content="郝建勋">
+
+    <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
+<link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
+    <title>ansible为什么执行命令的时候, 在其他主机为什么也能执行 :: 郝建勋的运维文档</title>
+
+    
+    <link href="/docs/css/nucleus.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/fontawesome-all.min.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/hybrid.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/featherlight.min.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/perfect-scrollbar.min.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/auto-complete.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/theme.css?1543754098" rel="stylesheet">
+    <link href="/docs/css/hugo-theme.css?1543754098" rel="stylesheet">
+    
+      <link href="/docs/css/theme-green.css?1543754098" rel="stylesheet">
+    
+
+    <script src="/docs/js/jquery-2.x.min.js?1543754098"></script>
+
+    <style type="text/css">
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/docs">
+
+<svg id="grav-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="100%" height="100%"  viewBox="0 0 285.1 69.9" xml:space="preserve">
+<g>
+	<path d="M35,0c9.6,0,17.9,3.4,24.7,10.3c6.8,6.8,10.3,15,10.3,24.7c0,9.7-3.4,17.9-10.3,24.7c-6.8,6.8-15,10.3-24.7,10.3
+		c-9.7,0-17.9-3.4-24.7-10.3C3.4,52.8,0,44.6,0,34.9c0-9.6,3.4-17.9,10.3-24.7C17.1,3.4,25.3,0,35,0z M22.3,63.7
+		c0.3-7.4,0.3-14.7,0-22.1c-2.1-0.4-4-0.4-5.9,0c-0.2,0.8-0.2,2.5-0.1,4.9c0.1,2.3,0,3.9-0.3,4.8c-1.7-0.6-2.7-2.1-3.1-4.6
+		c-0.1-0.7-0.1-3.3-0.1-8c0-14.5-0.1-23-0.3-25.6c-3.6,4.1-5.6,7-5.9,8.5v10.9c0,4.5,0.1,8.1,0.2,10.9c0,0.4,0,1.3-0.1,2.8
+		c-0.1,1.2,0,2.1,0.1,2.6c0.1,0.6,1.1,2.1,2.8,4.7C13.2,58.7,17.5,62.2,22.3,63.7z M44.6,65.4c0.3-5,0.2-12.9-0.1-23.6
+		c-2.1-0.3-4.1-0.3-5.9,0c-0.2,2-0.2,5.1-0.1,9.5c0.1,4.3,0,7.5-0.1,9.5c-2.9,0.4-5,0.3-6.2-0.1c-0.2-5.6-0.2-15.2-0.1-28.7
+		c0.1-12.4,0-21.8-0.3-28.3c-2.4,0.1-4.3,0.6-5.7,1.3c-0.1,7.7-0.2,17.7-0.1,30.1c0,16.5,0,26.6,0,30.3c2.3,1.1,5.4,1.7,9.4,1.7
+		C38.9,66.9,42.1,66.4,44.6,65.4z M48.1,64.1c9.7-4.6,15.7-12,18-22.2c-1.8-0.2-3.8-0.3-6.1-0.3c-1.6,3.9-2.6,6.3-3.2,7.2
+		c-1.1,1.7-2,2.5-2.7,2.5C54,46,54,39.1,54,30.5c0-11.5,0-18.4,0-20.9c-1.4-1.4-3.3-2.5-5.7-3.4C48.1,6.3,48,6.4,48,6.7
+		c0,3.5,0,13.1,0,28.8C47.9,47.2,48,56.8,48.1,64.1z"/>
+</g>
+<g>
+	<path d="M116.6,51.3h-29c-0.5,0-0.9-0.1-1.3-0.2c-0.4-0.2-0.7-0.4-1-0.7c-0.3-0.3-0.5-0.6-0.7-1c-0.2-0.4-0.2-0.8-0.2-1.3V16.3h6.3
+		V45h25.8V51.3z"/>
+	<path d="M154.8,51.3h-22.9c-0.9,0-1.8-0.2-2.9-0.5c-1-0.3-2-0.8-2.9-1.5c-0.9-0.7-1.6-1.6-2.2-2.8c-0.6-1.1-0.9-2.5-0.9-4.2V19.5
+		c0-0.4,0.1-0.9,0.2-1.2c0.2-0.4,0.4-0.7,0.7-1c0.3-0.3,0.6-0.5,1-0.7c0.4-0.2,0.8-0.2,1.3-0.2h28.6v6.3h-25.4v19.8
+		c0,0.8,0.2,1.5,0.7,1.9s1.1,0.7,1.9,0.7h22.9V51.3z M151.9,37h-20v-6.4h20V37z"/>
+	<path d="M197.3,51.3H191v-8.6h-22.3v8.6h-6.3V33.8c0-2.6,0.4-4.9,1.3-7.1s2.1-4,3.7-5.5c1.6-1.5,3.4-2.8,5.5-3.6
+		c2.1-0.9,4.5-1.3,7-1.3h14.3c0.4,0,0.9,0.1,1.2,0.2c0.4,0.2,0.7,0.4,1,0.7s0.5,0.6,0.7,1c0.2,0.4,0.2,0.8,0.2,1.2V51.3z
+		 M168.7,36.4H191V22.6h-11.2c-0.2,0-0.6,0-1.2,0.1c-0.6,0.1-1.4,0.2-2.2,0.4c-0.8,0.2-1.7,0.6-2.6,1c-0.9,0.5-1.8,1.1-2.5,2
+		c-0.8,0.8-1.4,1.9-1.9,3.1c-0.5,1.2-0.7,2.8-0.7,4.5V36.4z"/>
+	<path d="M241.7,28.1c0,1.4-0.2,2.7-0.5,3.9c-0.4,1.1-0.8,2.1-1.5,3c-0.6,0.9-1.3,1.6-2.1,2.2c-0.8,0.6-1.6,1.1-2.5,1.5
+		c-0.9,0.4-1.8,0.7-2.6,0.9c-0.9,0.2-1.7,0.3-2.5,0.3l13.3,11.5h-9.8l-13.2-11.5h-4.6v-6.3H230c0.8-0.1,1.5-0.2,2.2-0.5
+		c0.7-0.3,1.2-0.6,1.7-1.1c0.5-0.5,0.9-1,1.1-1.6c0.3-0.6,0.4-1.4,0.4-2.2v-4c0-0.4,0-0.6-0.1-0.8c-0.1-0.2-0.2-0.3-0.3-0.4
+		c-0.1-0.1-0.3-0.1-0.4-0.2c-0.2,0-0.3,0-0.4,0h-20.9v28.7h-6.3V19.5c0-0.4,0.1-0.9,0.2-1.2c0.2-0.4,0.4-0.7,0.7-1
+		c0.3-0.3,0.6-0.5,1-0.7c0.4-0.2,0.8-0.2,1.3-0.2H234c1.4,0,2.6,0.3,3.6,0.8s1.8,1.2,2.4,1.9c0.6,0.8,1,1.6,1.3,2.5
+		c0.3,0.9,0.4,1.7,0.4,2.5V28.1z"/>
+	<path d="M285.1,48.6c0,0.5-0.1,0.9-0.3,1.3c-0.2,0.4-0.4,0.7-0.7,1c-0.3,0.3-0.6,0.5-1,0.7c-0.4,0.2-0.8,0.2-1.2,0.2
+		c-0.4,0-0.8-0.1-1.2-0.2c-0.4-0.1-0.8-0.4-1.1-0.7l-23.2-24.2v24.7h-6.3V19c0-0.7,0.2-1.2,0.5-1.8c0.4-0.5,0.8-0.9,1.4-1.2
+		c0.6-0.2,1.2-0.3,1.9-0.2s1.2,0.4,1.6,0.9l23.2,24.2V16.3h6.3V48.6z"/>
+</g>
+</svg>
+
+</a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="text" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-close"></i></span>
+</div>
+
+<script type="text/javascript" src="/docs/js/lunr.min.js?1543754098"></script>
+<script type="text/javascript" src="/docs/js/auto-complete.js?1543754098"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/haojianxun.github.io\/docs\/";
+    
+</script>
+<script type="text/javascript" src="/docs/js/search.js?1543754098"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
+          <b>1. </b>安装配置
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/">
+        docker安装
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" title="saltstack安装" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/">
+        saltstack安装
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" title="zabbix安装" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/">
+        zabbix安装
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/" title="使用kubeadm从0开始搭建kubernetes:v1.11.1" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/">
+        使用kubeadm从0开始搭建kubernetes:v1.11.1
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/" title="初始化简单配置saltstack" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/">
+        初始化简单配置saltstack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/" title="安装zsh" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/">
+        安装zsh
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/" title="通过onedrive搭建私人网盘" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/">
+        通过onedrive搭建私人网盘
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="codis集群高可用搭建" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+        codis集群高可用搭建
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/" title="zookeeper安装" class="dd-item ">
+        <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/">
+        zookeeper安装
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/" title="工具与效率" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/">
+          <b>2. </b>工具与效率
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" title="监控工具集合" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/">
+          <b>2.1 </b>监控工具集合
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/" title="Prometheus" class="dd-item ">
+        <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/">
+        Prometheus
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/" title="ncdu" class="dd-item ">
+        <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/">
+        ncdu
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/rop/" title="rtop" class="dd-item ">
+        <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/rop/">
+        rtop
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/satellite/" title="satellite" class="dd-item ">
+        <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/satellite/">
+        satellite
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7cicd%E9%9B%86%E5%90%88/" title="持续部署工具CI/CD集合" class="dd-item ">
+        <a href="/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2%E5%B7%A5%E5%85%B7cicd%E9%9B%86%E5%90%88/">
+        <b>2.2 </b>持续部署工具CI/CD集合
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/" title="知识碎片" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/">
+          <b>3. </b>知识碎片
+          
+            <i class="fas read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/" title="ansible为什么执行命令的时候, 在其他主机为什么也能执行" class="dd-item active">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/ansible%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99-%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B9%9F%E8%83%BD%E6%89%A7%E8%A1%8C/">
+        ansible为什么执行命令的时候, 在其他主机为什么也能执行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/" title="docker主机名" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/">
+        docker主机名
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E7%9A%84dns%E8%A7%A3%E6%9E%90/" title="docker的dns解析" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E7%9A%84dns%E8%A7%A3%E6%9E%90/">
+        docker的dns解析
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="k8s高可用集群搭建" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/k8s%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+        k8s高可用集群搭建
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADmaster%E7%AE%80%E5%8D%95%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%9D%E8%B7%AF/" title="kubernetes中Master简单高可用思路" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADmaster%E7%AE%80%E5%8D%95%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%9D%E8%B7%AF/">
+        kubernetes中Master简单高可用思路
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADapiserver%E7%9A%84%E5%9C%B0%E5%9D%80%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/" title="kubernetes中apiserver的地址指定问题" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADapiserver%E7%9A%84%E5%9C%B0%E5%9D%80%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/">
+        kubernetes中apiserver的地址指定问题
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADdns-service-ip-%E9%97%AE%E9%A2%98/" title="kubernetes中dns service ip 问题" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADdns-service-ip-%E9%97%AE%E9%A2%98/">
+        kubernetes中dns service ip 问题
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADservice%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E7%94%B1%E8%B0%81%E5%AE%9E%E7%8E%B0%E7%9A%84/" title="kubernetes中service的规则是由谁实现的" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%B8%ADservice%E7%9A%84%E8%A7%84%E5%88%99%E6%98%AF%E7%94%B1%E8%B0%81%E5%AE%9E%E7%8E%B0%E7%9A%84/">
+        kubernetes中service的规则是由谁实现的
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%81%E4%B9%A6/" title="kubernetes使用自定义证书" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/kubernetes%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AF%81%E4%B9%A6/">
+        kubernetes使用自定义证书
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/tldr-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A5%9E%E5%99%A8/" title="tldr---查看命令帮助的另一神器" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/tldr-%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A5%9E%E5%99%A8/">
+        tldr---查看命令帮助的另一神器
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8B%86%E5%88%86%E8%BF%81%E7%A7%BB/" title="zabbix数据库拆分迁移" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E6%95%B0%E6%8D%AE%E5%BA%93%E6%8B%86%E5%88%86%E8%BF%81%E7%A7%BB/">
+        zabbix数据库拆分迁移
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9A%84web%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E8%80%8C%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/" title="zabbix的web展示页面中不支持中文而出现乱码怎么办" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9A%84web%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2%E4%B8%AD%E4%B8%8D%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E8%80%8C%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E6%80%8E%E4%B9%88%E5%8A%9E/">
+        zabbix的web展示页面中不支持中文而出现乱码怎么办
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9B%91%E6%8E%A7jmx%E7%9A%84%E6%97%B6%E5%80%99-key%E6%97%A0%E6%B3%95%E5%8F%96%E5%88%B0%E5%80%BC%E9%97%AE%E9%A2%98/" title="zabbix监控JMX的时候 key无法取到值问题" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/zabbix%E7%9B%91%E6%8E%A7jmx%E7%9A%84%E6%97%B6%E5%80%99-key%E6%97%A0%E6%B3%95%E5%8F%96%E5%88%B0%E5%80%BC%E9%97%AE%E9%A2%98/">
+        zabbix监控JMX的时候 key无法取到值问题
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E4%BD%BF%E7%94%A8kubeadm%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F/" title="使用kubeadm拉取镜像" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E4%BD%BF%E7%94%A8kubeadm%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F/">
+        使用kubeadm拉取镜像
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A4%8D%E5%88%B6-.-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6/" title="复制. 开头的文件" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A4%8D%E5%88%B6-.-%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6/">
+        复制. 开头的文件
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95curl%E7%BD%91%E9%A1%B5%E7%9A%84%E6%97%B6%E5%80%99%E8%BE%93%E5%87%BA%E6%9B%B4%E5%8A%A0%E7%BE%8E%E8%A7%82%E8%A7%84%E8%8C%83/" title="如何curl网页的时候输出更加美观规范" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95curl%E7%BD%91%E9%A1%B5%E7%9A%84%E6%97%B6%E5%80%99%E8%BE%93%E5%87%BA%E6%9B%B4%E5%8A%A0%E7%BE%8E%E8%A7%82%E8%A7%84%E8%8C%83/">
+        如何curl网页的时候输出更加美观规范
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E4%B8%BB%E7%BB%84/" title="如何切换主组" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%87%E6%8D%A2%E4%B8%BB%E7%BB%84/">
+        如何切换主组
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%A9%E5%85%B6%E5%8A%A0%E5%85%A5%E5%85%B6%E5%AE%83%E9%99%84%E5%8A%A0%E7%BB%84/" title="如何创建用户的时候让其加入其它附加组" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E6%97%B6%E5%80%99%E8%AE%A9%E5%85%B6%E5%8A%A0%E5%85%A5%E5%85%B6%E5%AE%83%E9%99%84%E5%8A%A0%E7%BB%84/">
+        如何创建用户的时候让其加入其它附加组
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7/" title="如何创建系统用户" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7/">
+        如何创建系统用户
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%A9%BA%E7%99%BD%E8%A1%8C/" title="如何删除文件空白行" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%A9%BA%E7%99%BD%E8%A1%8C/">
+        如何删除文件空白行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8zabbix%E8%A7%A6%E5%8F%91%E5%99%A8%E5%90%8D%E7%A7%B0%E7%9A%84%E9%87%8C%E5%8A%A0%E4%B8%8A%E5%BD%93%E5%89%8Dtrigger%E7%9A%84%E6%9C%80%E6%96%B0%E5%80%BC%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/" title="如何在zabbix触发器名称的里加上当前trigger的最新值(或自定义变量)" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8zabbix%E8%A7%A6%E5%8F%91%E5%99%A8%E5%90%8D%E7%A7%B0%E7%9A%84%E9%87%8C%E5%8A%A0%E4%B8%8A%E5%BD%93%E5%89%8Dtrigger%E7%9A%84%E6%9C%80%E6%96%B0%E5%80%BC%E6%88%96%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F/">
+        如何在zabbix触发器名称的里加上当前trigger的最新值(或自定义变量)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E7%BB%99%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%90%8E%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%A9%BA%E8%A1%8C/" title="如何在一个文件中给每一行后追加一个空行" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%AD%E7%BB%99%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%90%8E%E8%BF%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E7%A9%BA%E8%A1%8C/">
+        如何在一个文件中给每一行后追加一个空行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%BB%99%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83sudo/" title="如何快速给某个用户授权sudo" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E7%BB%99%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E6%8E%88%E6%9D%83sudo/">
+        如何快速给某个用户授权sudo
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BAip-3/" title="如何快速获取主机ip (3)" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96%E4%B8%BB%E6%9C%BAip-3/">
+        如何快速获取主机ip (3)
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%B4%A6%E5%8F%B7/" title="如何批量改用户密码账号" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%89%B9%E9%87%8F%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E8%B4%A6%E5%8F%B7/">
+        如何批量改用户密码账号
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%B9%E9%87%8F%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%A4%A9%E4%B8%BB%E6%9C%BA%E4%B8%8A/" title="如何把一台主机上用户信息批量移到另一台主机上" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%8A%8A%E4%B8%80%E5%8F%B0%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E6%89%B9%E9%87%8F%E7%A7%BB%E5%88%B0%E5%8F%A6%E4%B8%80%E5%A4%A9%E4%B8%BB%E6%9C%BA%E4%B8%8A/">
+        如何把一台主机上用户信息批量移到另一台主机上
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%81%B6%E6%95%B0%E8%A1%8C/" title="如何显示文件偶数行" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%81%B6%E6%95%B0%E8%A1%8C/">
+        如何显示文件偶数行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD%E8%A1%8C/" title="如何显示空白行" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA%E7%A9%BA%E7%99%BD%E8%A1%8C/">
+        如何显示空白行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bansible%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/" title="如何查看ansible命令执行的详细过程" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bansible%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%AF%A6%E7%BB%86%E8%BF%87%E7%A8%8B/">
+        如何查看ansible命令执行的详细过程
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bkubeadm%E9%BB%98%E8%AE%A4%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E5%92%8C%E9%85%8D%E7%BD%AE/" title="如何查看kubeadm默认的启动参数和配置" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8Bkubeadm%E9%BB%98%E8%AE%A4%E7%9A%84%E5%90%AF%E5%8A%A8%E5%8F%82%E6%95%B0%E5%92%8C%E9%85%8D%E7%BD%AE/">
+        如何查看kubeadm默认的启动参数和配置
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/" title="如何查看和修改创建用户的默认配置信息" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9A%84%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF/">
+        如何查看和修改创建用户的默认配置信息
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%BB%88%E7%AB%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B/" title="如何查看某个终端运行的进程" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E6%9F%90%E4%B8%AA%E7%BB%88%E7%AB%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B/">
+        如何查看某个终端运行的进程
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/" title="如何添加用户信息" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF/">
+        如何添加用户信息
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/" title="如何生成指定范围的随机数" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">
+        如何生成指定范围的随机数
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6/" title="如何生成随机字符" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AD%97%E7%AC%A6/">
+        如何生成随机字符
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81/" title="如何生成随机密码" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81/">
+        如何生成随机密码
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E9%87%8C%E7%9A%84master%E7%BB%84%E4%BB%B6%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/" title="如何给一个正在运行的k8s集群里的master组件动态添加一个命令行参数" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E7%BB%99%E4%B8%80%E4%B8%AA%E6%AD%A3%E5%9C%A8%E8%BF%90%E8%A1%8C%E7%9A%84k8s%E9%9B%86%E7%BE%A4%E9%87%8C%E7%9A%84master%E7%BB%84%E4%BB%B6%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0/">
+        如何给一个正在运行的k8s集群里的master组件动态添加一个命令行参数
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E9%95%9C%E5%83%8F/" title="如何获取kubeadm初始化需要哪些镜像" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96kubeadm%E5%88%9D%E5%A7%8B%E5%8C%96%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E9%95%9C%E5%83%8F/">
+        如何获取kubeadm初始化需要哪些镜像
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9ansible%E5%BF%BD%E7%95%A5%E9%94%99%E8%AF%AF%E5%91%BD%E4%BB%A4%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/" title="如何让ansible忽略错误命令继续执行" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9ansible%E5%BF%BD%E7%95%A5%E9%94%99%E8%AF%AF%E5%91%BD%E4%BB%A4%E7%BB%A7%E7%BB%AD%E6%89%A7%E8%A1%8C/">
+        如何让ansible忽略错误命令继续执行
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E9%A2%9C%E8%89%B2/" title="如何让vim打开文件的时候有颜色" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E9%A2%9C%E8%89%B2/">
+        如何让vim打开文件的时候有颜色
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%AB%8B%E5%8D%B3%E8%BF%87%E6%9C%9F/" title="如何让某个用户密码立即过期" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9F%90%E4%B8%AA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E7%AB%8B%E5%8D%B3%E8%BF%87%E6%9C%9F/">
+        如何让某个用户密码立即过期
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4dns%E5%92%8Chosts%E6%96%87%E4%BB%B6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/" title="如何调整dns和hosts文件的优先级" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E4%BD%95%E8%B0%83%E6%95%B4dns%E5%92%8Chosts%E6%96%87%E4%BB%B6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7/">
+        如何调整dns和hosts文件的优先级
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E6%9E%9C%E5%88%87%E6%8D%A2tty/" title="如果切换tty" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%A6%82%E6%9E%9C%E5%88%87%E6%8D%A2tty/">
+        如果切换tty
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%91%A8%E6%9C%9F%E4%BB%BB%E5%8A%A1/" title="定时任务和周期任务" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%91%A8%E6%9C%9F%E4%BB%BB%E5%8A%A1/">
+        定时任务和周期任务
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/" title="查看服务是否开机启动" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E6%9F%A5%E7%9C%8B%E6%9C%8D%E5%8A%A1%E6%98%AF%E5%90%A6%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/">
+        查看服务是否开机启动
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8cmd%E6%9F%A5%E7%9C%8Bwindows%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84wifi%E5%AF%86%E7%A0%81/" title="用cmd查看windows连接过的wifi密码" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8cmd%E6%9F%A5%E7%9C%8Bwindows%E8%BF%9E%E6%8E%A5%E8%BF%87%E7%9A%84wifi%E5%AF%86%E7%A0%81/">
+        用cmd查看windows连接过的wifi密码
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9/" title="用户属性修改" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%94%A8%E6%88%B7%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9/">
+        用户属性修改
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%9C%A8%E5%93%AA%E9%87%8C%E8%A7%84%E5%AE%9A/" title="网卡命名规则在哪里规定" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E5%8D%A1%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99%E5%9C%A8%E5%93%AA%E9%87%8C%E8%A7%84%E5%AE%9A/">
+        网卡命名规则在哪里规定
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E7%BB%9C%E6%80%BB%E5%BC%80%E5%85%B3%E5%9C%A8%E5%93%AA/" title="网络总开关在哪" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E7%BD%91%E7%BB%9C%E6%80%BB%E5%BC%80%E5%85%B3%E5%9C%A8%E5%93%AA/">
+        网络总开关在哪
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85k8s/" title="脚本安装k8s" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%84%9A%E6%9C%AC%E5%AE%89%E8%A3%85k8s/">
+        脚本安装k8s
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/" title="进入单用户模式" class="dd-item ">
+        <a href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/">
+        进入单用户模式
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://github.com/haojianxun"><i class='fab fa-fw fa-github'></i> Github repo</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://haojianxun.github.io/docs/showcase"><i class='fas fa-fw fa-camera'></i> Showcases</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://haojianxun.github.io"><i class='fas fa-fw fa-book'></i> 郝建勋的博客</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://haojianxun.github.io/docs/credits"><i class='fas fa-fw fa-bullhorn'></i> Credits</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e7%9f%a5%e8%af%86%e7%a2%8e%e7%89%87/ansible%e4%b8%ba%e4%bb%80%e4%b9%88%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4%e7%9a%84%e6%97%b6%e5%80%99,%20%e5%85%b6%e4%bb%96%e4%b8%bb%e6%9c%ba%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b9%9f%e8%83%bd%e6%89%a7%e8%a1%8c.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/'>知识碎片</a> > ansible为什么执行命令的时候, 在其他主机为什么也能执行
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+
+        
+        <div id="body-inner">
+          
+            <h1>ansible为什么执行命令的时候, 在其他主机为什么也能执行</h1>
+          
+
+        
+
+
+<p>在配置文件<code>/etc/ansible/ansible.cfg</code>的<code>[default]</code>字段下有解释</p>
+
+<p>ansible在执行命令的时候 ,  会把用户执行的命令转换成python脚本放在<code>~/.ansible/tmp</code>下  , 在其他远程主机上也是放在同样的目录下 , 并且加执行权限 , 在远程目录下运行完 , 并把执行结果返回来 , 之后这个文件就会被删</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/" title="知识碎片"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/docker%E4%B8%BB%E6%9C%BA%E5%90%8D/" title="docker主机名" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/docs/js/clipboard.min.js?1543754098"></script>
+    <script src="/docs/js/perfect-scrollbar.min.js?1543754098"></script>
+    <script src="/docs/js/perfect-scrollbar.jquery.min.js?1543754098"></script>
+    <script src="/docs/js/jquery.sticky.js?1543754098"></script>
+    <script src="/docs/js/featherlight.min.js?1543754098"></script>
+    <script src="/docs/js/html5shiv-printshiv.min.js?1543754098"></script>
+    <script src="/docs/js/highlight.pack.js?1543754098"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/docs/js/modernizr.custom.71422.js?1543754098"></script>
+    <script src="/docs/js/learn.js?1543754098"></script>
+    <script src="/docs/js/hugo-learn.js?1543754098"></script>
+
+    <link href="/docs/mermaid/mermaid.css?1543754098" type="text/css" rel="stylesheet" />
+    <script src="/docs/mermaid/mermaid.js?1543754098"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105947713-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
+
