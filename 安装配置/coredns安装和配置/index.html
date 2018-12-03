@@ -9,7 +9,7 @@
 
     <link rel="shortcut icon" href="/docs/images/favicon.png" type="image/x-icon" />
 <link rel="icon" href="/docs/images/favicon.png" type="image/x-icon" />
-    <title>安装配置 :: 郝建勋的运维文档</title>
+    <title>CoreDNS安装和配置 :: 郝建勋的运维文档</title>
 
     
     <link href="/docs/css/nucleus.css?1543846717" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
+  <body class="" data-url="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -114,7 +114,7 @@
     
     <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="安装配置" class="dd-item 
         parent
-        active
+        
         
         ">
       <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
@@ -272,7 +272,7 @@
  
   
     
-      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" title="CoreDNS安装和配置" class="dd-item ">
+      <li data-nav-id="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" title="CoreDNS安装和配置" class="dd-item active">
         <a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/">
         CoreDNS安装和配置
         <i class="fas fa-check read-icon"></i>
@@ -1563,7 +1563,7 @@
                   
                   
                   <div id="top-github-link">
-                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/_index.md" target="blank">
+                    <a class="github-link" title='Edit this page' href="https://github.com/matcornic/hugo-theme-learn/edit/master/exampleSite/content/%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae/CoreDNS%e5%ae%89%e8%a3%85%e5%92%8c%e9%85%8d%e7%bd%ae.md" target="blank">
                       <i class="fas fa-code-branch"></i>
                       <span id="top-github-link-text">Edit this page</span>
                     </a>
@@ -1578,6 +1578,8 @@
                         </a>
                     </span>
                   
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
                   <span class="links">
                  
                  
@@ -1588,7 +1590,13 @@
             
           
           
-            <a href='/docs/'>郝建勋的运维文档</a> > 安装配置
+            
+            
+          
+          
+            <a href='/docs/'>郝建勋的运维文档</a> > <a href='/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/'>安装配置</a> > CoreDNS安装和配置
+          
+         
           
          
           
@@ -1597,14 +1605,35 @@
                   </span>
                 </div>
                 
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#测试">测试</a></li>
+<li><a href="#配置">配置</a>
+<ul>
+<li><a href="#添加插件">添加插件</a></li>
+<li><a href="#转发">转发</a></li>
+<li><a href="#recursive-resolver递归解析器">Recursive Resolver递归解析器</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
+                
               </div>
             </div>
             
 
         
-          <div id="chapter">
-        
         <div id="body-inner">
+          
+            <h1>CoreDNS安装和配置</h1>
           
 
         
@@ -1612,424 +1641,149 @@
 
 
 
-<h1 id="安装配置">安装配置</h1>
+<h2 id="安装">安装</h2>
 
-<h2 id="本节目录">本节目录</h2>
+<p>官方给出的安装方式还是很多的 , 有二进制 , docker等等 , 下面我们采用的是github方式</p>
 
-
-
-
-
-
-
-
-<ul class="children children-li">
-	
-    
-    
-
-	
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" >docker安装</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%AE%89%E8%A3%85/" >saltstack安装</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zabbix%E5%AE%89%E8%A3%85/" >zabbix安装</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E4%BD%BF%E7%94%A8kubeadm%E4%BB%8E0%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BAkubernetesv1.11.1/" >使用kubeadm从0开始搭建kubernetes:v1.11.1</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/saltstack%E5%88%9D%E5%A7%8B%E9%85%8D%E7%BD%AE/" >初始化简单配置saltstack</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E5%AE%89%E8%A3%85zsh/" >安装zsh</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/" >通过onedrive搭建私人网盘</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" >CoreDNS安装和配置</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" >codis集群高可用搭建</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-		
-  
-
-
-<li>
-<a href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/zookeeper%E5%AE%89%E8%A3%85/" >zookeeper安装</a>
-</li>
-
-
-
-
-
-
-			
-		
-
-		
-			
-
-<ul>
-
-	
-    
-    
-
-	
-		
-	
-
-	
-
-</ul>
-
-			
-
-		
-	
-
-	
-</ul>
-
-<div class="expand">
-    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
-        <span>
-        
-        
-        其他补充说明
-        
-        </span>
-    </div>
-    <div class="expand-content" style="display: none;">
-        文档略简洁 , 具体可以去我博客去看
-    </div>
+<div class="notices tip" ><p>需要提前安装go环境 , 需要Go 1.9.x的版本</p>
 </div>
 
 
+<pre><code class="language-bash">mkdir -p $GOPATH/src/github.com/coredns
+cd $GOPATH/src/github.com/coredns/
+git clone git@github.com:coredns/coredns
+cd coredns
+make CHECKS= godeps all
+</code></pre>
 
+<h2 id="测试">测试</h2>
+
+<p>启动coredns</p>
+
+<pre><code class="language-bash">./coredns -dns.port=1053
+</code></pre>
+
+<p>测试</p>
+
+<pre><code class="language-bash">dig @localhost -p 1053 a whoami.example.org
+</code></pre>
+
+<h2 id="配置">配置</h2>
+
+<p>配置文件一般是在当前运行程序下的文件夹下的<code>Corefile</code>文件 , 可以用<code>-conf</code> 指定特定路径下的<code>Corefile</code>文件</p>
+
+<h3 id="添加插件">添加插件</h3>
+
+<p><strong>插件添加的语法</strong></p>
+
+<p><strong>例子</strong></p>
+
+<pre><code>. {
+    chaos
+}
+</code></pre>
+
+<p>在一对花括号里直接加上插件的名字就可以了  , 这种一对花括号 , 加上之前的<code>.</code>  叫做一个Server Block</p>
+
+<p>当然也可以这样配置插件</p>
+
+<pre><code>. {
+    plugin {
+       # Plugin Block
+    }
+}
+</code></pre>
+
+<p><strong>示例</strong></p>
+
+<pre><code>coredns.io:5300 {
+    file db.coredns.io
+}
+
+example.io:53 {
+    log
+    errors
+    file db.example.io
+}
+
+example.net:53 {
+    file db.example.net
+}
+
+.:53 {
+    kubernetes
+    proxy . 8.8.8.8
+    log
+    errors
+    cache
+}
+</code></pre>
+
+<p>上述例子达到的效果是</p>
+
+<p><img src="https://ws1.sinaimg.cn/large/6450e885gy1fxtx2mui90j20tc0momzx.jpg" alt="" /></p>
+
+<p>其中的 <code>db.example.org</code> 文件可以这样写</p>
+
+<pre><code>$ORIGIN example.org.
+@	3600 IN	SOA sns.dns.icann.org. noc.dns.icann.org. (
+				2017042745 ; serial
+				7200       ; refresh (2 hours)
+				3600       ; retry (1 hour)
+				1209600    ; expire (2 weeks)
+				3600       ; minimum (1 hour)
+				)
+
+	3600 IN NS a.iana-servers.net.
+	3600 IN NS b.iana-servers.net.
+
+www     IN A     127.0.0.1
+        IN AAAA  ::1
+</code></pre>
+
+<p>最后的2条定义了<code>www.example.org.</code> 的地址是127.0.0.1和(the IPv6) ::1.</p>
+
+<p>例子中的<code>log</code>  , <code>errors</code> 都是插件名称 , 表示用到这个插件 , 其中的<code>log</code>的插件是记录每次查询的 .</p>
+
+<h3 id="转发">转发</h3>
+
+<p>关于转发的功能 , 依靠的是 <a href="https://coredns.io/plugins/proxy"><em>proxy</em></a> 和 <a href="https://coredns.io/plugins/forward"><em>forward</em></a>2个插件</p>
+
+<p>例子:</p>
+
+<pre><code>. {
+    forward . 8.8.8.8 9.9.9.9
+    log
+}
+</code></pre>
+
+<p>还有一种情况是我们希望<code>example.org</code>交给8.8.8.8这个dns查询 , 其余由我们本地的dns解析</p>
+
+<pre><code>example.org {
+    forward . 8.8.8.8
+    log
+}
+
+. {
+    forward . /etc/resolv.conf
+    log
+}
+</code></pre>
+
+<h3 id="recursive-resolver递归解析器">Recursive Resolver递归解析器</h3>
+
+<p>coredns没有原生的解析器, 可以用<a href="https://www.unbound.net/">libunbound</a>  , 要想加上必须重新编译 , 并且启用 <a href="https://coredns.io/2017/07/25/compile-time-enabling-or-disabling-plugins/"> <em>unbound</em> plugin</a>.</p>
+
+<p>要用<a href="https://coredns.io/manual/toc/#source">source</a> 编译 , 之后把<code>unbound:github.com/coredns/unbound</code> 加到 <code>plugin.cfg</code>.文件里面</p>
+
+<p>之后执行<code>go generate</code>   , 最后<code>make</code>.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-        
-            </div> 
+
         
         </div> 
         
@@ -2190,6 +1944,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -2205,6 +1960,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -3191,10 +2949,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/docs/" title="郝建勋的运维文档"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/%E9%80%9A%E8%BF%87onedrive%E6%90%AD%E5%BB%BA%E7%A7%81%E4%BA%BA%E7%BD%91%E7%9B%98/" title="通过onedrive搭建私人网盘"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/" title="docker安装" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/codis%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="codis集群高可用搭建" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -3233,3 +2991,4 @@
 </script>
   </body>
 </html>
+

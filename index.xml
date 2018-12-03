@@ -105,6 +105,24 @@ docker run -d -p 8080:80 --name onedrive --restart=always yinaoxiong/oneindex  �
     </item>
     
     <item>
+      <title>CoreDNS安装和配置</title>
+      <link>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/</guid>
+      <description>安装 官方给出的安装方式还是很多的 , 有二进制 , docker等等 , 下面我们采用的是github方式
+需要提前安装go环境 , 需要Go 1.9.x的版本
+ mkdir -p $GOPATH/src/github.com/coredns cd $GOPATH/src/github.com/coredns/ git clone git@github.com:coredns/coredns cd coredns make CHECKS= godeps all  测试 启动coredns
+./coredns -dns.port=1053  测试
+dig @localhost -p 1053 a whoami.example.org  配置 配置文件一般是在当前运行程序下的文件夹下的Corefile文件 , 可以用-conf 指定特定路径下的Corefile文件
+添加插件 插件添加的语法
+例子
+. { chaos }  在一对花括号里直接加上插件的名字就可以了 , 这种一对花括号 , 加上之前的. 叫做一个Server Block
+当然也可以这样配置插件
+. { plugin { # Plugin Block } }  示例</description>
+    </item>
+    
+    <item>
       <title>Prometheus</title>
       <link>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

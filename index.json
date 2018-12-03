@@ -4,7 +4,7 @@
 	"title": "安装配置",
 	"tags": [],
 	"description": "",
-	"content": " 安装配置 本节目录  docker安装     saltstack安装     zabbix安装     使用kubeadm从0开始搭建kubernetes:v1.11.1     初始化简单配置saltstack     安装zsh     通过onedrive搭建私人网盘     codis集群高可用搭建     zookeeper安装       其他补充说明   文档略简洁 , 具体可以去我博客去看   "
+	"content": " 安装配置 本节目录  docker安装     saltstack安装     zabbix安装     使用kubeadm从0开始搭建kubernetes:v1.11.1     初始化简单配置saltstack     安装zsh     通过onedrive搭建私人网盘     CoreDNS安装和配置     codis集群高可用搭建     zookeeper安装       其他补充说明   文档略简洁 , 具体可以去我博客去看   "
 },
 {
 	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/",
@@ -82,6 +82,13 @@
 	"tags": [],
 	"description": "",
 	"content": ""
+},
+{
+	"uri": "https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/coredns%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/",
+	"title": "CoreDNS安装和配置",
+	"tags": [],
+	"description": "",
+	"content": " 安装 官方给出的安装方式还是很多的 , 有二进制 , docker等等 , 下面我们采用的是github方式\n需要提前安装go环境 , 需要Go 1.9.x的版本\n mkdir -p $GOPATH/src/github.com/coredns cd $GOPATH/src/github.com/coredns/ git clone git@github.com:coredns/coredns cd coredns make CHECKS= godeps all  测试 启动coredns\n./coredns -dns.port=1053  测试\ndig @localhost -p 1053 a whoami.example.org  配置 配置文件一般是在当前运行程序下的文件夹下的Corefile文件 , 可以用-conf 指定特定路径下的Corefile文件\n添加插件 插件添加的语法\n例子\n. { chaos }  在一对花括号里直接加上插件的名字就可以了 , 这种一对花括号 , 加上之前的. 叫做一个Server Block\n当然也可以这样配置插件\n. { plugin { # Plugin Block } }  示例\ncoredns.io:5300 { file db.coredns.io } example.io:53 { log errors file db.example.io } example.net:53 { file db.example.net } .:53 { kubernetes proxy . 8.8.8.8 log errors cache }  上述例子达到的效果是\n其中的 db.example.org 文件可以这样写\n$ORIGIN example.org. @\t3600 IN\tSOA sns.dns.icann.org. noc.dns.icann.org. ( 2017042745 ; serial 7200 ; refresh (2 hours) 3600 ; retry (1 hour) 1209600 ; expire (2 weeks) 3600 ; minimum (1 hour) ) 3600 IN NS a.iana-servers.net. 3600 IN NS b.iana-servers.net. www IN A 127.0.0.1 IN AAAA ::1  最后的2条定义了www.example.org. 的地址是127.0.0.1和(the IPv6) ::1.\n例子中的log , errors 都是插件名称 , 表示用到这个插件 , 其中的log的插件是记录每次查询的 .\n转发 关于转发的功能 , 依靠的是 proxy 和 forward2个插件\n例子:\n. { forward . 8.8.8.8 9.9.9.9 log }  还有一种情况是我们希望example.org交给8.8.8.8这个dns查询 , 其余由我们本地的dns解析\nexample.org { forward . 8.8.8.8 log } . { forward . /etc/resolv.conf log }  Recursive Resolver递归解析器 coredns没有原生的解析器, 可以用libunbound , 要想加上必须重新编译 , 并且启用 unbound plugin.\n要用source 编译 , 之后把unbound:github.com/coredns/unbound 加到 plugin.cfg.文件里面\n之后执行go generate , 最后make.\n"
 },
 {
 	"uri": "https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/prometheus/",
