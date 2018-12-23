@@ -20,6 +20,10 @@
   </url>
   
   <url>
+    <loc>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/</loc>
+  </url>
+  
+  <url>
     <loc>https://haojianxun.github.io/docs/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/docker%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
   </url>
@@ -134,6 +138,10 @@
   
   <url>
     <loc>https://haojianxun.github.io/docs/%E5%B7%A5%E5%85%B7%E6%95%88%E7%8E%87/%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/ncdu/</loc>
+  </url>
+  
+  <url>
+    <loc>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</loc>
   </url>
   
   <url>
@@ -317,10 +325,6 @@
   </url>
   
   <url>
-    <loc>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/</loc>
-  </url>
-  
-  <url>
     <loc>https://haojianxun.github.io/docs/</loc>
     <lastmod>2018-11-30T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -333,6 +337,10 @@
                 hreflang="en"
                 href="https://haojianxun.github.io/docs/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://haojianxun.github.io/docs/%E7%9F%A5%E8%AF%86%E7%A2%8E%E7%89%87/%E8%BF%9B%E5%85%A5%E5%8D%95%E7%94%A8%E6%88%B7%E6%A8%A1%E5%BC%8F/</loc>
   </url>
   
 </urlset>

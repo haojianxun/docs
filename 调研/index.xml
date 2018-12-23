@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>运维调研 on 触宝运维团队文档</title>
+    <link>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/</link>
+    <description>Recent content in 运维调研 on 触宝运维团队文档</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    
+	<atom:link href="https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>nginx后端服务动态配置</title>
+      <link>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</guid>
+      <description>以下方式基于consul+upsync 一个最简化的demo
+安装consul wget https://releases.hashicorp.com/consul/1.4.0/consul_1.4.0_linux_amd64.zip unzip consul_1.4.0_linux_amd64.zip mv consul /usr/local/bin/ mkdir /etc/consul.d #创建配置文件目录  启动consul # 在开发者模式中启动Consul代理 一个单节点的consul,如果网络有多个ip, 那么就明确写出 其中-clinet的指的是启动web页面的时候, 谁可以访问, 0.0.0.0就是谁都可以访问,-config-dir指定配置文件目录 $ consul agent -dev -bind=192.168.200.148 -client 0.0.0.0 -config-dir /etc/consul.d/ # 创建一个服务定义配置文件，假设有一个名为web服务，它运行在80端口。 $ echo &#39;{&amp;quot;service&amp;quot;: {&amp;quot;name&amp;quot;: &amp;quot;web&amp;quot;, &amp;quot;tags&amp;quot;: [&amp;quot;web&amp;quot;], &amp;quot;port&amp;quot;: 80}}&#39; &amp;gt;/etc/consul.d/web.json  启动consul web界面 默认的地址是http://IP:8500/ui 就是本地地址的8500端口
+调用API 支持DNS API和HTTP API调用, 我们只说HTTP API
+注册一个访问 $ vim redis.json { &amp;quot;ID&amp;quot;: &amp;quot;redis1&amp;quot;, &amp;quot;Name&amp;quot;: &amp;quot;redis&amp;quot;, &amp;quot;Tags&amp;quot;: [ &amp;quot;primary&amp;quot;, &amp;quot;v1&amp;quot; ], &amp;quot;Address&amp;quot;: &amp;quot;127.</description>
+    </item>
+    
+  </channel>
+</rss>
