@@ -258,6 +258,19 @@ Baobab - GTK, using pie-charts, a treeview and a treemap.</description>
     </item>
     
     <item>
+      <title>nginx后端容器服务的自动发现和动态配置</title>
+      <link>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E5%92%8C%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E5%AE%B9%E5%99%A8%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8F%91%E7%8E%B0%E5%92%8C%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</guid>
+      <description>本文架构为Nginx+Consul+Consul Template+Registrator
+服务基本架构图 graph LR; B(clinet) --|客户端请求| C{Nginx} C --|后端服务转发| D[web server1] C --|后端服务转发| E[web server2] C --|后端服务转发| F[web server3] D --|容器自动发现| H{Registrator} E --|容器自动发现| H F --|容器自动发现| H H --|服务自动注册| I[Consul] G[Consul Tepmlate] --|订阅服务| I I --|拉取更新| G G --|根据自动注册的服务实时更新Nginx配置模板| C  工具介绍 Nginx 负责接受clint端来的请求
+Consul 是一个分布式高可用的服务发现和配置共享的软件，支持服务发现与注册、多数据中心、健康检查和分布式键/值存储, 内嵌实现了服务发现系统，不需要构建自己的系统或使用第三方系统，客户只需要注册服务，并通过DNS或HTTP接口执行服务发现
+特性:
+ 服务发现: 通过DNS API和HTTP API来进行服务注册和服务发现 健康状态检测: 可以实时监测服务的可用性 , 如果不可用 , nginx将不会将请求转发到不用的服务上 K/V存储: 用来存储K/V值 , 可以通过HTTP接口可以很方便的管理 多数据中心: 避免单点故障 一致性算法: 用的是raft , 而且支持ACL访问控制 web UI: 提供了一个简单的web可视化页面来操作  官网的介绍也就是这些 , 具体的可以去官网文档去看看 , 地址是https://www.</description>
+    </item>
+    
+    <item>
       <title>nginx后端服务动态配置</title>
       <link>https://haojianxun.github.io/docs/%E8%B0%83%E7%A0%94/nginx%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
